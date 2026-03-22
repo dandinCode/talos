@@ -30,5 +30,8 @@ export interface SavePortfolioPayload {
   name: string
   totalRisk: number
   totalReturn: number
-  stocks: string[]
+  stocks: {
+    stock: string
+    percentage: number
+  }[]
 }
