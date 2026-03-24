@@ -72,6 +72,7 @@
                                 <th>Código</th>
                                 <th>Empresa</th>
                                 <th>Setor</th>
+                                <th>Alocação</th>
                                 <th>Dividend Yield</th>
                                 <th>Volatilidade</th>
                                 <th>Última atualização</th>
@@ -93,6 +94,12 @@
                                     <v-chip size="small" :color="getSectorColor(item.stock.sector)" variant="tonal">
                                         {{ item.stock.sector || 'Não definido' }}
                                     </v-chip>
+                                </td>
+                                <td>
+                                    <div class="yield-cell">
+                                        <span class="yield-value">{{ item.percentage?.toFixed(2) || '0.00'
+                                            }}%</span>
+                                    </div>
                                 </td>
                                 <td>
                                     <div class="yield-cell">
