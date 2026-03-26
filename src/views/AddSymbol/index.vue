@@ -17,30 +17,16 @@
 
         <v-card-text class="card-content">
           <div class="input-wrapper">
-            <v-text-field
-              v-model="symbol"
-              label="Símbolo da Ação"
-              placeholder="ex: PETR4, VALE3, ITUB4"
-              :error="symbolError"
-              :error-messages="symbolError ? 'Formato inválido. Use apenas letras e números.' : ''"
-              variant="outlined"
-              class="symbol-input"
-              bg-color="rgba(255,255,255,0.02)"
-              hide-details="auto"
-              @keyup.enter="handleSubmit"
-            >
+            <v-text-field v-model="symbol" label="Símbolo da Ação" placeholder="ex: PETR4, VALE3, ITUB4"
+              :error="symbolError" :error-messages="symbolError ? 'Formato inválido. Use apenas letras e números.' : ''"
+              variant="outlined" class="symbol-input" bg-color="rgba(255,255,255,0.02)" hide-details="auto"
+              @keyup.enter="handleSubmit">
               <template #prepend>
                 <v-icon color="#ffd700" size="22">mdi-cash</v-icon>
               </template>
 
               <template #append>
-                <v-chip
-                  v-if="symbol && !symbolError"
-                  size="small"
-                  color="success"
-                  variant="tonal"
-                  class="valid-chip"
-                >
+                <v-chip v-if="symbol && !symbolError" size="small" color="success" variant="tonal" class="valid-chip">
                   <v-icon start size="14">mdi-check-circle</v-icon>
                   válido
                 </v-chip>
@@ -49,28 +35,16 @@
 
             <div class="examples mt-2">
               <span class="examples-label">Exemplos:</span>
-              <v-chip
-                v-for="ex in examples"
-                :key="ex"
-                size="x-small"
-                variant="tonal"
-                color="grey-darken-2"
-                class="example-chip"
-                @click="symbol = ex"
-              >
+              <v-chip v-for="ex in examples" :key="ex" size="x-small" variant="tonal" color="grey-darken-2"
+                class="example-chip" @click="symbol = ex">
                 {{ ex }}
               </v-chip>
             </div>
           </div>
 
           <v-expand-transition>
-            <v-alert
-              v-if="symbol && !symbolError"
-              type="info"
-              variant="tonal"
-              class="info-alert mt-4"
-              density="compact"
-            >
+            <v-alert v-if="symbol && !symbolError" type="info" variant="tonal" class="info-alert mt-4"
+              density="compact">
               <div class="d-flex align-center">
                 <span>O símbolo <strong>{{ symbol.toUpperCase() }}</strong> será verificado no Yahoo Finance.</span>
               </div>
@@ -92,12 +66,7 @@
         <v-divider class="mx-6" :style="{ borderColor: 'rgba(255,215,0,0.1)' }" />
 
         <v-card-actions class="pa-6">
-          <v-btn
-            class="submit-btn"
-            block
-            :loading="loading"
-            @click="handleSubmit"
-          >
+          <v-btn class="submit-btn" block :loading="loading" @click="handleSubmit">
             <template #prepend>
               <v-icon>mdi-plus</v-icon>
             </template>
@@ -114,12 +83,7 @@
       </v-card>
     </v-container>
 
-    <v-snackbar
-      v-model="showToast"
-      :color="toastColor"
-      :timeout="3000"
-      location="top"
-    >
+    <v-snackbar v-model="showToast" :color="toastColor" :timeout="3000" location="top">
       <div class="d-flex align-center">
         <v-icon :color="toastIconColor" class="mr-3">{{ toastIcon }}</v-icon>
         <span>{{ toastMessage }}</span>
@@ -129,8 +93,8 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from "vue";
-import { createStock } from "../../services/stocks";
+import { ref, computed, onMounted } from "vue";
+import { createStock, getStocksSummary } from "../../services/stocks";
 import { isValidStockSymbol } from '@/utils/validators';
 
 const symbol = ref("");
@@ -141,11 +105,26 @@ const toastMessage = ref('');
 const toastColor = ref('');
 const toastIcon = ref('');
 const toastIconColor = ref('');
+const totalSymbols = ref(0);
+const lastUpdate = ref('');
 
 const examples = ['PETR4', 'VALE3', 'ITUB4', 'ELET3', 'BPAC11'];
 
-const totalSymbols = ref(124);
-const lastUpdate = ref(new Date().toLocaleDateString('pt-BR'));
+
+onMounted(async () => {
+  try {
+    const resul = await getStocksSummary()
+
+    totalSymbols.value = resul?.totalAssets ?? 0
+
+    lastUpdate.value = resul?.lastUpdate
+      ? new Date(resul?.lastUpdate).toLocaleDateString('pt-BR')
+      : '-'
+
+  } catch (e) {
+    console.error(e)
+  }
+})
 
 const symbolError = computed(() =>
   symbol.value.length > 0 && !isValidStockSymbol(symbol.value)
@@ -153,7 +132,7 @@ const symbolError = computed(() =>
 
 function showNotification(type: 'success' | 'error' | 'warning', message: string) {
   toastMessage.value = message;
-  
+
   switch (type) {
     case 'success':
       toastColor.value = '#1e2a1e';
@@ -171,7 +150,7 @@ function showNotification(type: 'success' | 'error' | 'warning', message: string
       toastIconColor.value = '#f59e0b';
       break;
   }
-  
+
   showToast.value = true;
 }
 
@@ -195,7 +174,7 @@ async function handleSubmit() {
 
     showNotification('success', 'Símbolo registrado com sucesso!');
     symbol.value = '';
-    
+
     totalSymbols.value++;
   } catch (error: any) {
     if (error?.response?.status === 409) {
@@ -243,6 +222,7 @@ async function handleSubmit() {
     opacity: 0;
     transform: translateY(30px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
