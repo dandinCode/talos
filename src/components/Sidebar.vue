@@ -1,8 +1,8 @@
 <template>
     <v-navigation-drawer v-model="drawer" :rail="collapsed" permanent color="#0f172a">
         <div class="logo">
-            <v-icon size="40">
-                <v-img :src="logo" width="40" height="40" />
+            <v-icon size="28">
+                <v-img :src="logo" />
             </v-icon>
             <span v-if="!collapsed">Talos</span>
         </div>
