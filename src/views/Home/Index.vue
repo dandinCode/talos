@@ -122,6 +122,27 @@
             </v-list-item>
         </v-container>
 
+        <v-container class="section text-center">
+            <div class="about-content  mb-12 text-white">
+                <h2 class="section-title">Por que Talos?</h2>
+
+                <p>
+                    O nome <strong>Talos</strong> vem da mitologia grega. Talos era um gigante de bronze criado para
+                    proteger a ilha de Creta, circulando constantemente suas fronteiras para impedir invasões.
+                </p>
+
+                <p>
+                    Assim como o guardião mitológico, o Talos foi criado para proteger e fortalecer seus investimentos,
+                    ajudando você a tomar decisões mais seguras, equilibradas e inteligentes.
+                </p>
+
+                <p>
+                    Com análise de risco, retorno e diversificação, o Talos atua como um sistema de defesa estratégico
+                    para sua carteira.
+                </p>
+            </div>
+        </v-container>
+
         <v-container class="section future-section">
             <h2 class="text-h4 text-center mb-12 text-white glow">
                 Visão de Futuro
@@ -220,5 +241,63 @@
 .future-description {
     font-size: 1.05rem;
     line-height: 1.7;
+}
+
+.home-section {
+  padding: 64px 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.section-title {
+  font-size: 28px;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 12px;
+}
+
+.section-subtitle {
+  color: #94a3b8;
+  margin-bottom: 32px;
+}
+
+.problems-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+.problem-card {
+  background: #0f172a;
+  border: 1px solid #1e293b;
+  border-radius: 16px;
+  padding: 20px;
+  transition: 0.3s;
+}
+
+.problem-card:hover {
+  transform: translateY(-4px);
+  border-color: #ffd700;
+}
+
+.problem-card h3 {
+  margin-top: 12px;
+  margin-bottom: 8px;
+  color: #fff;
+}
+
+.problem-card p {
+  color: #94a3b8;
+  font-size: 14px;
+}
+
+.about-content {
+  max-width: 700px;
+}
+
+.about-content p {
+  color: #cbd5f5;
+  margin-bottom: 16px;
+  line-height: 1.6;
 }
 </style>
