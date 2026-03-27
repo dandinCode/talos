@@ -122,8 +122,47 @@
             </v-list-item>
         </v-container>
 
+        <v-container class="home-section problems">
+            <h2 class="section-title">Quais problemas o Talos resolve?</h2>
+            <p class="section-subtitle">
+                Investir sem estratégia pode custar caro. O Talos resolve os principais desafios de quem quer montar uma
+                carteira inteligente.
+            </p>
+            <div class="problems-grid">
+                <div class="problem-card">
+                    <v-icon size="32">mdi-alert-circle</v-icon>
+                    <h3>Falta de direção</h3>
+                    <p>
+                        Muitos investidores não sabem quais ativos escolher ou como distribuir seu capital de forma
+                        eficiente.
+                    </p>
+                </div>
+                <div class="problem-card">
+                    <v-icon size="32">mdi-chart-line-variant</v-icon>
+                    <h3>Decisões sem base</h3>
+                    <p>
+                        Escolher ações apenas por “achismo” ou hype pode gerar prejuízos e risco desnecessário.
+                    </p>
+                </div>
+                <div class="problem-card">
+                    <v-icon size="32">mdi-scale-balance</v-icon>
+                    <h3>Desequilíbrio na carteira</h3>
+                    <p>
+                        Sem uma boa alocação, sua carteira pode ficar exposta demais a um único setor ou ativo.
+                    </p>
+                </div>
+                <div class="problem-card">
+                    <v-icon size="32">mdi-timer-sand</v-icon>
+                    <h3>Falta de tempo</h3>
+                    <p>
+                        Analisar ativos, risco e retorno manualmente exige tempo e conhecimento técnico.
+                    </p>
+                </div>
+            </div>
+        </v-container>
+
         <v-container class="section text-center">
-            <div class="about-content  mb-12 text-white">
+            <div class="about-content  text-white">
                 <h2 class="section-title">Por que Talos?</h2>
 
                 <p>
@@ -244,60 +283,60 @@
 }
 
 .home-section {
-  padding: 64px 24px;
-  max-width: 1200px;
-  margin: 0 auto;
+    padding: 64px 24px;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
 .section-title {
-  font-size: 28px;
-  font-weight: 700;
-  color: #fff;
-  margin-bottom: 12px;
+    font-size: 28px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 12px;
 }
 
 .section-subtitle {
-  color: #94a3b8;
-  margin-bottom: 32px;
+    color: #94a3b8;
+    margin-bottom: 32px;
 }
 
 .problems-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
 }
 
 .problem-card {
-  background: #0f172a;
-  border: 1px solid #1e293b;
-  border-radius: 16px;
-  padding: 20px;
-  transition: 0.3s;
+    background: #0f172a;
+    border: 1px solid #1e293b;
+    border-radius: 16px;
+    padding: 20px;
+    transition: 0.3s;
 }
 
 .problem-card:hover {
-  transform: translateY(-4px);
-  border-color: #ffd700;
+    transform: translateY(-4px);
+    border-color: #ffd700;
 }
 
 .problem-card h3 {
-  margin-top: 12px;
-  margin-bottom: 8px;
-  color: #fff;
+    margin-top: 12px;
+    margin-bottom: 8px;
+    color: #fff;
 }
 
 .problem-card p {
-  color: #94a3b8;
-  font-size: 14px;
+    color: #94a3b8;
+    font-size: 14px;
 }
 
 .about-content {
-  max-width: 700px;
+    max-width: 700px;
 }
 
 .about-content p {
-  color: #cbd5f5;
-  margin-bottom: 16px;
-  line-height: 1.6;
+    color: #cbd5f5;
+    margin-bottom: 16px;
+    line-height: 1.6;
 }
 </style>
