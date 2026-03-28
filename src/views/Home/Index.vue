@@ -1,342 +1,819 @@
 <template>
-    <v-container fluid class="home-hero">
-        <v-row class="fill-height align-center justify-center text-center">
-            <v-col cols="12" md="10" lg="8">
-                <h1 class="text-h2 font-weight-black mt-6 mb-6 text-white glow">
-                    Talos
-                </h1>
-                <p class="text-h6 text-grey-lighten-2 mb-10">
-                    Uma plataforma inteligente para criação e otimização de carteiras de investimento em ações
-                    baseada em dados históricos, diversificação setorial e modelos matemáticos
-                    de otimização.
-                </p>
-                <v-btn size="x-large" color="blue-accent-3" class="mr-4" to="/RunModel">
-                    Começar Análise
-                </v-btn>
-                <v-btn size="x-large" variant="outlined" color="grey-lighten-2" to="/AddSymbol">
-                    Gerenciar Símbolos
-                </v-btn>
-            </v-col>
-        </v-row>
-
-        <v-container class="section">
-            <v-row>
-                <v-col cols="12" md="6">
-                    <h2 class="text-h4 mb-4 text-white">O que é este projeto?</h2>
-                    <p class="text-grey-lighten-2">
-                        Este sistema foi criado para auxiliar investidores na tomada de decisão
-                        ao montar carteiras de investimento em ações. A proposta é simples:
-                        permitir que o usuário selecione qualquer conjunto de ações e, a partir
-                        disso, gerar uma carteira otimizada de acordo com critérios de risco,
-                        retorno e diversificação.
-                    </p>
-                    <p class="text-grey-lighten-2 mt-4">
-                        Internamente, a plataforma utiliza uma API própria de otimização
-                        (<strong>Portfolio Optimized API</strong>) que aplica técnicas de
-                        <strong>programação linear</strong> para encontrar a melhor distribuição
-                        possível de capital entre os ativos selecionados.
-                    </p>
-                </v-col>
-                <v-col cols="12" md="6">
-                    <v-card class="pa-6 glass-card" elevation="0">
-                        <h3 class="text-h6 mb-2 section-title">Fontes de Dados</h3>
-                        <p class="text-grey-lighten-1">
-                            Os dados históricos de preços e retornos são obtidos automaticamente
-                            através do Yahoo Finance, permitindo análises baseadas em informações
-                            reais de mercado.
+    <div class="home-container">
+        <!-- HERO SECTION -->
+        <section class="hero-section">
+            <v-container fluid class="hero-content">
+                <v-row class="fill-height align-center justify-center text-center">
+                    <v-col cols="12" md="10" lg="8">
+                        <!-- Logo e Nome -->
+                        <div class="logo-wrapper">
+                            <img src="@/assets/talos_logo.png" alt="Talos" class="hero-logo" />
+                            <h1 class="hero-title">
+                                <span class="title-accent">Talos</span>
+                            </h1>
+                        </div>
+                        <p class="hero-description">
+                            Uma plataforma inteligente para criação e otimização de carteiras de investimento em ações
+                            baseada em dados históricos, diversificação setorial e modelos matemáticos
+                            de otimização.
                         </p>
-                        <h3 class="text-h6 mt-4 mb-2 section-title">Período de Análise</h3>
-                        <p class="text-grey-lighten-1">
-                            O usuário pode definir o período histórico a ser analisado. Caso nenhuma
-                            data seja informada, o sistema utiliza automaticamente os últimos
-                            <strong>12 meses</strong> como base.
-                        </p>
-                    </v-card>
-                </v-col>
-            </v-row>
-        </v-container>
+                        <div class="hero-buttons">
+                            <v-btn size="x-large" class="btn-primary" to="/RunModel">
+                                <v-icon start>mdi-chart-line</v-icon>
+                                Começar Análise
+                            </v-btn>
+                            <v-btn size="x-large" variant="outlined" class="btn-outline" to="/AddSymbol">
+                                <v-icon start>mdi-plus-circle</v-icon>
+                                Gerenciar Símbolos
+                            </v-btn>
+                        </div>
+                    </v-col>
+                </v-row>
+            </v-container>
+        </section>
 
-        <v-container class="section">
-            <h2 class="text-h4 text-center mb-12 text-white glow">
-                Como funciona?
-            </h2>
-            <v-row align="stretch">
-                <v-col cols="12" md="4">
-                    <v-card class="how-card">
-                        <h3 class="text-h6 font-weight-bold mb-3 text-white">1. Seleção de Ações</h3>
-                        <p class="text-grey-lighten-1">
-                            O usuário escolhe quais símbolos deseja analisar. Qualquer pessoa pode
-                            cadastrar ações, cabendo ao investidor decidir se deseja utilizá-las
-                            ou não.
-                        </p>
-                    </v-card>
-                </v-col>
-                <v-col cols="12" md="4">
-                    <v-card class="how-card">
-                        <h3 class="text-h6 font-weight-bold mb-3 text-white">2. Otimização Matemática</h3>
-                        <p class="text-grey-lighten-1">
-                            O modelo avalia retorno esperado, risco (volatilidade) e correlação entre
-                            ativos para gerar uma carteira eficiente.
-                        </p>
-                    </v-card>
-                </v-col>
-                <v-col cols="12" md="4">
-                    <v-card class="how-card">
-                        <h3 class="text-h6 font-weight-bold mb-3 text-white">3. Diversificação Inteligente</h3>
-                        <p class="text-grey-lighten-1">
-                            Além da diversificação entre ativos, o sistema também considera a
-                            diversificação por setor econômico, reduzindo exposição concentrada.
-                        </p>
-                    </v-card>
-                </v-col>
-            </v-row>
-        </v-container>
+        <!-- O QUE É O PROJETO -->
+        <section class="section about-section">
+            <v-container>
+                <v-row>
+                    <v-col cols="12" md="6">
+                        <div class="section-header-left">
+                            <span class="section-badge">Sobre o Talos</span>
+                            <h2 class="section-title">O que é este projeto?</h2>
+                        </div>
+                        <div class="about-text">
+                            <p>
+                                Este sistema foi criado para auxiliar investidores na tomada de decisão
+                                ao montar carteiras de investimento em ações. A proposta é simples:
+                                permitir que o usuário selecione qualquer conjunto de ações e, a partir
+                                disso, gerar uma carteira otimizada de acordo com critérios de risco,
+                                retorno e diversificação.
+                            </p>
+                            <p class="mt-4">
+                                Internamente, a plataforma utiliza uma API própria de otimização
+                                (<strong>Portfolio Optimized API</strong>) que aplica técnicas de
+                                <strong>programação linear</strong> para encontrar a melhor distribuição
+                                possível de capital entre os ativos selecionados.
+                            </p>
+                        </div>
+                    </v-col>
+                    <v-col cols="12" md="6">
+                        <div class="info-card">
+                            <div class="info-card-header">
+                                <v-icon size="28" color="#B99D75">mdi-database</v-icon>
+                                <h3>Fontes de Dados</h3>
+                            </div>
+                            <p>
+                                Os dados históricos de preços e retornos são obtidos automaticamente
+                                através do Yahoo Finance, permitindo análises baseadas em informações
+                                reais de mercado.
+                            </p>
+                            <div class="info-card-header mt-6">
+                                <v-icon size="28" color="#B99D75">mdi-calendar-range</v-icon>
+                                <h3>Período de Análise</h3>
+                            </div>
+                            <p>
+                                O usuário pode definir o período histórico a ser analisado. Caso nenhuma
+                                data seja informada, o sistema utiliza automaticamente os últimos
+                                <strong>12 meses</strong> como base.
+                            </p>
+                        </div>
+                    </v-col>
+                </v-row>
+            </v-container>
+        </section>
 
-        <v-container class="section text-center">
-            <h2 class="text-h4 mb-4 text-white">O que este projeto NÃO é</h2>
-            <v-list-item class="mb-2">
-                <v-list-item-title class="text-white">
-                    Não é uma ferramenta de recomendação financeira
-                </v-list-item-title>
-                <v-list-item-subtitle class="text-grey-lighten-1">
-                    O sistema não indica compras ou vendas de ativos.
-                </v-list-item-subtitle>
-            </v-list-item>
+        <!-- COMO FUNCIONA -->
+        <section class="section how-section">
+            <v-container>
+                <div class="section-header-center">
+                    <span class="section-badge gold">Processo</span>
+                    <h2 class="section-title">Como funciona?</h2>
+                    <p class="section-subtitle">Três passos para uma carteira otimizada</p>
+                </div>
+                <v-row>
+                    <v-col cols="12" md="4" v-for="(step, index) in steps" :key="index">
+                        <div class="step-card">
+                            <div class="step-number">{{ index + 1 }}</div>
+                            <h3 class="step-title">{{ step.title }}</h3>
+                            <p class="step-description">{{ step.description }}</p>
+                        </div>
+                    </v-col>
+                </v-row>
+            </v-container>
+        </section>
 
-            <v-list-item class="mb-2">
-                <v-list-item-title class="text-white">
-                    Não substitui um assessor de investimentos
-                </v-list-item-title>
-                <v-list-item-subtitle class="text-grey-lighten-1">
-                    As decisões finais devem sempre considerar contexto pessoal e orientação profissional.
-                </v-list-item-subtitle>
-            </v-list-item>
-
-            <v-list-item>
-                <v-list-item-title class="text-white">
-                    Não garante retornos
-                </v-list-item-title>
-                <v-list-item-subtitle class="text-grey-lighten-1">
-                    Os resultados são baseados em modelos matemáticos e dados históricos.
-                </v-list-item-subtitle>
-            </v-list-item>
-        </v-container>
-
-        <v-container class="home-section problems">
-            <h2 class="section-title">Quais problemas o Talos resolve?</h2>
-            <p class="section-subtitle">
-                Investir sem estratégia pode custar caro. O Talos resolve os principais desafios de quem quer montar uma
-                carteira inteligente.
-            </p>
-            <div class="problems-grid">
-                <div class="problem-card">
-                    <v-icon size="32">mdi-alert-circle</v-icon>
-                    <h3>Falta de direção</h3>
-                    <p>
-                        Muitos investidores não sabem quais ativos escolher ou como distribuir seu capital de forma
-                        eficiente.
+        <!-- PROBLEMAS QUE RESOLVE -->
+        <section class="section problems-section">
+            <v-container>
+                <div class="section-header-center">
+                    <span class="section-badge">Desafios Superados</span>
+                    <h2 class="section-title">Quais problemas o Talos resolve?</h2>
+                    <p class="section-subtitle">
+                        Investir sem estratégia pode custar caro. O Talos resolve os principais desafios de quem quer
+                        montar uma
+                        carteira inteligente.
                     </p>
                 </div>
-                <div class="problem-card">
-                    <v-icon size="32">mdi-chart-line-variant</v-icon>
-                    <h3>Decisões sem base</h3>
-                    <p>
-                        Escolher ações apenas por “achismo” ou hype pode gerar prejuízos e risco desnecessário.
-                    </p>
+                <div class="problems-grid">
+                    <div v-for="problem in problems" :key="problem.title" class="problem-card">
+                        <div class="problem-icon">
+                            <v-icon size="32" color="#B99D75">{{ problem.icon }}</v-icon>
+                        </div>
+                        <h3>{{ problem.title }}</h3>
+                        <p>{{ problem.description }}</p>
+                    </div>
                 </div>
-                <div class="problem-card">
-                    <v-icon size="32">mdi-scale-balance</v-icon>
-                    <h3>Desequilíbrio na carteira</h3>
-                    <p>
-                        Sem uma boa alocação, sua carteira pode ficar exposta demais a um único setor ou ativo.
-                    </p>
+            </v-container>
+        </section>
+
+        <!-- O QUE NÃO É -->
+        <section class="section disclaimer-section">
+            <v-container>
+                <div class="disclaimer-card">
+                    <div class="disclaimer-header">
+                        <v-icon size="32" color="#B99D75">mdi-shield-alert</v-icon>
+                        <h2 class="section-title">O que este projeto NÃO é</h2>
+                    </div>
+                    <div class="disclaimer-list">
+                        <div v-for="item in disclaimer" :key="item.title" class="disclaimer-item">
+                            <v-icon size="20" color="#B99D75" class="disclaimer-icon">mdi-close-circle</v-icon>
+                            <div>
+                                <h4>{{ item.title }}</h4>
+                                <p>{{ item.description }}</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="problem-card">
-                    <v-icon size="32">mdi-timer-sand</v-icon>
-                    <h3>Falta de tempo</h3>
-                    <p>
-                        Analisar ativos, risco e retorno manualmente exige tempo e conhecimento técnico.
-                    </p>
+            </v-container>
+        </section>
+
+        <!-- POR QUE TALOS? -->
+        <section class="section myth-section">
+            <v-container>
+                <div class="myth-content">
+                    <div class="myth-text">
+                        <span class="section-badge gold">Inspiração</span>
+                        <h2 class="section-title">Por que Talos?</h2>
+                        <p>
+                            O nome <strong>Talos</strong> vem da mitologia grega. Talos era um gigante de bronze criado
+                            para
+                            proteger a ilha de Creta, circulando constantemente suas fronteiras para impedir invasões.
+                        </p>
+                        <p>
+                            Assim como o guardião mitológico, o Talos foi criado para proteger e fortalecer seus
+                            investimentos,
+                            ajudando você a tomar decisões mais seguras, equilibradas e inteligentes.
+                        </p>
+                        <p class="myth-quote">
+                            Com análise de risco, retorno e diversificação, o Talos atua como um sistema de defesa
+                            estratégico
+                            para sua carteira.
+                        </p>
+                    </div>
+                    <div class="myth-icon">
+                        <v-icon size="80" color="#B99D75">mdi-shield-crown</v-icon>
+                    </div>
                 </div>
-            </div>
-        </v-container>
+            </v-container>
+        </section>
 
-        <v-container class="section text-center">
-            <div class="about-content  text-white">
-                <h2 class="section-title">Por que Talos?</h2>
-
-                <p>
-                    O nome <strong>Talos</strong> vem da mitologia grega. Talos era um gigante de bronze criado para
-                    proteger a ilha de Creta, circulando constantemente suas fronteiras para impedir invasões.
-                </p>
-
-                <p>
-                    Assim como o guardião mitológico, o Talos foi criado para proteger e fortalecer seus investimentos,
-                    ajudando você a tomar decisões mais seguras, equilibradas e inteligentes.
-                </p>
-
-                <p>
-                    Com análise de risco, retorno e diversificação, o Talos atua como um sistema de defesa estratégico
-                    para sua carteira.
-                </p>
-            </div>
-        </v-container>
-
-        <v-container class="section future-section">
-            <h2 class="text-h4 text-center mb-12 text-white glow">
-                Visão de Futuro
-            </h2>
-            <v-row justify="center" class="mb-8">
-                <v-col cols="12" md="8">
-                    <p class="text-center text-grey-lighten-2 future-description">
+        <!-- VISÃO DE FUTURO -->
+        <section class="section future-section">
+            <v-container>
+                <div class="future-card">
+                    <div class="future-header">
+                        <v-icon size="40" color="#B99D75">mdi-compass</v-icon>
+                        <h2 class="section-title">Visão de Futuro</h2>
+                    </div>
+                    <p class="future-description">
                         O projeto está em constante evolução. Entre as ideias futuras estão a inclusão
                         de indicadores fundamentalistas, perfis de investimento pré-configurados e a
                         possibilidade de o usuário escolher quais critérios deseja considerar no
                         processo de otimização.
                     </p>
-                </v-col>
-            </v-row>
-        </v-container>
+                </div>
+            </v-container>
+        </section>
 
-        <v-container class="section footer">
-            <p class="text-grey-lighten-1 text-center">
-                Baseado em pesquisa acadêmica sobre otimização de carteiras utilizando
-                programação linear.
-                <br />
-                <a href="https://repositorio.ufc.br/handle/riufc/82322" target="_blank" class="tcc-link">
-                    Leia o TCC completo
-                </a>
-            </p>
-        </v-container>
-    </v-container>
+        <!-- FOOTER -->
+        <footer class="footer-section">
+            <v-container>
+                <div class="footer-content">
+                    <div class="footer-logo">
+                        <img src="@/assets/talos_logo.png" alt="Talos" class="footer-logo-img" />
+                        <span>Talos</span>
+                    </div>
+                    <div class="footer-text">
+                        <p>
+                            Baseado em pesquisa acadêmica sobre otimização de carteiras utilizando
+                            programação linear.
+                        </p>
+                        <a href="https://repositorio.ufc.br/handle/riufc/82322" target="_blank" class="tcc-link">
+                            📄 Leia o TCC completo
+                        </a>
+                    </div>
+                    <div class="footer-copyright">
+                        <p>&copy; {{ new Date().getFullYear() }} Talos. Todos os direitos reservados.</p>
+                    </div>
+                </div>
+            </v-container>
+        </footer>
+    </div>
 </template>
 
 <script setup lang="ts">
+const steps = [
+    {
+        title: 'Seleção de Ações',
+        description: 'O usuário escolhe quais símbolos deseja analisar. Qualquer pessoa pode cadastrar ações, cabendo ao investidor decidir se deseja utilizá-las ou não.'
+    },
+    {
+        title: 'Otimização Matemática',
+        description: 'O modelo avalia retorno esperado, risco (volatilidade) e correlação entre ativos para gerar uma carteira eficiente.'
+    },
+    {
+        title: 'Diversificação Inteligente',
+        description: 'Além da diversificação entre ativos, o sistema também considera a diversificação por setor econômico, reduzindo exposição concentrada.'
+    }
+]
+
+const problems = [
+    {
+        icon: 'mdi-alert-circle',
+        title: 'Falta de direção',
+        description: 'Muitos investidores não sabem quais ativos escolher ou como distribuir seu capital de forma eficiente.'
+    },
+    {
+        icon: 'mdi-chart-line-variant',
+        title: 'Decisões sem base',
+        description: 'Escolher ações apenas por "achismo" ou hype pode gerar prejuízos e risco desnecessário.'
+    },
+    {
+        icon: 'mdi-scale-balance',
+        title: 'Desequilíbrio na carteira',
+        description: 'Sem uma boa alocação, sua carteira pode ficar exposta demais a um único setor ou ativo.'
+    },
+    {
+        icon: 'mdi-timer-sand',
+        title: 'Falta de tempo',
+        description: 'Analisar ativos, risco e retorno manualmente exige tempo e conhecimento técnico.'
+    }
+]
+
+const disclaimer = [
+    {
+        title: 'Não é uma ferramenta de recomendação financeira',
+        description: 'O sistema não indica compras ou vendas de ativos.'
+    },
+    {
+        title: 'Não substitui um assessor de investimentos',
+        description: 'As decisões finais devem sempre considerar contexto pessoal e orientação profissional.'
+    },
+    {
+        title: 'Não garante retornos',
+        description: 'Os resultados são baseados em modelos matemáticos e dados históricos.'
+    }
+]
 </script>
 
 <style scoped>
-.home-hero {
-    background: radial-gradient(circle at top, #1a237e, #0d1117);
+/* ===== RESET GLOBAL PARA ESTA PÁGINA ===== */
+.home-container {
+    background-color: #1C2D41;
     min-height: 100vh;
 }
 
-.darker {
-    background: #0d1117;
+/* Força fundo escuro em todos os elementos */
+.home-container * {
+    background-color: transparent;
 }
 
-.glass-card {
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(6px);
-}
-
-.glow {
-    text-shadow: 0 0 20px rgba(79, 140, 255, 0.6);
-}
-
-.footer {
-    padding-bottom: 120px;
-}
-
-.tcc-link {
-    color: #4f8cff;
-    text-decoration: none;
-}
-
-.tcc-link:hover {
-    text-decoration: underline;
-}
-
-.section {
-    padding: 100px 0;
-}
-
-.how-card {
-    height: 100%;
-    padding: 32px;
-    background: rgba(255, 255, 255, 0.06);
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    backdrop-filter: blur(10px);
-    border-radius: 20px;
-
+/* ===== HERO SECTION ===== */
+.hero-section {
+    min-height: 85vh;
     display: flex;
-    flex-direction: column;
+    align-items: center;
     justify-content: center;
+    position: relative;
+    background: radial-gradient(circle at 70% 30%, rgba(185, 157, 117, 0.1) 0%, transparent 70%),
+        linear-gradient(135deg, #1C2D41 0%, #14222f 100%);
+}
 
+.hero-content {
+    padding: 40px 20px;
+}
+
+.logo-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.hero-logo {
+    width: 70px;
+    height: 70px;
+    filter: drop-shadow(0 0 20px rgba(185, 157, 117, 0.3));
+}
+
+.hero-title {
+    font-size: 72px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    margin: 0;
+}
+
+.title-accent {
+    background: linear-gradient(135deg, #B99D75 0%, #e6d5b8 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.hero-description {
+    font-size: 18px;
+    line-height: 1.6;
+    color: rgba(255, 252, 239, 0.85);
+    max-width: 800px;
+    margin: 0 auto 32px;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #B99D75 0%, #9b835f 100%) !important;
+    color: #1C2D41 !important;
+    font-weight: 600;
+    text-transform: none;
+    padding: 12px 32px !important;
+    border-radius: 48px !important;
     transition: all 0.3s ease;
 }
 
-.how-card:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 0 30px rgba(79, 140, 255, 0.25);
-    border-color: rgba(79, 140, 255, 0.4);
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(185, 157, 117, 0.3);
 }
 
-.section-title {
+.btn-outline {
+    border: 2px solid #B99D75 !important;
+    color: #FFFCEF !important;
+    text-transform: none;
+    padding: 12px 32px !important;
+    border-radius: 48px !important;
+    transition: all 0.3s ease;
+    background: transparent !important;
+}
+
+.btn-outline:hover {
+    background: rgba(185, 157, 117, 0.1) !important;
+    transform: translateY(-2px);
+}
+
+/* ===== SECTIONS GERAIS ===== */
+.section {
+    padding: 80px 0;
+    background-color: #1C2D41;
+}
+
+.section-badge {
+    display: inline-block;
+    font-size: 12px;
     font-weight: 600;
-    color: #ffffff;
-}
-
-.future-description {
-    font-size: 1.05rem;
-    line-height: 1.7;
-}
-
-.home-section {
-    padding: 64px 24px;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-.section-title {
-    font-size: 28px;
-    font-weight: 700;
-    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #B99D75;
     margin-bottom: 12px;
 }
 
+.section-badge.gold {
+    color: #B99D75;
+}
+
+.section-header-left {
+    margin-bottom: 24px;
+}
+
+.section-header-center {
+    text-align: center;
+    margin-bottom: 48px;
+}
+
+.section-title {
+    font-size: 36px;
+    font-weight: 700;
+    color: #FFFCEF;
+    margin: 0 0 8px 0;
+}
+
 .section-subtitle {
-    color: #94a3b8;
-    margin-bottom: 32px;
+    font-size: 18px;
+    color: rgba(255, 252, 239, 0.7);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* ===== ABOUT SECTION ===== */
+.about-section {
+    background-color: #1C2D41;
+}
+
+.about-text p {
+    color: rgba(255, 252, 239, 0.85);
+    line-height: 1.7;
+    font-size: 16px;
+}
+
+.about-text strong {
+    color: #B99D75;
+}
+
+.info-card {
+    background: rgba(255, 252, 239, 0.03);
+    border: 1px solid rgba(185, 157, 117, 0.2);
+    border-radius: 24px;
+    padding: 32px;
+}
+
+.info-card-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.info-card-header h3 {
+    font-size: 20px;
+    font-weight: 600;
+    color: #FFFCEF;
+    margin: 0;
+}
+
+.info-card p {
+    color: rgba(255, 252, 239, 0.7);
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* ===== HOW SECTION ===== */
+.how-section {
+    background-color: #14222f;
+}
+
+.step-card {
+    background: rgba(255, 252, 239, 0.03);
+    border: 1px solid rgba(185, 157, 117, 0.2);
+    border-radius: 24px;
+    padding: 32px;
+    text-align: center;
+    transition: all 0.3s ease;
+    height: 100%;
+}
+
+.step-card:hover {
+    transform: translateY(-8px);
+    border-color: #B99D75;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.step-number {
+    width: 48px;
+    height: 48px;
+    background: linear-gradient(135deg, #B99D75 0%, #9b835f 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    font-weight: 700;
+    color: #1C2D41;
+    margin: 0 auto 24px;
+}
+
+.step-title {
+    font-size: 20px;
+    font-weight: 600;
+    color: #FFFCEF;
+    margin-bottom: 12px;
+}
+
+.step-description {
+    color: rgba(255, 252, 239, 0.7);
+    line-height: 1.6;
+    font-size: 14px;
+}
+
+/* ===== PROBLEMS SECTION ===== */
+.problems-section {
+    background-color: #1C2D41;
 }
 
 .problems-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+    margin-top: 32px;
 }
 
 .problem-card {
-    background: #0f172a;
-    border: 1px solid #1e293b;
-    border-radius: 16px;
-    padding: 20px;
-    transition: 0.3s;
+    background: rgba(255, 252, 239, 0.03);
+    border: 1px solid rgba(185, 157, 117, 0.2);
+    border-radius: 20px;
+    padding: 28px;
+    text-align: center;
+    transition: all 0.3s ease;
 }
 
 .problem-card:hover {
+    border-color: #B99D75;
     transform: translateY(-4px);
-    border-color: #ffd700;
+}
+
+.problem-icon {
+    margin-bottom: 20px;
 }
 
 .problem-card h3 {
-    margin-top: 12px;
-    margin-bottom: 8px;
-    color: #fff;
+    font-size: 18px;
+    font-weight: 600;
+    color: #FFFCEF;
+    margin-bottom: 12px;
 }
 
 .problem-card p {
-    color: #94a3b8;
+    color: rgba(255, 252, 239, 0.7);
     font-size: 14px;
-}
-
-.about-content {
-    max-width: 700px;
-}
-
-.about-content p {
-    color: #cbd5f5;
-    margin-bottom: 16px;
     line-height: 1.6;
+}
+
+/* ===== DISCLAIMER SECTION ===== */
+.disclaimer-section {
+    background-color: #14222f;
+}
+
+.disclaimer-card {
+    background: rgba(185, 157, 117, 0.05);
+    border: 1px solid rgba(185, 157, 117, 0.2);
+    border-radius: 32px;
+    padding: 48px;
+}
+
+.disclaimer-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 32px;
+    flex-wrap: wrap;
+}
+
+.disclaimer-header .section-title {
+    margin-bottom: 0;
+}
+
+.disclaimer-list {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.disclaimer-item {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+}
+
+.disclaimer-icon {
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+.disclaimer-item h4 {
+    font-size: 16px;
+    font-weight: 600;
+    color: #FFFCEF;
+    margin-bottom: 4px;
+}
+
+.disclaimer-item p {
+    color: rgba(255, 252, 239, 0.6);
+    font-size: 14px;
+    margin: 0;
+}
+
+/* ===== MYTH SECTION ===== */
+.myth-section {
+    background-color: #1C2D41;
+}
+
+.myth-content {
+    display: flex;
+    align-items: center;
+    gap: 60px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.myth-text {
+    flex: 1;
+}
+
+.myth-text p {
+    color: rgba(255, 252, 239, 0.85);
+    line-height: 1.7;
+    margin-bottom: 20px;
+}
+
+.myth-text strong {
+    color: #B99D75;
+}
+
+.myth-quote {
+    font-style: italic;
+    border-left: 3px solid #B99D75;
+    padding-left: 20px;
+    margin-top: 24px;
+}
+
+.myth-icon {
+    flex-shrink: 0;
+    width: 120px;
+    height: 120px;
+    background: rgba(185, 157, 117, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ===== FUTURE SECTION ===== */
+.future-section {
+    background-color: #14222f;
+}
+
+.future-card {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+    background: rgba(185, 157, 117, 0.03);
+    border: 1px solid rgba(185, 157, 117, 0.2);
+    border-radius: 32px;
+    padding: 48px;
+}
+
+.future-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+}
+
+.future-header .section-title {
+    margin-bottom: 0;
+}
+
+.future-description {
+    font-size: 18px;
+    line-height: 1.7;
+    color: rgba(255, 252, 239, 0.85);
+}
+
+/* ===== FOOTER ===== */
+.footer-section {
+    background-color: #0f1a24;
+    border-top: 1px solid rgba(185, 157, 117, 0.1);
+    padding: 48px 0 24px;
+}
+
+.footer-content {
+    text-align: center;
+}
+
+.footer-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 24px;
+}
+
+.footer-logo-img {
+    width: 32px;
+    height: 32px;
+}
+
+.footer-logo span {
+    font-size: 20px;
+    font-weight: 600;
+    color: #FFFCEF;
+}
+
+.footer-text p {
+    color: rgba(255, 252, 239, 0.6);
+    font-size: 14px;
+    margin-bottom: 12px;
+}
+
+.tcc-link {
+    color: #B99D75;
+    text-decoration: none;
+    font-size: 14px;
+    transition: color 0.3s ease;
+}
+
+.tcc-link:hover {
+    color: #e6d5b8;
+    text-decoration: underline;
+}
+
+.footer-copyright {
+    margin-top: 32px;
+    padding-top: 24px;
+    border-top: 1px solid rgba(185, 157, 117, 0.1);
+}
+
+.footer-copyright p {
+    color: rgba(255, 252, 239, 0.4);
+    font-size: 12px;
+    margin: 0;
+}
+
+/* ===== RESPONSIVIDADE ===== */
+@media (max-width: 960px) {
+    .hero-title {
+        font-size: 48px;
+    }
+
+    .hero-description {
+        font-size: 16px;
+    }
+
+    .section-title {
+        font-size: 28px;
+    }
+
+    .myth-content {
+        flex-direction: column;
+        text-align: center;
+        gap: 32px;
+    }
+
+    .myth-quote {
+        text-align: left;
+    }
+
+    .disclaimer-card {
+        padding: 32px 24px;
+    }
+
+    .future-card {
+        padding: 32px 24px;
+    }
+}
+
+@media (max-width: 600px) {
+    .hero-title {
+        font-size: 36px;
+    }
+
+    .hero-logo {
+        width: 50px;
+        height: 50px;
+    }
+
+    .section {
+        padding: 48px 0;
+    }
+
+    .section-title {
+        font-size: 24px;
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .hero-buttons .v-btn {
+        width: 100%;
+        max-width: 280px;
+    }
+
+    .step-card {
+        padding: 24px;
+    }
+
+    .problems-grid {
+        grid-template-columns: 1fr;
+    }
 }
 </style>
