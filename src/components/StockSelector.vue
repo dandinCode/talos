@@ -94,8 +94,8 @@ function selectAll() {
 }
 
 .selected-card {
-    background: #0059ff !important;
-    border-color: #2f86ff !important;
+    background: #B99D75 !important;
+    border-color: #FFFCEF !important;
     color: white !important;
     transform: scale(1.05);
 }
