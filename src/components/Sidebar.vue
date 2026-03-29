@@ -27,11 +27,9 @@
                         <span class="avatar-text">{{ initials }}</span>
                     </v-avatar>
                 </template>
-
                 <v-list-item-title v-if="!collapsed" class="profile-name">
                     {{ firstName }}
                 </v-list-item-title>
-
                 <template #append>
                     <v-menu offset="7">
                         <template #activator="{ props }">
@@ -39,7 +37,6 @@
                                 <v-icon size="20">mdi-dots-vertical</v-icon>
                             </v-btn>
                         </template>
-
                         <v-list class="menu-list">
                             <v-list-item @click="goProfile" class="menu-item">
                                 <template #prepend>
@@ -116,13 +113,11 @@ function logout() {
 </script>
 
 <style scoped>
-/* ===== SIDEBAR PRINCIPAL ===== */
 .talos-sidebar {
     background: #1C2D41 !important;
     border-right: 1px solid rgba(185, 157, 117, 0.15) !important;
 }
 
-/* ===== LOGO ===== */
 .logo {
     display: flex;
     align-items: center;
@@ -157,13 +152,11 @@ function logout() {
     letter-spacing: -0.5px;
 }
 
-/* ===== DIVIDER ===== */
 .divider {
     background: rgba(185, 157, 117, 0.15) !important;
     margin: 4px 0;
 }
 
-/* ===== NAVEGAÇÃO ===== */
 .nav-list {
     padding: 8px 12px;
 }
@@ -202,7 +195,6 @@ function logout() {
     color: #FFFCEF !important;
 }
 
-/* Item ativo (rota atual) */
 .nav-item :deep(.v-list-item--active) {
     background: rgba(185, 157, 117, 0.15) !important;
 }
@@ -216,7 +208,6 @@ function logout() {
     font-weight: 600;
 }
 
-/* ===== PERFIL ===== */
 .profile {
     padding: 12px 16px !important;
     margin: 8px 12px !important;
@@ -266,7 +257,6 @@ function logout() {
     background: rgba(185, 157, 117, 0.1) !important;
 }
 
-/* ===== MENU SUSPENSO ===== */
 .menu-list {
     background: #1C2D41 !important;
     border: 1px solid rgba(185, 157, 117, 0.2) !important;
@@ -312,7 +302,6 @@ function logout() {
     margin: 4px 0;
 }
 
-/* ===== BOTÃO TOGGLE ===== */
 .toggle {
     display: flex;
     justify-content: center;
@@ -335,18 +324,15 @@ function logout() {
     background: rgba(185, 157, 117, 0.1) !important;
 }
 
-/* ===== ESTADOS DO RAIL (COLLAPSED) - CORREÇÃO COMPLETA ===== */
 .talos-sidebar :deep(.v-navigation-drawer--rail) {
     overflow-x: visible !important;
 }
 
-/* Logo no modo rail */
 .talos-sidebar :deep(.v-navigation-drawer--rail) .logo {
     justify-content: center;
     padding: 24px 0;
 }
 
-/* Perfil no modo rail - CENTRALIZADO CORRETAMENTE */
 .talos-sidebar :deep(.v-navigation-drawer--rail) .profile {
     justify-content: center !important;
     padding: 12px 0 !important;
@@ -354,17 +340,14 @@ function logout() {
     width: 100% !important;
 }
 
-/* Avatar no modo rail */
 .talos-sidebar :deep(.v-navigation-drawer--rail) .avatar {
     margin: 0 !important;
 }
 
-/* Esconde o append do perfil no modo rail */
 .talos-sidebar :deep(.v-navigation-drawer--rail) .profile .v-list-item__append {
     display: none !important;
 }
 
-/* Itens de navegação no modo rail */
 .talos-sidebar :deep(.v-navigation-drawer--rail) .nav-item {
     justify-content: center;
     padding: 12px 0 !important;
@@ -374,7 +357,6 @@ function logout() {
     margin-right: 0 !important;
 }
 
-/* Toggle no modo rail */
 .talos-sidebar :deep(.v-navigation-drawer--rail) .toggle {
     padding: 16px 0 20px;
     justify-content: center;
