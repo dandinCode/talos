@@ -147,7 +147,7 @@ async function runModel() {
         payload.acceptableRisk = analysis.acceptableRisk
     }
 
-    notify.info('🔄 Aguarde enquanto o modelo é executado...');
+    notify.info('Aguarde enquanto o modelo é executado...');
 
     try {
         const result = await analyzeStocks(payload as any);
@@ -158,7 +158,7 @@ async function runModel() {
         }
         console.log('Resultado otimizado:', result);
         modelResult.value = result;
-        notify.success('✅ Modelo executado com sucesso!');
+        notify.success('Modelo executado com sucesso!');
     } catch (err) {
         console.error(err);
         notify.error('Erro ao executar modelo.');
