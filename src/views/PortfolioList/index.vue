@@ -127,27 +127,8 @@
             </v-row>
         </v-container>
 
-        <v-dialog v-model="deleteDialog.show" max-width="400">
-            <v-card class="delete-dialog">
-                <v-card-title class="text-h5">Excluir Portfólio</v-card-title>
-
-                <v-card-text>
-                    Tem certeza que deseja excluir o portfólio
-                    <strong>"{{ deleteDialog.portfolioName }}"</strong>?
-                    Esta ação não pode ser desfeita.
-                </v-card-text>
-
-                <v-card-actions>
-                    <v-spacer />
-                    <v-btn variant="text" @click="deleteDialog.show = false">
-                        Cancelar
-                    </v-btn>
-                    <v-btn color="error" variant="tonal" @click="executeDelete">
-                        Excluir
-                    </v-btn>
-                </v-card-actions>
-            </v-card>
-        </v-dialog>
+        <DeletePortfolioDialog v-model="deleteDialog.show" :portfolio-id="deleteDialog.portfolioId"
+            :portfolio-name="deleteDialog.portfolioName" @confirm="executeDelete" />
     </div>
 </template>
 
@@ -156,6 +137,8 @@ import { ref, onMounted, reactive } from "vue"
 import { useRouter } from "vue-router"
 import { getMyPortfolios, removePortfolio } from "@/services/portfolio"
 import { usePortfoliosStore } from "@/stores/portfoliosStore"
+import DeletePortfolioDialog from '@/components/DeletePortfolioDialog.vue'
+import { notify } from '@/utils/toast';
 
 const portfolioStore = usePortfoliosStore()
 const router = useRouter()
@@ -199,14 +182,17 @@ function confirmDelete(id: number) {
     deleteDialog.show = true
 }
 
-async function executeDelete() {
-    if (deleteDialog.portfolioId) {
-        await removePortfolio(deleteDialog.portfolioId)
+async function executeDelete(id: number) {
+    try {
+        await removePortfolio(id)
 
-        portfolioStore.removePortfolio(deleteDialog.portfolioId)
-        portfolios.value = portfolios.value.filter(
-            p => p.id !== deleteDialog.portfolioId
-        )
+        portfolioStore.removePortfolio(id)
+        portfolios.value = portfolios.value.filter(p => p.id !== id)
+
+        notify.success('Portfólio excluído com sucesso')
+    } catch (error: any) {
+        notify.error('Erro ao excluir portfólio')
+    } finally {
         deleteDialog.show = false
     }
 }
