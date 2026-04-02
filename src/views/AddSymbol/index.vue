@@ -83,12 +83,6 @@
       </v-card>
     </v-container>
 
-    <v-snackbar v-model="showToast" :color="toastColor" :timeout="3000" location="top">
-      <div class="d-flex align-center">
-        <v-icon :color="toastIconColor" class="mr-3">{{ toastIcon }}</v-icon>
-        <span>{{ toastMessage }}</span>
-      </div>
-    </v-snackbar>
   </div>
 </template>
 
@@ -96,18 +90,12 @@
 import { ref, computed, onMounted } from "vue";
 import { createStock, getStocksSummary } from "../../services/stocks";
 import { isValidStockSymbol } from '@/utils/validators';
+import { notify } from "@/utils/toast";
 
 const symbol = ref("");
 const loading = ref(false);
-
-const showToast = ref(false);
-const toastMessage = ref('');
-const toastColor = ref('');
-const toastIcon = ref('');
-const toastIconColor = ref('');
 const totalSymbols = ref(0);
 const lastUpdate = ref('');
-
 const examples = ['PETR4', 'VALE3', 'ITUB4', 'ELET3', 'BPAC11'];
 
 
@@ -130,57 +118,33 @@ const symbolError = computed(() =>
   symbol.value.length > 0 && !isValidStockSymbol(symbol.value)
 );
 
-function showNotification(type: 'success' | 'error' | 'warning', message: string) {
-  toastMessage.value = message;
-
-  switch (type) {
-    case 'success':
-      toastColor.value = '#1e2a1e';
-      toastIcon.value = 'mdi-check-circle';
-      toastIconColor.value = '#22c55e';
-      break;
-    case 'error':
-      toastColor.value = '#2a1e1e';
-      toastIcon.value = 'mdi-alert-circle';
-      toastIconColor.value = '#ef4444';
-      break;
-    case 'warning':
-      toastColor.value = '#2a241e';
-      toastIcon.value = 'mdi-alert';
-      toastIconColor.value = '#f59e0b';
-      break;
-  }
-
-  showToast.value = true;
-}
-
 async function handleSubmit() {
   loading.value = true;
 
   try {
     if (!symbol.value) {
-      showNotification('warning', 'Preencha todos os campos.');
+      notify.warning('Informe um símbolo válido.')
       return;
     }
 
     const normalizedSymbol = symbol.value.trim().toUpperCase();
 
     if (!isValidStockSymbol(normalizedSymbol)) {
-      showNotification('warning', 'Símbolo inválido. Use apenas letras e números.');
+      notify.warning('Símbolo inválido. Use apenas letras e números.')
       return;
     }
 
     await createStock(normalizedSymbol);
 
-    showNotification('success', 'Símbolo registrado com sucesso!');
-    symbol.value = '';
+    notify.success('Símbolo registrado com sucesso!')
+    symbol.value = ''
 
-    totalSymbols.value++;
+    totalSymbols.value++
   } catch (error: any) {
     if (error?.response?.status === 409) {
-      showNotification('error', 'Símbolo já existe na base de dados!');
+      notify.error('Símbolo já existe na base de dados!')
     } else {
-      showNotification('error', 'Erro ao registrar símbolo.');
+      notify.error('Erro ao registrar símbolo.')
     }
   } finally {
     loading.value = false;
