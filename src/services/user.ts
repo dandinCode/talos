@@ -20,3 +20,8 @@ export async function login(email: string, password: string) {
 
   return res.data
 }
+
+export async function updateUser(data: { name: string }) {
+  const res = await api.put('/users/me', data)
+  return res.data
+}
