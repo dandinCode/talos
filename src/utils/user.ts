@@ -1,4 +1,4 @@
-import type { UserFromToken } from "@/types/types"
+import type { UserFromToken } from '@/types/types'
 
 export function getUserFirstName(): string {
   const user = getUserFromToken()
@@ -47,4 +47,12 @@ export function getUserInitials(): string {
   }
 
   return ((parts[0]?.[0] || '') + (parts[parts.length - 1]?.[0] || '')).toUpperCase()
+}
+
+export function decodeUTF8(str: string) {
+  try {
+    return decodeURIComponent(escape(str))
+  } catch {
+    return str
+  }
 }
