@@ -35,14 +35,10 @@ async function handleSave() {
     await updateUser({
       name: name.value
     })
-
     notify.success('Perfil atualizado com sucesso')
-
-    // Atualiza o nome no localStorage/token se necessário
     const storedUser = getUserFromToken()
     if (storedUser) {
       storedUser.name = name.value
-      // Aqui você pode atualizar o token no storage se necessário
     }
   } catch (e: any) {
     notify.error(
@@ -61,16 +57,13 @@ function goBack() {
 <template>
   <div class="profile-bg">
     <v-container class="profile-container">
-      <!-- Botão Voltar -->
       <div class="back-button">
         <v-btn variant="text" class="back-btn" @click="goBack">
           <v-icon start size="18">mdi-arrow-left</v-icon>
           Voltar
         </v-btn>
       </div>
-
       <v-card class="profile-card">
-        <!-- Header do Card -->
         <div class="card-header">
           <div class="header-icon">
             <v-icon size="28" color="#B99D75">mdi-account-circle</v-icon>
@@ -82,7 +75,6 @@ function goBack() {
         <v-divider class="divider" />
 
         <v-card-text class="card-content">
-          <!-- Avatar com gradiente bronze -->
           <div class="avatar-wrapper">
             <v-avatar size="100" class="avatar">
               <span class="avatar-text text-h5 font-weight-bold">
@@ -93,10 +85,7 @@ function goBack() {
               <v-icon size="16" color="#1C2D41">mdi-check</v-icon>
             </div>
           </div>
-
-          <!-- Formulário -->
           <div class="form-fields">
-            <!-- Campo Nome - Editável -->
             <div class="field-wrapper">
               <label class="field-label">
                 <v-icon size="16" color="#B99D75" class="mr-1">mdi-account-outline</v-icon>
@@ -110,8 +99,6 @@ function goBack() {
               </v-text-field>
               <p class="field-hint">Seu nome será usado para identificação na plataforma</p>
             </div>
-
-            <!-- Campo Email - Somente leitura (não editável) -->
             <div class="field-wrapper">
               <label class="field-label">
                 <v-icon size="16" color="#B99D75" class="mr-1">mdi-email-outline</v-icon>
@@ -129,8 +116,6 @@ function goBack() {
               </p>
             </div>
           </div>
-
-          <!-- Informações adicionais -->
           <div class="info-box">
             <div class="info-item">
               <v-icon size="18" color="#B99D75">mdi-shield-check</v-icon>
@@ -155,8 +140,6 @@ function goBack() {
           </v-btn>
         </v-card-actions>
       </v-card>
-
-      <!-- Rodapé informativo -->
       <div class="footer-note">
         <p>
           <v-icon size="14" color="#B99D75">mdi-lock-outline</v-icon>
@@ -179,7 +162,6 @@ function goBack() {
   margin: 0 auto;
 }
 
-/* Botão Voltar */
 .back-button {
   margin-bottom: 16px;
 }
@@ -197,7 +179,6 @@ function goBack() {
   color: #B99D75 !important;
 }
 
-/* Card Principal */
 .profile-card {
   background: rgba(26, 26, 26, 0.85) !important;
   backdrop-filter: blur(10px);
@@ -207,7 +188,6 @@ function goBack() {
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
 }
 
-/* Header do Card */
 .card-header {
   text-align: center;
   padding: 32px 32px 20px;
@@ -242,18 +222,15 @@ function goBack() {
   margin: 0;
 }
 
-/* Divider */
 .divider {
   background: rgba(185, 157, 117, 0.15) !important;
   margin: 0 24px;
 }
 
-/* Card Content */
 .card-content {
   padding: 32px !important;
 }
 
-/* Avatar */
 .avatar-wrapper {
   position: relative;
   display: flex;
@@ -285,7 +262,6 @@ function goBack() {
   border: 3px solid #1a1a1a;
 }
 
-/* Formulário */
 .form-fields {
   display: flex;
   flex-direction: column;
@@ -352,7 +328,6 @@ function goBack() {
   margin: 4px 0 0 0;
 }
 
-/* Info Box */
 .info-box {
   background: rgba(0, 0, 0, 0.25);
   border: 1px solid rgba(185, 157, 117, 0.15);
@@ -372,7 +347,6 @@ function goBack() {
   font-size: 13px;
 }
 
-/* Card Actions */
 .card-actions {
   padding: 24px 32px 32px !important;
   gap: 16px;
@@ -414,7 +388,6 @@ function goBack() {
   transform: none;
 }
 
-/* Footer Note */
 .footer-note {
   text-align: center;
   margin-top: 24px;
@@ -431,7 +404,6 @@ function goBack() {
   gap: 6px;
 }
 
-/* Responsividade */
 @media (max-width: 600px) {
   .profile-bg {
     padding: 20px 16px;
