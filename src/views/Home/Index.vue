@@ -16,14 +16,11 @@
                             de otimização.
                         </p>
                         <div class="hero-buttons">
-                            <v-btn size="x-large" class="btn-primary" to="/RunModel">
+                            <v-btn size="x-large" class="btn-primary" to="/dashboard">
                                 <v-icon start>mdi-chart-line</v-icon>
-                                Começar Análise
+                                Começar Agora
                             </v-btn>
-                            <v-btn size="x-large" variant="outlined" class="btn-outline" to="/AddSymbol">
-                                <v-icon start>mdi-plus-circle</v-icon>
-                                Gerenciar Símbolos
-                            </v-btn>
+                            
                         </div>
                     </v-col>
                 </v-row>
