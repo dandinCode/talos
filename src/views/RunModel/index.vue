@@ -41,9 +41,9 @@
                         <div class="info-note mt-3">
                             <v-icon size="16" color="#B99D75">mdi-shield-check</v-icon>
                             <span>
-                                Qualquer pessoa pode cadastrar symbols. Cabe a você decidir se quer rodar o modelo com
+                                Qualquer pessoa pode cadastrar ativos. Cabe a você decidir se quer rodar o modelo com
                                 eles.
-                                Caso algum símbolo não exista, o modelo apenas <strong>ignora</strong> e segue com os
+                                Caso algum ativo não exista, o modelo apenas <strong>ignora</strong> e segue com os
                                 outros.
                             </span>
                         </div>
