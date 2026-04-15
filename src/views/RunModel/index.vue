@@ -92,12 +92,18 @@
                 </div>
                 <v-divider class="divider" />
                 <div class="action-section">
-                    <v-btn class="run-btn" size="x-large" block :disabled="analysis.selectedSymbols.length === 0"
-                        @click="runModel">
+                    <v-btn class="run-btn" size="x-large" block :loading="loading"
+                        :disabled="analysis.selectedSymbols.length === 0 || loading" @click="runModel">
                         <template #prepend>
                             <v-icon>mdi-play-circle</v-icon>
                         </template>
-                        Rodar Modelo com {{ analysis.selectedSymbols.length }} ações
+
+                        <span v-if="!loading">
+                            Rodar Modelo com {{ analysis.selectedSymbols.length }} ações
+                        </span>
+                        <span v-else>
+                            Executando modelo...
+                        </span>
                     </v-btn>
                     <p v-if="analysis.selectedSymbols.length > 0 && analysis.selectedSymbols.length < 5"
                         class="warning-text">
@@ -124,6 +130,7 @@ import { ref } from 'vue';
 
 const modelResult = ref<any | null>(null);
 const analysis = useAnalysisStore();
+const loading = ref(false)
 
 async function runModel() {
     if (!analysis.selectedSymbols || analysis.selectedSymbols.length < 5) {
@@ -148,6 +155,7 @@ async function runModel() {
     }
 
     notify.info('Aguarde enquanto o modelo é executado...');
+    loading.value = true;
 
     try {
         const result = await analyzeStocks(payload as any);
@@ -162,6 +170,8 @@ async function runModel() {
     } catch (err) {
         console.error(err);
         notify.error('Erro ao executar modelo.');
+    } finally {
+        loading.value = false;
     }
 }
 </script>
