@@ -72,6 +72,9 @@ import { ref } from 'vue';
 import { notify } from '@/utils/toast';
 import { savePortfolio } from '@/services/portfolio';
 import SavePortfolioModal from '@/components/SavePortfolioModal.vue';
+import { usePortfoliosStore } from '@/stores/portfoliosStore'
+
+const store = usePortfoliosStore()
 
 const props = defineProps<{
     optimization: {
@@ -91,7 +94,7 @@ const openSaveModal = ref(false);
 
 async function handleSave(name: string) {
     try {
-        await savePortfolio({
+        const newPortfolio = await savePortfolio({
             name,
             totalRisk: props.optimization.portfolio_risk,
             totalReturn: props.optimization.dividend_yield,
@@ -100,6 +103,8 @@ async function handleSave(name: string) {
                 percentage: item.percentage
             }))
         });
+
+        store.addPortfolio(newPortfolio)
 
         notify.success('Portfólio salvo com sucesso!');
         openSaveModal.value = false;
