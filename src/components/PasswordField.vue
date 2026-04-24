@@ -1,6 +1,6 @@
 <template>
     <v-text-field v-model="model" :label="label" :type="show ? 'text' : 'password'" variant="outlined"
-        class="password-field" :rules="rules">
+        class="text-white password-field" :rules="rules">
         <template #prepend-inner>
             <v-icon color="white">mdi-lock-outline</v-icon>
         </template>
