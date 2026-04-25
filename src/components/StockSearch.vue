@@ -1,6 +1,6 @@
 <template>
     <v-text-field v-model="search" label="Buscar ação (ex: PETR, ITUB)" prepend-inner-icon="mdi-magnify"
-        variant="outlined" density="comfortable" clearable color="blue-lighten-2" class="mb-4" />
+        variant="outlined" density="comfortable" clearable color="blue-lighten-2" class="text-white mb-4" />
 </template>
 
 <script setup lang="ts">
