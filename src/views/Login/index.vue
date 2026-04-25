@@ -66,7 +66,6 @@ async function handleLogin() {
 }
 </script>
 
-
 <style scoped>
 .login-hero {
     width: 100vw;
@@ -102,4 +101,18 @@ async function handleLogin() {
 .link:hover {
     text-decoration: underline;
 }
+
+.login-card :deep(input) {
+    background-color: rgba(255, 255, 255, 0.03) !important;
+    color: #FFFCEF !important;
+}
+
+.login-card :deep(input:-webkit-autofill),
+.login-card :deep(input:-webkit-autofill:hover),
+.login-card :deep(input:-webkit-autofill:focus),
+.login-card :deep(input:-webkit-autofill:active) {
+    -webkit-box-shadow: 0 0 0 30px rgba(28, 45, 65, 0.95) inset !important;
+    -webkit-text-fill-color: #FFFCEF !important;
+}
+
 </style>
