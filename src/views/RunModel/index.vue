@@ -209,7 +209,7 @@ async function runModel() {
 }
 
 .header-text h2 {
-    background: linear-gradient(135deg, #FFFCEF 0%, #B99D75 100%);
+    background: #B99D75;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
