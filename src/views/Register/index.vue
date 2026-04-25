@@ -117,4 +117,17 @@ async function handleRegister() {
 .link:hover {
     text-decoration: underline;
 }
+
+.register-card :deep(input) {
+    background-color: rgba(255, 255, 255, 0.03) !important;
+    color: #FFFCEF !important;
+}
+
+.register-card :deep(input:-webkit-autofill),
+.register-card :deep(input:-webkit-autofill:hover),
+.register-card :deep(input:-webkit-autofill:focus),
+.register-card :deep(input:-webkit-autofill:active) {
+    -webkit-box-shadow: 0 0 0 30px rgba(28, 45, 65, 0.95) inset !important;
+    -webkit-text-fill-color: #FFFCEF !important;
+}
 </style>
