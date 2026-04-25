@@ -92,7 +92,7 @@ async function handleLogin() {
 
 .link {
     margin-left: 6px;
-    color: #4f8cff;
+    color: #B99D75;
     text-decoration: none;
 }
 
