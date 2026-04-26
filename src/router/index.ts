@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import AppLayout from '@/layouts/AppLayout.vue'
 import { isTokenExpired } from '@/utils/jwt'
+import { checkAuth } from '@/services/user'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -61,20 +62,15 @@ const router = createRouter({
   ],
 })
 
-router.beforeEach((to, from, next) => {
-  const token = localStorage.getItem('token')
+router.beforeEach(async (to, from, next) => {
+  const isAuthenticated = await checkAuth()
 
-  if (token && isTokenExpired(token)) {
-    localStorage.removeItem('token')
+  if (to.meta.requiresAuth && !isAuthenticated) {
     return next('/login')
   }
 
-  if (to.meta.requiresAuth && !token) {
-    return next('/login')
-  }
-
-  if ((to.path === '/login' || to.path === '/register') && token) {
-    return next('/')
+  if ((to.path === '/login' || to.path === '/register') && isAuthenticated) {
+    return next('/Dashboard')
   }
 
   next()

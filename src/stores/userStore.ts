@@ -29,8 +29,7 @@ export const useUserStore = defineStore('user', () => {
     loading.value = true
 
     try {
-      const { access_token } = await loginService(email, password)
-      setToken(access_token)
+      await loginService(email, password)
     } finally {
       loading.value = false
     }

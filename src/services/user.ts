@@ -25,3 +25,12 @@ export async function updateUser(data: { name: string }) {
   const res = await api.put('/users/me', data)
   return res.data
 }
+
+export async function checkAuth() {
+  try {
+    await api.get('/auth/me')
+    return true
+  } catch {
+    return false
+  }
+}
