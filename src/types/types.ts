@@ -36,7 +36,7 @@ export interface SavePortfolioPayload {
   }[]
 }
 
-export interface UserFromToken {
+export interface User {
   name?: string
   email?: string
   sub?: number

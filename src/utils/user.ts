@@ -1,4 +1,6 @@
-export function getUserFirstName(user: any): string {
+import type { User } from "@/types/types"
+
+export function getUserFirstName(user: User): string {
 
   if (!user?.name) return ''
 
@@ -13,7 +15,7 @@ function capitalize(text: string) {
   return text.charAt(0).toUpperCase() + text.slice(1).toLowerCase()
 }
 
-export function getUserInitials(user: any): string {
+export function getUserInitials(user: User): string {
 
   if (!user?.name) return ''
 
