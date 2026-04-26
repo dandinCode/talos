@@ -1,6 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import AppLayout from '@/layouts/AppLayout.vue'
-import { isTokenExpired } from '@/utils/jwt'
 import { checkAuth } from '@/services/user'
 
 const router = createRouter({
