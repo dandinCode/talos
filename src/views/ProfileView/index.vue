@@ -1,16 +1,18 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
 import { useRouter } from 'vue-router'
-import { getUserFromToken, getUserInitials, decodeUTF8 } from '@/utils/user'
+import { getUserInitials, decodeUTF8 } from '@/utils/user'
 import { notify } from '@/utils/toast'
 import { updateUser } from '@/services/user'
+import { useUserStore } from '@/stores/userStore'
 
 const router = useRouter()
-const user = getUserFromToken()
+const userStore = useUserStore()
 
+const user = userStore.user
 const name = ref(decodeUTF8(user?.name || ''))
 const email = ref(user?.email || '')
-const initials = getUserInitials()
+const initials = getUserInitials(user)
 const loading = ref(false)
 
 const memberSince = computed(() => {
@@ -36,10 +38,7 @@ async function handleSave() {
       name: name.value
     })
     notify.success('Perfil atualizado com sucesso')
-    const storedUser = getUserFromToken()
-    if (storedUser) {
-      storedUser.name = name.value
-    }
+    userStore.loadUser()
   } catch (e: any) {
     notify.error(
       e?.response?.data?.message || 'Erro ao atualizar perfil'

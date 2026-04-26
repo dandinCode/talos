@@ -78,8 +78,8 @@ const userStore = useUserStore();
 
 const drawer = ref(true)
 const collapsed = ref(false)
-const firstName = getUserFirstName()
-const initials = getUserInitials()
+const firstName = getUserFirstName(userStore.user)
+const initials = getUserInitials(userStore.user)
 
 const menu = [
     {
