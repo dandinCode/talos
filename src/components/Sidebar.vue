@@ -71,8 +71,10 @@ import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { getUserFirstName, getUserInitials } from "@/utils/user"
 import logo from '@/assets/talos_logo.png'
+import { useUserStore } from '@/stores/userStore'
 
 const router = useRouter()
+const userStore = useUserStore();
 
 const drawer = ref(true)
 const collapsed = ref(false)
@@ -106,8 +108,8 @@ function goProfile() {
     router.push('/ProfileView')
 }
 
-function logout() {
-    localStorage.removeItem('token')
+async function logout() {
+    await userStore.logout()
     router.push('/login')
 }
 </script>
