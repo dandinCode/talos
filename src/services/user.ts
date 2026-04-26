@@ -35,6 +35,15 @@ export async function checkAuth() {
   }
 }
 
+export async function getUser() {
+  try {
+    const user = await api.get('/auth/me')
+    return user.data;
+  } catch {
+    return false
+  }
+}
+
 export async function logout() {
   await api.post('/auth/logout')
 }
