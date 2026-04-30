@@ -10,6 +10,8 @@ export interface StockSymbol {
   id: number
   symbol: string
   status: string
+  sector?: string
+  company?: string
 }
 
 export interface PortfolioAnalysis {
