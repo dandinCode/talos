@@ -317,7 +317,6 @@ async function runModel() {
 .header-left {
     display: flex;
     align-items: center;
-    gap: 12px;
 }
 
 .header-left h3 {
