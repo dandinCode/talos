@@ -1,38 +1,32 @@
 <template>
     <div>
-        <!-- Header com contagem, filtros e ações -->
         <div class="selector-header">
             <div class="header-left"></div>
             <div class="header-right">
-                <!-- Botão Selecionar todas -->
                 <v-btn size="small" variant="text" class="action-chip" @click="selectAll"
                     :disabled="stocks.filteredSymbols.length === 0">
                     <v-icon size="16">mdi-check-all</v-icon>
                     Selecionar todas
                 </v-btn>
 
-                <!-- Botão Limpar seleção -->
                 <v-btn size="small" variant="text" class="action-chip" @click="analysis.clearSelection"
                     :disabled="analysis.selectedSymbols.length === 0">
                     <v-icon size="16">mdi-close-circle</v-icon>
                     Limpar seleção
                 </v-btn>
 
-                <!-- Botão Setor -->
                 <v-btn size="small" variant="text" class="filter-chip" @click="showFilters = !showFilters">
                     <v-icon size="16">mdi-filter</v-icon>
                     Setor
                     <v-icon size="14">{{ showFilters ? 'mdi-chevron-up' : 'mdi-chevron-down' }}</v-icon>
                 </v-btn>
 
-                <!-- Botão Status -->
                 <v-btn size="small" variant="text" class="filter-chip" @click="showStatusFilter = !showStatusFilter">
                     <v-icon size="16">mdi-filter</v-icon>
                     Status
                     <v-icon size="14">{{ showStatusFilter ? 'mdi-chevron-up' : 'mdi-chevron-down' }}</v-icon>
                 </v-btn>
 
-                <!-- Botão Ocultar/Mostrar -->
                 <v-btn size="small" variant="text" class="action-chip" @click="hidden = !hidden">
                     <v-icon size="16">{{ hidden ? 'mdi-eye' : 'mdi-eye-off' }}</v-icon>
                     {{ hidden ? 'Mostrar ações' : 'Ocultar ações' }}
@@ -40,7 +34,6 @@
             </div>
         </div>
 
-        <!-- Filtros expandidos -->
         <div v-if="showFilters" class="filters-panel">
             <div class="filters-header">
                 <span>Filtrar por setor</span>
@@ -70,10 +63,8 @@
             </div>
         </div>
 
-        <!-- Campo de busca -->
         <stock-search />
 
-        <!-- Lista de ações -->
         <v-expand-transition>
             <div v-show="!hidden">
                 <div class="d-flex justify-center my-10" v-if="stocks.loading">
@@ -103,7 +94,7 @@
                                 :color="analysis.selectedSymbols.includes(stock.symbol) ? '#B99D75' : 'rgba(255,252,239,0.2)'"
                                 size="20">
                                 {{ analysis.selectedSymbols.includes(stock.symbol) ? 'mdi-check-circle' :
-                                'mdi-circle-outline' }}
+                                    'mdi-circle-outline' }}
                             </v-icon>
                         </div>
                     </div>
@@ -131,7 +122,6 @@ const showFilters = ref(false);
 const showStatusFilter = ref(false);
 const showAllStocks = ref(false);
 
-// Filtros
 const selectedSectors = ref<string[]>([]);
 const selectedStatuses = ref<string[]>([]);
 
@@ -141,7 +131,6 @@ onMounted(() => {
     }
 });
 
-// Setores disponíveis
 const availableSectors = computed(() => {
     const sectors = new Set<string>();
     stocks.filteredSymbols.forEach(stock => {
@@ -150,7 +139,6 @@ const availableSectors = computed(() => {
     return Array.from(sectors).sort();
 });
 
-// Ações filtradas por setor e status
 const filteredStocksByFilters = computed(() => {
     let filtered = stocks.filteredSymbols;
 
@@ -169,7 +157,6 @@ const filteredStocksByFilters = computed(() => {
     return filtered;
 });
 
-// Funções de filtro
 function toggleSectorFilter(sector: string) {
     const index = selectedSectors.value.indexOf(sector);
     if (index >= 0) {
@@ -203,7 +190,6 @@ function selectAll() {
     analysis.selectAll(symbols);
 }
 
-// Funções de cor
 function getSectorColor(sector: string | undefined): string {
     if (!sector) return 'grey';
     const colors: Record<string, string> = {
