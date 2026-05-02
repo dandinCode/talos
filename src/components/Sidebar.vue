@@ -67,7 +67,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { getUserFirstName, getUserInitials } from "@/utils/user"
 import logo from '@/assets/talos_logo.png'
@@ -78,8 +78,8 @@ const userStore = useUserStore();
 
 const drawer = ref(true)
 const collapsed = ref(false)
-const firstName = getUserFirstName(userStore.user)
-const initials = getUserInitials(userStore.user)
+const firstName = computed(() => getUserFirstName(userStore.user))
+const initials = computed(() => getUserInitials(userStore.user))
 
 const menu = [
     {
@@ -147,7 +147,7 @@ async function logout() {
 .logo-text {
     font-weight: 700;
     font-size: 20px;
-    background: #B99D75 ;
+    background: #B99D75;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
