@@ -58,7 +58,9 @@
                                     <v-icon color="#B99D75" size="20">mdi-calendar-range</v-icon>
                                     <h3>Período de Análise</h3>
                                 </div>
-                                <DateRangeSelector />
+                                <div class="form-card-content">
+                                    <DateRangeSelector />
+                                </div>
                             </div>
                         </div>
                         <div class="form-column">
@@ -67,7 +69,9 @@
                                     <v-icon color="#B99D75" size="20">mdi-chart-line</v-icon>
                                     <h3>Nível de Risco</h3>
                                 </div>
-                                <AcceptableRiskInput />
+                                <div >
+                                    <AcceptableRiskInput />
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -280,20 +284,39 @@ async function runModel() {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 24px;
+    align-items: stretch;
+}
+
+.form-column {
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
 }
 
 .form-card {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-height: 220px;
     background: rgba(0, 0, 0, 0.2);
     border: 1px solid rgba(185, 157, 117, 0.1);
     border-radius: 20px;
     padding: 20px;
 }
 
+.form-card-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+}
+
 .card-header {
     display: flex;
     align-items: center;
     gap: 10px;
-    margin-bottom: 20px;
+    margin-bottom: 16px;
+    flex-shrink: 0;
 }
 
 .card-header h3 {
