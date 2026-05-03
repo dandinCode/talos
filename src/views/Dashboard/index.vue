@@ -27,12 +27,7 @@
                         <div class="metric-content">
                             <span class="metric-title">{{ metric.title }}</span>
                             <div class="metric-value-wrapper">
-                                <span class="metric-value" :class="metric.valueClass">{{ metric.value }}</span>
-                                <v-chip v-if="metric.trend" size="x-small" :color="metric.trend.color" variant="tonal"
-                                    class="trend-chip">
-                                    <v-icon size="12">{{ metric.trend.icon }}</v-icon>
-                                    {{ metric.trend.text }}
-                                </v-chip>
+                                <span class="metric-value" :class="metric.valueClass">{{ metric.value }}</span>                               
                             </div>
                             <span class="metric-subtitle">{{ metric.subtitle }}</span>
                         </div>
@@ -279,12 +274,7 @@ const metrics = computed(() => [
         icon: 'mdi-trending-up',
         bgColor: 'rgba(34, 197, 94, 0.1)',
         iconColor: '#22c55e',
-        valueClass: 'positive',
-        trend: {
-            icon: 'mdi-arrow-up',
-            color: 'success',
-            text: '+2.3%'
-        }
+        valueClass: 'positive'
     },
     {
         title: 'Risco Médio',
