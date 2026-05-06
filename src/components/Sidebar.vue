@@ -1,5 +1,11 @@
 <template>
-    <v-navigation-drawer v-model="drawer" :rail="collapsed" permanent class="talos-sidebar">
+    <v-navigation-drawer
+        v-model="drawer"
+        :rail="collapsed && !isMobile"
+        :permanent="!isMobile"
+        :temporary="isMobile"
+        class="talos-sidebar"
+    >
         <div class="logo" :class="{ 'logo-rail': collapsed }" role="button" tabindex="0" @click="goDashboard" @keydown.enter.prevent="goDashboard">
             <div class="logo-icon">
                 <v-img :src="logo" width="32" height="32" />
@@ -55,7 +61,7 @@
                     </v-menu>
                 </template>
             </v-list-item>
-            <div class="toggle" :class="{ 'toggle-rail': collapsed }">
+            <div v-if="!isMobile" class="toggle" :class="{ 'toggle-rail': collapsed }">
                 <v-btn icon variant="text" class="toggle-btn" @click="collapsed = !collapsed">
                     <v-icon size="20">
                         {{ collapsed ? 'mdi-chevron-right' : 'mdi-chevron-left' }}
@@ -67,17 +73,43 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ref } from 'vue'
-import { useRouter } from 'vue-router'
+import { computed, ref, watch } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
+import { useDisplay } from 'vuetify'
 import { getUserFirstName, getUserInitials } from "@/utils/user"
 import logo from '@/assets/talos_logo.png'
 import { useUserStore } from '@/stores/userStore'
 
 const router = useRouter()
-const userStore = useUserStore();
+const route = useRoute()
+const userStore = useUserStore()
+const display = useDisplay()
 
+const isMobile = computed(() => display.smAndDown.value)
 const drawer = ref(true)
 const collapsed = ref(false)
+
+watch(
+    isMobile,
+    (mobile) => {
+        drawer.value = !mobile
+        if (mobile) collapsed.value = false
+    },
+    { immediate: true }
+)
+
+watch(
+    () => route.fullPath,
+    () => {
+        if (isMobile.value) drawer.value = false
+    }
+)
+
+function openDrawer() {
+    drawer.value = true
+}
+
+defineExpose({ openDrawer })
 const firstName = computed(() => getUserFirstName(userStore.user))
 const initials = computed(() => getUserInitials(userStore.user))
 
