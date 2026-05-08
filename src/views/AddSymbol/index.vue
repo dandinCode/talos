@@ -11,7 +11,7 @@
           <v-avatar size="70" class="header-avatar">
             <v-icon size="36" color="#ffd700">mdi-plus-circle</v-icon>
           </v-avatar>
-          <h2 class="text-h4 font-weight-bold gradient-text">Novo Símbolo</h2>
+          <h2 class="text-h4 font-weight-bold novo-simbolo-text">Novo Símbolo</h2>
           <p class="text-subtitle-1 text-grey">Adicione um novo ativo à base de dados</p>
         </div>
 
@@ -240,8 +240,8 @@ async function handleSubmit() {
   border-color: #ffd700;
 }
 
-.gradient-text {
-  background: linear-gradient(135deg, #ffd700, #b8860b);
+.novo-simbolo-text {
+  background:  #ffd700;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
