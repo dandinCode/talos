@@ -281,7 +281,7 @@ onMounted(loadPortfolios)
 }
 
 .create-btn {
-    background: linear-gradient(135deg, #6c63ff, #4c8df6);
+    background:  #6c63ff;
     color: white;
     border-radius: 16px !important;
     padding: 0 24px !important;
