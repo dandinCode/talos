@@ -364,7 +364,7 @@ async function runModel() {
 }
 
 .run-btn {
-    background: linear-gradient(135deg, #B99D75 0%, #9b835f 100%) !important;
+    background:  #B99D75  !important;
     color: #1C2D41 !important;
     font-weight: 700;
     text-transform: none;
