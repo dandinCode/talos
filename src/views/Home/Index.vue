@@ -311,7 +311,7 @@ const disclaimer = [
 }
 
 .title-accent {
-    background: linear-gradient(135deg, #B99D75 0%, #e6d5b8 100%);
+    background:  #B99D75;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
