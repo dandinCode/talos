@@ -12,20 +12,20 @@
                 <v-col cols="12" md="4">
                     <v-card class="pa-4 glass-card">
                         <p class="label">Dividend Yield</p>
-                        <p class="value">{{ optimization.dividend_yield.toFixed(2) }}%</p>
+                        <p class="value">{{ formatPercent(optimization.dividend_yield) }}</p>
                     </v-card>
                 </v-col>
                 <v-col cols="12" md="4">
                     <v-card class="pa-4 glass-card">
                         <p class="label">Risco da Carteira</p>
-                        <p class="value">{{ optimization.portfolio_risk.toFixed(2) }}%</p>
+                        <p class="value">{{ formatPercent(optimization.portfolio_risk) }}</p>
                     </v-card>
                 </v-col>
                 <v-col cols="12" md="4">
                     <v-card class="pa-4 glass-card">
                         <p class="label">Risco Aceitável</p>
                         <p class="value">
-                            {{ optimization.acceptable_risk?.toFixed(2) }}%
+                            {{ formatPercent(optimization.acceptable_risk) }}
                         </p>
                     </v-card>
                 </v-col>
@@ -42,10 +42,10 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr v-for="item in optimization.stock_allocation" :key="item.stock">
+                    <tr v-for="item in stockAllocation" :key="item.stock">
                         <td>{{ item.stock }}</td>
                         <td>{{ item.sector }}</td>
-                        <td>{{ item.percentage.toFixed(2) }}%</td>
+                        <td>{{ formatPercent(item.percentage) }}</td>
                     </tr>
                 </tbody>
             </v-table>
@@ -53,11 +53,11 @@
                 Diversificação por Setor
             </h3>
             <v-row>
-                <v-col v-for="(value, sector) in optimization.allocation_by_sector" :key="sector" cols="12" sm="6"
+                <v-col v-for="(value, sector) in allocationBySector" :key="sector" cols="12" sm="6"
                     md="4">
                     <v-card class="pa-4 glass-card">
                         <p class="label">{{ sector }}</p>
-                        <p class="value">{{ value.toFixed(2) }}%</p>
+                        <p class="value">{{ formatPercent(value) }}</p>
                     </v-card>
                 </v-col>
             </v-row>
@@ -68,7 +68,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
 import { notify } from '@/utils/toast';
 import { savePortfolio } from '@/services/portfolio';
 import SavePortfolioModal from '@/components/SavePortfolioModal.vue';
@@ -91,6 +91,19 @@ const props = defineProps<{
 }>();
 
 const openSaveModal = ref(false);
+
+const stockAllocation = computed(
+    () => props.optimization?.stock_allocation ?? [],
+);
+
+const allocationBySector = computed(
+    () => props.optimization?.allocation_by_sector ?? {},
+);
+
+function formatPercent(value: number | null | undefined): string {
+    if (value == null || Number.isNaN(value)) return '—';
+    return `${value.toFixed(2)}%`;
+}
 
 async function handleSave(name: string) {
     try {
