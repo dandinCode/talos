@@ -18,7 +18,7 @@
             </div>
 
             <div v-if="loading" class="loading-state">
-                <v-progress-circular indeterminate size="64" width="4" color="primary" />
+                <v-progress-circular indeterminate size="64" width="4" color="#B99D75" />
                 <p class="loading-text">Carregando seus portfólios...</p>
             </div>
 
@@ -32,8 +32,8 @@
                                 <span>{{ getPerformanceLabel(portfolio) }}</span>
                             </div>
                             <div class="card-icon">
-                                <v-avatar size="56" color="primary-dark" variant="tonal">
-                                    <v-icon size="28" color="primary">mdi-briefcase-variant</v-icon>
+                                <v-avatar size="56" class="card-avatar" variant="tonal">
+                                    <v-icon size="28" color="#B99D75">mdi-briefcase-variant</v-icon>
                                 </v-avatar>
                             </div>
                             <v-card-item>
@@ -81,7 +81,7 @@
                             </v-card-text>
                             <v-divider class="card-divider" />
                             <v-card-actions class="card-actions">
-                                <v-btn variant="text" color="primary" size="small"
+                                <v-btn variant="text" color="#B99D75" size="small"
                                     @click.stop="viewPortfolio(portfolio.id)">
                                     <v-icon start size="16">mdi-eye</v-icon>
                                     Ver detalhes
@@ -241,15 +241,15 @@ onMounted(loadPortfolios)
 <style scoped>
 .portfolio-page {
     min-height: 100vh;
-    background: linear-gradient(135deg, #0a0f1e 0%, #0f172a 100%);
+    background: radial-gradient(circle at top, #1C2D41 0%, #0f1a24 100%);
     padding: 20px;
 }
 
 .glass-panel {
-    background: rgba(15, 23, 42, 0.7) !important;
+    background: rgba(28, 45, 65, 0.85) !important;
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(185, 157, 117, 0.2);
     border-radius: 24px !important;
     padding: 24px 32px;
 }
@@ -268,34 +268,34 @@ onMounted(loadPortfolios)
 }
 
 .my-portfolios-text {
-    background: #6c63ff;
+    background: #b99d75;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
 }
 
 .subtitle {
-    color: #9aa4bf;
+    color: rgba(255, 252, 239, 0.65);
     font-size: 16px;
     margin: 0;
 }
 
 .create-btn {
-    background:  #6c63ff;
-    color: white;
-    border-radius: 16px !important;
+    background: #b99d75;
+    color: #1c2d41 !important;
+    border-radius: 40px !important;
     padding: 0 24px !important;
     height: 52px !important;
     font-weight: 600;
     text-transform: none;
-    letter-spacing: 0.5px;
-    box-shadow: 0 8px 16px rgba(108, 99, 255, 0.2);
+    letter-spacing: normal;
+    box-shadow: 0 8px 20px rgba(185, 157, 117, 0.25);
     transition: all 0.3s ease;
 }
 
 .create-btn:hover {
     transform: translateY(-2px);
-    box-shadow: 0 12px 24px rgba(108, 99, 255, 0.3);
+    box-shadow: 0 12px 28px rgba(185, 157, 117, 0.35);
 }
 
 .loading-state {
@@ -307,17 +307,21 @@ onMounted(loadPortfolios)
 }
 
 .loading-text {
-    color: #9aa4bf;
+    color: rgba(255, 252, 239, 0.6);
     margin-top: 20px;
     font-size: 16px;
 }
 
+.card-avatar {
+    background: rgba(185, 157, 117, 0.12) !important;
+}
+
 .portfolio-card {
-    background: rgba(15, 23, 42, 0.6) !important;
+    background: rgba(0, 0, 0, 0.25) !important;
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    border-radius: 24px !important;
+    border: 1px solid rgba(185, 157, 117, 0.12);
+    border-radius: 20px !important;
     padding: 20px;
     cursor: pointer;
     position: relative;
@@ -327,8 +331,8 @@ onMounted(loadPortfolios)
 
 .card-hover {
     transform: translateY(-4px) scale(1.02);
-    border: 1px solid rgba(108, 99, 255, 0.3);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(185, 157, 117, 0.35) !important;
+    box-shadow: 0 16px 32px rgba(0, 0, 0, 0.35);
 }
 
 .card-badge {
@@ -368,13 +372,13 @@ onMounted(loadPortfolios)
 .card-title {
     font-size: 20px;
     font-weight: 700;
-    color: white;
+    color: #fffcef;
     margin-bottom: 4px;
     padding: 0 !important;
 }
 
 .card-subtitle {
-    color: #9aa4bf;
+    color: rgba(255, 252, 239, 0.55);
     font-size: 13px;
     display: flex;
     align-items: center;
@@ -400,7 +404,7 @@ onMounted(loadPortfolios)
 
 .metric-label {
     font-size: 11px;
-    color: #9aa4bf;
+    color: rgba(255, 252, 239, 0.5);
     text-transform: uppercase;
     letter-spacing: 0.5px;
 }
@@ -414,7 +418,7 @@ onMounted(loadPortfolios)
 .metric-value {
     font-size: 16px;
     font-weight: 700;
-    color: white;
+    color: #fffcef;
 }
 
 .success--text {
@@ -435,13 +439,13 @@ onMounted(loadPortfolios)
 
 .chart-bar {
     height: 100%;
-    background: linear-gradient(90deg, #6c63ff, #4c8df6);
+    background: linear-gradient(90deg, #b99d75, #9b835f);
     border-radius: 2px;
     transition: width 0.3s ease;
 }
 
 .card-divider {
-    background: rgba(255, 255, 255, 0.05);
+    background: rgba(185, 157, 117, 0.12);
     margin: 16px 0 8px;
 }
 
@@ -450,8 +454,16 @@ onMounted(loadPortfolios)
 }
 
 .action-menu {
-    background: #1e293b !important;
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    background: #1c2d41 !important;
+    border: 1px solid rgba(185, 157, 117, 0.2);
+}
+
+.action-menu :deep(.v-list-item) {
+    color: #fffcef;
+}
+
+.action-menu :deep(.v-list-item:hover) {
+    background: rgba(185, 157, 117, 0.1) !important;
 }
 
 .delete-item:hover {
@@ -459,9 +471,9 @@ onMounted(loadPortfolios)
 }
 
 .create-card {
-    background: rgba(15, 23, 42, 0.4) !important;
-    border: 2px dashed rgba(108, 99, 255, 0.3);
-    border-radius: 24px !important;
+    background: rgba(0, 0, 0, 0.2) !important;
+    border: 2px dashed rgba(185, 157, 117, 0.3);
+    border-radius: 20px !important;
     height: 100%;
     min-height: 300px;
     display: flex;
@@ -472,8 +484,8 @@ onMounted(loadPortfolios)
 }
 
 .create-card:hover {
-    border-color: #6c63ff;
-    background: rgba(15, 23, 42, 0.6) !important;
+    border-color: #b99d75;
+    background: rgba(28, 45, 65, 0.5) !important;
     transform: scale(1.02);
 }
 
@@ -483,48 +495,48 @@ onMounted(loadPortfolios)
 }
 
 .create-card-content h3 {
-    color: white;
+    color: #fffcef;
     font-size: 20px;
     margin: 16px 0 8px;
 }
 
 .create-card-content p {
-    color: #9aa4bf;
+    color: rgba(255, 252, 239, 0.55);
     font-size: 14px;
     margin: 0;
 }
 
 .empty-state {
-    background: rgba(15, 23, 42, 0.6) !important;
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    background: rgba(28, 45, 65, 0.6) !important;
+    border: 1px solid rgba(185, 157, 117, 0.15);
     border-radius: 24px !important;
     padding: 48px;
     text-align: center;
 }
 
 .empty-state h3 {
-    color: white;
+    color: #fffcef;
     font-size: 24px;
     margin: 16px 0 8px;
 }
 
 .empty-state p {
-    color: #9aa4bf;
+    color: rgba(255, 252, 239, 0.55);
     font-size: 16px;
     margin-bottom: 24px;
 }
 
 .delete-dialog {
-    background: #1e293b !important;
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    background: #1c2d41 !important;
+    border: 1px solid rgba(185, 157, 117, 0.2);
 }
 
 .delete-dialog :deep(.v-card-title) {
-    color: white;
+    color: #fffcef;
 }
 
 .delete-dialog :deep(.v-card-text) {
-    color: #9aa4bf;
+    color: rgba(255, 252, 239, 0.6);
 }
 
 @media (max-width: 600px) {
