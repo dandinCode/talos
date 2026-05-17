@@ -245,10 +245,7 @@ async function handleSubmit() {
 }
 
 .novo-simbolo-text {
-  background: #b99d75;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: #b99d75;
   margin-bottom: 8px;
 }
 

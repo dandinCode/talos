@@ -226,10 +226,7 @@ function getVolatilityClass(volatility: number) {
     font-size: 34px;
     font-weight: 700;
     margin-bottom: 8px;
-    background: #fffcef;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    color: #fffcef;
 }
 
 .subtitle {

@@ -311,10 +311,7 @@ const disclaimer = [
 }
 
 .title-accent {
-    background:  #B99D75;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    color: #b99d75;
 }
 
 .hero-description {
