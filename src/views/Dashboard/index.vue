@@ -581,6 +581,14 @@ function formatDate(date: string) {
     font-weight: 600;
 }
 
+.chart-card :deep(.v-card-subtitle),
+.sector-card :deep(.v-card-subtitle),
+.chart-card :deep(.v-card-item__subtitle),
+.sector-card :deep(.v-card-item__subtitle) {
+    color: rgba(255, 252, 239, 0.6) !important;
+    opacity: 1 !important;
+}
+
 .chart-placeholder {
     background: rgba(0, 0, 0, 0.2);
     border-radius: 16px;
