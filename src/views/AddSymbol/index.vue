@@ -9,7 +9,7 @@
 
         <div class="card-header">
           <v-avatar size="70" class="header-avatar">
-            <v-icon size="36" color="#ffd700">mdi-plus-circle</v-icon>
+            <v-icon size="36" color="#B99D75">mdi-plus-circle</v-icon>
           </v-avatar>
           <h2 class="text-h4 font-weight-bold novo-simbolo-text">Novo Símbolo</h2>
           <p class="text-subtitle-1 text-grey">Adicione um novo ativo à base de dados</p>
@@ -22,7 +22,7 @@
               variant="outlined" class="symbol-input" bg-color="rgba(255,255,255,0.02)" hide-details="auto"
               @keyup.enter="handleSubmit">
               <template #prepend>
-                <v-icon color="#ffd700" size="22">mdi-cash</v-icon>
+                <v-icon color="#B99D75" size="22">mdi-cash</v-icon>
               </template>
 
               <template #append>
@@ -63,7 +63,7 @@
           </div>
         </v-card-text>
 
-        <v-divider class="mx-6" :style="{ borderColor: 'rgba(255,215,0,0.1)' }" />
+        <v-divider class="mx-6 divider-gold" />
 
         <v-card-actions class="pa-6">
           <v-btn class="submit-btn" block :loading="loading" @click="handleSubmit">
@@ -76,7 +76,7 @@
 
         <div class="card-footer">
           <p class="text-caption text-grey">
-            <v-icon size="14" color="#ffd700" class="mr-1">mdi-lightbulb-outline</v-icon>
+            <v-icon size="14" color="#B99D75" class="mr-1">mdi-lightbulb-outline</v-icon>
             Dica: Para ações brasileiras, use o código sem .SA (ex: PETR4)
           </p>
         </div>
@@ -155,7 +155,7 @@ async function handleSubmit() {
 <style scoped>
 .add-symbol-bg {
   min-height: 100vh;
-  background: radial-gradient(circle at top, #291f01, #050400);
+  background: radial-gradient(circle at top, #1C2D41 0%, #0f1a24 100%);
   position: relative;
   overflow: hidden;
 }
@@ -165,20 +165,24 @@ async function handleSubmit() {
   position: absolute;
   width: 100%;
   height: 100%;
-  background-image: radial-gradient(rgba(255, 215, 0, 0.03) 1px, transparent 1px);
+  background-image: radial-gradient(rgba(185, 157, 117, 0.04) 1px, transparent 1px);
   background-size: 50px 50px;
   pointer-events: none;
 }
 
 .symbol-card {
   width: 500px;
-  background: rgba(10, 8, 3, 0.9) !important;
+  background: rgba(28, 45, 65, 0.9) !important;
   backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 215, 0, 0.15);
-  border-radius: 32px !important;
+  border: 1px solid rgba(185, 157, 117, 0.2);
+  border-radius: 28px !important;
   position: relative;
   overflow: hidden;
   animation: slideUp 0.5s ease;
+}
+
+.divider-gold {
+  border-color: rgba(185, 157, 117, 0.15) !important;
 }
 
 @keyframes slideUp {
@@ -199,7 +203,7 @@ async function handleSubmit() {
   left: 0;
   right: 0;
   height: 8px;
-  background: linear-gradient(90deg, transparent, #ffd700, transparent);
+  background: linear-gradient(90deg, transparent, #b99d75, transparent);
   opacity: 0.5;
 }
 
@@ -209,7 +213,7 @@ async function handleSubmit() {
   left: 0;
   right: 0;
   height: 1px;
-  background: linear-gradient(90deg, transparent, #ffd700, transparent);
+  background: linear-gradient(90deg, transparent, #b99d75, transparent);
 }
 
 .decoration-glow {
@@ -219,7 +223,7 @@ async function handleSubmit() {
   transform: translateX(-50%);
   width: 200px;
   height: 60px;
-  background: radial-gradient(circle, rgba(255, 215, 0, 0.2) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(185, 157, 117, 0.2) 0%, transparent 70%);
   filter: blur(20px);
 }
 
@@ -229,19 +233,19 @@ async function handleSubmit() {
 }
 
 .header-avatar {
-  background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), rgba(255, 215, 0, 0.05));
-  border: 2px solid rgba(255, 215, 0, 0.3);
+  background: linear-gradient(135deg, rgba(185, 157, 117, 0.15), rgba(185, 157, 117, 0.05));
+  border: 2px solid rgba(185, 157, 117, 0.3);
   margin-bottom: 16px;
   transition: all 0.3s ease;
 }
 
 .symbol-card:hover .header-avatar {
   transform: scale(1.05);
-  border-color: #ffd700;
+  border-color: #b99d75;
 }
 
 .novo-simbolo-text {
-  background:  #ffd700;
+  background: #b99d75;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -249,7 +253,7 @@ async function handleSubmit() {
 }
 
 .text-grey {
-  color: #b0a580 !important;
+  color: rgba(255, 252, 239, 0.65) !important;
 }
 
 .card-content {
@@ -260,7 +264,7 @@ async function handleSubmit() {
   background: rgba(0, 0, 0, 0.2);
   border-radius: 20px;
   padding: 24px;
-  border: 1px solid rgba(255, 215, 0, 0.1);
+  border: 1px solid rgba(185, 157, 117, 0.12);
 }
 
 .symbol-input :deep(.v-field) {
@@ -270,7 +274,7 @@ async function handleSubmit() {
 
 .symbol-input :deep(.v-field__outline) {
   --v-field-border-opacity: 0.2;
-  color: #ffd700;
+  color: #b99d75;
 }
 
 .symbol-input :deep(.v-field--focused .v-field__outline) {
@@ -278,11 +282,11 @@ async function handleSubmit() {
 }
 
 .symbol-input :deep(label) {
-  color: #b0a580 !important;
+  color: rgba(255, 252, 239, 0.6) !important;
 }
 
 .symbol-input :deep(input) {
-  color: white !important;
+  color: #fffcef !important;
   font-weight: 500;
 }
 
@@ -300,29 +304,29 @@ async function handleSubmit() {
 }
 
 .examples-label {
-  color: #b0a580;
+  color: rgba(255, 252, 239, 0.55);
   font-size: 12px;
   margin-right: 4px;
 }
 
 .example-chip {
-  background: rgba(255, 215, 0, 0.05) !important;
-  color: #b0a580 !important;
+  background: rgba(185, 157, 117, 0.05) !important;
+  color: rgba(255, 252, 239, 0.6) !important;
   cursor: pointer;
   transition: all 0.2s ease;
   border: 1px solid transparent;
 }
 
 .example-chip:hover {
-  background: rgba(255, 215, 0, 0.15) !important;
-  color: #ffd700 !important;
-  border-color: rgba(255, 215, 0, 0.3);
+  background: rgba(185, 157, 117, 0.15) !important;
+  color: #b99d75 !important;
+  border-color: rgba(185, 157, 117, 0.3);
 }
 
 .info-alert {
-  background: rgba(255, 215, 0, 0.05) !important;
-  border: 1px solid rgba(255, 215, 0, 0.15) !important;
-  color: #b0a580 !important;
+  background: rgba(185, 157, 117, 0.05) !important;
+  border: 1px solid rgba(185, 157, 117, 0.15) !important;
+  color: rgba(255, 252, 239, 0.6) !important;
   border-radius: 12px !important;
 }
 
@@ -333,7 +337,7 @@ async function handleSubmit() {
   background: rgba(0, 0, 0, 0.2);
   border-radius: 16px;
   padding: 16px;
-  border: 1px solid rgba(255, 215, 0, 0.1);
+  border: 1px solid rgba(185, 157, 117, 0.12);
 }
 
 .stat-item {
@@ -346,13 +350,13 @@ async function handleSubmit() {
 .stat-value {
   font-size: 24px;
   font-weight: 700;
-  color: #ffd700;
+  color: #b99d75;
   line-height: 1.2;
 }
 
 .stat-label {
   font-size: 11px;
-  color: #b0a580;
+  color: rgba(255, 252, 239, 0.55);
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
@@ -360,12 +364,12 @@ async function handleSubmit() {
 .stat-divider {
   width: 1px;
   height: 30px;
-  background: rgba(255, 215, 0, 0.2);
+  background: rgba(185, 157, 117, 0.2);
 }
 
 .submit-btn {
-  background: linear-gradient(135deg, #ffd700, #b8860b) !important;
-  color: #050400 !important;
+  background: linear-gradient(135deg, #b99d75 0%, #9b835f 100%) !important;
+  color: #1c2d41 !important;
   font-weight: 700;
   font-size: 16px;
   padding: 24px !important;
@@ -394,7 +398,7 @@ async function handleSubmit() {
 
 .submit-btn:hover {
   transform: translateY(-2px);
-  box-shadow: 0 10px 30px rgba(255, 215, 0, 0.3);
+  box-shadow: 0 10px 30px rgba(185, 157, 117, 0.3);
 }
 
 .submit-btn:disabled {
@@ -406,7 +410,7 @@ async function handleSubmit() {
   padding: 20px 40px;
   text-align: center;
   background: rgba(0, 0, 0, 0.2);
-  border-top: 1px solid rgba(255, 215, 0, 0.05);
+  border-top: 1px solid rgba(185, 157, 117, 0.1);
 }
 
 :deep(.v-snackbar__content) {
@@ -415,7 +419,7 @@ async function handleSubmit() {
 }
 
 :deep(.v-snackbar--variant-tonal) {
-  border: 1px solid rgba(255, 215, 0, 0.15) !important;
+  border: 1px solid rgba(185, 157, 117, 0.15) !important;
 }
 
 @media (max-width: 600px) {
