@@ -65,47 +65,52 @@
 
         <stock-search />
 
-        <v-expand-transition>
-            <div v-show="!hidden">
-                <div class="d-flex justify-center my-10" v-if="stocks.loading">
-                    <v-progress-circular indeterminate size="60" color="#B99D75" />
+        <div class="d-flex justify-center my-10" v-if="stocks.loading">
+            <v-progress-circular indeterminate size="60" color="#B99D75" />
+        </div>
+
+        <template v-else>
+            <div class="stocks-grid">
+                <div v-for="stock in displayedStocks" :key="stock.id" class="stock-card"
+                    :class="{ 'stock-selected': analysis.selectedSymbols.includes(stock.symbol) }"
+                    @click="analysis.toggleSymbol(stock.symbol)">
+                    <div class="stock-info">
+                        <div class="stock-symbol">{{ stock.symbol }}</div>
+                        <div class="stock-company">{{ stock.company || '—' }}</div>
+                    </div>
+                    <div class="stock-meta">
+                        <v-chip size="x-small" :color="getSectorColor(stock.sector)" variant="tonal"
+                            class="sector-chip">
+                            {{ stock.sector || 'Setor não definido' }}
+                        </v-chip>
+                        <v-chip size="x-small" :color="getStatusColor(stock.status)" variant="tonal"
+                            class="status-chip">
+                            {{ stock.status }}
+                        </v-chip>
+                    </div>
+                    <div class="stock-check">
+                        <v-icon
+                            :color="analysis.selectedSymbols.includes(stock.symbol) ? '#B99D75' : 'rgba(255,252,239,0.2)'"
+                            size="20">
+                            {{ analysis.selectedSymbols.includes(stock.symbol) ? 'mdi-check-circle' :
+                                'mdi-circle-outline' }}
+                        </v-icon>
+                    </div>
                 </div>
 
-                <div v-else class="stocks-grid">
-                    <div v-for="stock in filteredStocksByFilters" :key="stock.id" class="stock-card"
-                        :class="{ 'stock-selected': analysis.selectedSymbols.includes(stock.symbol) }"
-                        @click="analysis.toggleSymbol(stock.symbol)">
-                        <div class="stock-info">
-                            <div class="stock-symbol">{{ stock.symbol }}</div>
-                            <div class="stock-company">{{ stock.company || '—' }}</div>
-                        </div>
-                        <div class="stock-meta">
-                            <v-chip size="x-small" :color="getSectorColor(stock.sector)" variant="tonal"
-                                class="sector-chip">
-                                {{ stock.sector || 'Setor não definido' }}
-                            </v-chip>
-                            <v-chip size="x-small" :color="getStatusColor(stock.status)" variant="tonal"
-                                class="status-chip">
-                                {{ stock.status }}
-                            </v-chip>
-                        </div>
-                        <div class="stock-check">
-                            <v-icon
-                                :color="analysis.selectedSymbols.includes(stock.symbol) ? '#B99D75' : 'rgba(255,252,239,0.2)'"
-                                size="20">
-                                {{ analysis.selectedSymbols.includes(stock.symbol) ? 'mdi-check-circle' :
-                                    'mdi-circle-outline' }}
-                            </v-icon>
-                        </div>
-                    </div>
-
-                    <div v-if="filteredStocksByFilters.length === 0 && !stocks.loading" class="empty-state">
-                        <v-icon size="48" color="rgba(255,252,239,0.3)">mdi-database-search</v-icon>
-                        <p>Nenhuma ação encontrada</p>
-                    </div>
+                <div v-if="filteredStocksByFilters.length === 0" class="empty-state">
+                    <v-icon size="48" color="rgba(255,252,239,0.3)">mdi-database-search</v-icon>
+                    <p>Nenhuma ação encontrada</p>
                 </div>
             </div>
-        </v-expand-transition>
+
+            <div v-if="showVerMais" class="show-more">
+                <v-btn variant="text" class="show-more-btn" @click="expandStocks">
+                    Ver mais
+                    <v-icon size="18" class="ml-1">mdi-chevron-down</v-icon>
+                </v-btn>
+            </div>
+        </template>
     </div>
 </template>
 
@@ -156,6 +161,22 @@ const filteredStocksByFilters = computed(() => {
 
     return filtered;
 });
+
+const PREVIEW_COUNT = 3;
+
+const displayedStocks = computed(() => {
+    const list = filteredStocksByFilters.value;
+    if (!hidden.value) return list;
+    return list.slice(0, PREVIEW_COUNT);
+});
+
+const showVerMais = computed(
+    () => hidden.value && filteredStocksByFilters.value.length > PREVIEW_COUNT
+);
+
+function expandStocks() {
+    hidden.value = false;
+}
 
 function toggleSectorFilter(sector: string) {
     const index = selectedSectors.value.indexOf(sector);
@@ -232,7 +253,6 @@ function getStatusColor(status: string): string {
     flex-wrap: wrap;
 }
 
-/* Estilo padrão para todos os botões */
 .filter-chip,
 .action-chip {
     color: rgba(255, 252, 239, 0.7) !important;
@@ -357,11 +377,20 @@ function getStatusColor(status: string): string {
     color: rgba(255, 252, 239, 0.3);
 }
 
+
 .show-more {
     display: flex;
     justify-content: center;
     margin-top: 20px;
 }
+
+.show-more-btn {
+    color: #B99D75 !important;
+    text-transform: none;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+}
+
 
 @media (max-width: 600px) {
     .selector-header {
