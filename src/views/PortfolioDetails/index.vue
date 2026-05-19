@@ -82,10 +82,6 @@
                             <tr v-for="item in portfolio.portfolioStocks" :key="item.id" class="stock-row">
                                 <td>
                                     <div class="stock-symbol">
-                                        <v-avatar size="32" class="symbol-avatar mr-2" variant="tonal">
-                                            <span class="symbol-text">{{ item.stock.symbol.symbol.substring(0, 2)
-                                                }}</span>
-                                        </v-avatar>
                                         <span class="font-weight-bold">{{ item.stock.symbol.symbol }}</span>
                                     </div>
                                 </td>
