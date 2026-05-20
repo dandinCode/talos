@@ -10,6 +10,7 @@
                                 <span class="title-accent">Talos</span>
                             </h1>
                         </div>
+                        <p class="hero-slogan">Transforme dados em dividendos.</p>
                         <p class="hero-description">
                             Uma plataforma inteligente para criação e otimização de carteiras de investimento em ações
                             baseada em dados históricos, diversificação setorial e modelos matemáticos
@@ -312,6 +313,15 @@ const disclaimer = [
 
 .title-accent {
     color: #b99d75;
+}
+
+.hero-slogan {
+    font-size: 22px;
+    font-weight: 500;
+    font-style: italic;
+    color: #b99d75;
+    letter-spacing: 0.02em;
+    margin: 8px auto 20px;
 }
 
 .hero-description {
@@ -726,6 +736,10 @@ const disclaimer = [
         font-size: 48px;
     }
 
+    .hero-slogan {
+        font-size: 18px;
+    }
+
     .hero-description {
         font-size: 16px;
     }
@@ -756,6 +770,11 @@ const disclaimer = [
 @media (max-width: 600px) {
     .hero-title {
         font-size: 36px;
+    }
+
+    .hero-slogan {
+        font-size: 16px;
+        margin-bottom: 16px;
     }
 
     .hero-logo {

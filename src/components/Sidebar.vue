@@ -10,7 +10,10 @@
             <div class="logo-icon">
                 <v-img :src="logo" width="32" height="32" />
             </div>
-            <span v-if="!collapsed" class="logo-text">Talos</span>
+            <div v-if="!collapsed" class="logo-brand">
+                <span class="logo-text">Talos</span>
+                <span class="logo-slogan">Transforme dados em dividendos.</span>
+            </div>
         </div>
         <v-divider class="divider" />
         <v-list nav density="compact" class="nav-list">
@@ -185,11 +188,28 @@ async function logout() {
     flex-shrink: 0;
 }
 
+.logo-brand {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 0;
+}
+
 .logo-text {
     font-weight: 700;
     font-size: 20px;
     color: #b99d75;
     letter-spacing: -0.5px;
+    line-height: 1.2;
+}
+
+.logo-slogan {
+    font-size: 10px;
+    font-weight: 500;
+    font-style: italic;
+    color: rgba(255, 252, 239, 0.55);
+    line-height: 1.3;
+    letter-spacing: 0.01em;
 }
 
 .divider {
