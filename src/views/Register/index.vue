@@ -9,18 +9,47 @@
                 </p>
             </div>
 
-            <v-text-field v-model="name" label="Nome" variant="outlined" prepend-inner-icon="mdi-account-outline"
-                class="text-white mb-4" />
+            <form class="register-form" novalidate @submit.prevent="handleRegister">
+                <v-text-field
+                    v-model="name"
+                    name="name"
+                    label="Nome"
+                    type="text"
+                    autocomplete="name"
+                    variant="outlined"
+                    prepend-inner-icon="mdi-account-outline"
+                    class="text-white mb-4"
+                />
 
-            <v-text-field v-model="email" label="Email" type="email" variant="outlined"
-                prepend-inner-icon="mdi-email-outline" class="text-white mb-4" />
+                <v-text-field
+                    v-model="email"
+                    name="email"
+                    label="Email"
+                    type="email"
+                    autocomplete="email"
+                    inputmode="email"
+                    variant="outlined"
+                    prepend-inner-icon="mdi-email-outline"
+                    class="text-white mb-4"
+                />
 
-            <PasswordField v-model="password" class="mb-6" />
+                <PasswordField
+                    v-model="password"
+                    autocomplete="new-password"
+                    class="mb-6"
+                />
 
-            <v-btn color="blue-accent-3" size="large" block :loading="loading" :disabled="loading"
-                @click="handleRegister">
-                Criar Conta
-            </v-btn>
+                <v-btn
+                    type="submit"
+                    color="blue-accent-3"
+                    size="large"
+                    block
+                    :loading="loading"
+                    :disabled="loading"
+                >
+                    Criar Conta
+                </v-btn>
+            </form>
 
             <div class="text-center mt-6">
                 <span class="text-grey-lighten-1">Já tem conta?</span>
