@@ -1,14 +1,30 @@
 <template>
-    <v-text-field v-model="model" :label="label" :type="show ? 'text' : 'password'" variant="outlined"
-        class="text-white password-field" :rules="rules">
+    <v-text-field
+        v-model="model"
+        name="password"
+        :label="label"
+        :type="show ? 'text' : 'password'"
+        :autocomplete="autocomplete"
+        variant="outlined"
+        class="text-white password-field"
+        :rules="rules"
+    >
         <template #prepend-inner>
             <v-icon color="white">mdi-lock-outline</v-icon>
         </template>
 
         <template #append-inner>
-            <v-icon color="white" class="cursor-pointer" @click="toggle">
-                {{ show ? 'mdi-eye-off' : 'mdi-eye' }}
-            </v-icon>
+            <v-btn
+                type="button"
+                variant="text"
+                icon
+                density="compact"
+                tabindex="-1"
+                aria-label="Mostrar ou ocultar senha"
+                @click.prevent="toggle"
+            >
+                <v-icon color="white">{{ show ? 'mdi-eye-off' : 'mdi-eye' }}</v-icon>
+            </v-btn>
         </template>
     </v-text-field>
 </template>
@@ -19,11 +35,13 @@ import { ref, computed } from 'vue';
 interface Props {
     modelValue: string;
     label?: string;
+    autocomplete?: string;
     rules?: ((v: string) => true | string)[];
 }
 
 const props = withDefaults(defineProps<Props>(), {
     label: 'Senha',
+    autocomplete: 'current-password',
     rules: () => [],
 });
 
