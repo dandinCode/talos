@@ -8,14 +8,36 @@
                 </p>
             </div>
 
-            <v-text-field v-model="email" label="Email" type="email" variant="outlined"
-                prepend-inner-icon="mdi-email-outline" class="text-white mb-4" />
+            <form class="login-form" novalidate @submit.prevent="handleLogin">
+                <v-text-field
+                    v-model="email"
+                    name="email"
+                    label="Email"
+                    type="email"
+                    autocomplete="email"
+                    inputmode="email"
+                    variant="outlined"
+                    prepend-inner-icon="mdi-email-outline"
+                    class="text-white mb-4"
+                />
 
-            <PasswordField v-model="password" class="mb-6" />
+                <PasswordField
+                    v-model="password"
+                    autocomplete="current-password"
+                    class="mb-6"
+                />
 
-            <v-btn color="blue-accent-3" size="large" block :loading="loading" :disabled="loading" @click="handleLogin">
-                Entrar
-            </v-btn>
+                <v-btn
+                    type="submit"
+                    color="blue-accent-3"
+                    size="large"
+                    block
+                    :loading="loading"
+                    :disabled="loading"
+                >
+                    Entrar
+                </v-btn>
+            </form>
 
             <div class="text-center mt-6">
                 <span class="text-grey-lighten-1">Não tem conta?</span>
