@@ -1,16 +1,24 @@
 <template>
-    <div class="dashboard-bg">
-        <v-container class="dashboard">
-            <div class="header glass-panel">
+    <div class="talos-dashboard-bg relative min-h-screen talos-page-gradient overflow-hidden">
+        <v-container
+            class="relative z-[1] py-10 px-5 max-w-full overflow-x-hidden box-border max-sm:py-5 max-sm:px-2.5">
+            <div
+                class="flex justify-between items-center mb-6 max-[1000px]:flex-col max-[1000px]:gap-5 max-[1000px]:text-center max-[1000px]:p-5 bg-[rgb(28_45_65/0.85)] backdrop-blur-[10px] border border-[rgb(185_157_117/0.2)] rounded-3xl px-8 py-6">
                 <div>
-                    <div class="welcome-badge">
+                    <div
+                        class="inline-flex items-center bg-[rgb(185_157_117/0.12)] px-3 py-1 rounded-[20px] mb-3 text-talos-gold text-[13px]">
                         <v-icon size="18" color="#B99D75" class="mr-1">mdi-hand-wave</v-icon>
                         <span>Olá, {{ firstName }}</span>
                     </div>
-                    <h1 class="title bem-vindo-text">Bem-vindo de volta</h1>
-                    <p class="subtitle">Acompanhe seus investimentos e desempenho em tempo real</p>
+                    <h1
+                        class="text-[38px] max-[1000px]:text-[32px] max-sm:text-[28px] font-extrabold mb-2 text-talos-cream">
+                        Bem-vindo de volta</h1>
+                    <p class="text-[rgb(255_252_239/0.65)] text-base">Acompanhe seus investimentos e desempenho em tempo
+                        real</p>
                 </div>
-                <v-btn class="create-btn" @click="router.push('/PortfolioList')">
+                <v-btn
+                    class="!bg-talos-gold !text-talos-bg !font-semibold normal-case !rounded-[40px] !px-6 !py-3 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_10px_30px_rgb(185_157_117/0.3)] max-[1000px]:w-full"
+                    @click="router.push('/PortfolioList')">
                     <template #prepend>
                         <v-icon size="18">mdi-briefcase-outline</v-icon>
                     </template>
@@ -18,18 +26,26 @@
                 </v-btn>
             </div>
 
-            <v-row class="mt-6 metrics-row" align="stretch" dense>
-                <v-col cols="12" sm="6" md="3" class="metric-col" v-for="(metric, index) in metrics" :key="index">
-                    <v-card class="metric-card glow-card" @click="metric.action ? router.push(metric.action) : null">
-                        <div class="metric-icon" :style="{ background: metric.bgColor }">
+            <v-row class="mt-6 !mx-0" align="stretch" dense>
+                <v-col cols="12" sm="6" md="3" class="flex max-[1000px]:mb-3" v-for="(metric, index) in metrics"
+                    :key="index">
+                    <v-card
+                        class="talos-glow-card flex-1 w-full min-h-[140px] !p-6 !bg-black/25 backdrop-blur-[10px] border border-[rgb(185_157_117/0.12)] !rounded-[20px] flex items-start gap-3.5 transition-all duration-300 cursor-pointer overflow-visible hover:-translate-y-1 hover:border-[rgb(185_157_117/0.35)]"
+                        @click="metric.action ? router.push(metric.action) : null">
+                        <div class="w-[52px] h-[52px] min-w-[52px] min-h-[52px] shrink-0 rounded-[14px] flex items-center justify-center"
+                            :style="{ background: metric.bgColor }">
                             <v-icon :color="metric.iconColor">{{ metric.icon }}</v-icon>
                         </div>
-                        <div class="metric-content">
-                            <span class="metric-title">{{ metric.title }}</span>
-                            <div class="metric-value-wrapper">
-                                <span class="metric-value" :class="metric.valueClass">{{ metric.value }}</span>                               
+                        <div class="flex-1 min-w-0 flex flex-col gap-0.5">
+                            <span
+                                class="block text-[rgb(255_252_239/0.55)] text-[11px] font-semibold uppercase tracking-wide leading-snug break-words">{{
+                                    metric.title }}</span>
+                            <div class="flex items-center gap-2 my-1 min-h-9">
+                                <span class="text-[28px] max-sm:text-2xl font-bold text-talos-cream"
+                                    :class="metric.valueClass">{{
+                                        metric.value }}</span>
                             </div>
-                            <span class="metric-subtitle">{{ metric.subtitle }}</span>
+                            <span class="text-[rgb(255_252_239/0.55)] text-[11px]">{{ metric.subtitle }}</span>
                         </div>
                     </v-card>
                 </v-col>
@@ -37,10 +53,11 @@
 
             <v-row class="mt-8">
                 <v-col cols="12" md="8">
-                    <v-card class="chart-card glow-card">
+                    <v-card
+                        class="talos-glow-card talos-chart-card !bg-black/25 backdrop-blur-[10px] border border-[rgb(185_157_117/0.12)] !rounded-3xl h-full">
                         <v-card-item>
                             <template #title>
-                                <span class="card-title">Performance Geral</span>
+                                <span class="text-talos-gold text-lg font-semibold">Performance Geral</span>
                             </template>
                             <template #subtitle>
                                 Evolução dos seus portfólios nos últimos 30 dias
@@ -53,10 +70,11 @@
                             </template>
                         </v-card-item>
                         <v-card-text>
-                            <div class="chart-placeholder">
-                                <div class="placeholder-content">
+                            <div class="rounded-2xl p-[60px] max-[1000px]:p-[30px] text-center">
+                                <div>
                                     <v-icon size="48" color="rgba(255,252,239,0.5)">mdi-chart-line</v-icon>
-                                    <p>Gráfico de performance será carregado aqui</p>
+                                    <p class="text-[rgb(255_252_239/0.55)] mt-3">Gráfico de performance será carregado
+                                        aqui</p>
                                 </div>
                             </div>
                         </v-card-text>
@@ -64,10 +82,11 @@
                 </v-col>
 
                 <v-col cols="12" md="4">
-                    <v-card class="sector-card glow-card">
+                    <v-card
+                        class="talos-glow-card talos-sector-card !bg-black/25 backdrop-blur-[10px] border border-[rgb(185_157_117/0.12)] !rounded-3xl h-full">
                         <v-card-item>
                             <template #title>
-                                <span class="card-title">Distribuição por Setor</span>
+                                <span class="text-talos-gold text-lg font-semibold">Distribuição por Setor</span>
                             </template>
                             <template #subtitle>
                                 Baseado nos seus portfólios ativos
@@ -75,15 +94,18 @@
                         </v-card-item>
 
                         <v-card-text>
-                            <div class="sector-list">
-                                <div v-for="sector in sectorDistribution" :key="sector.name" class="sector-item">
-                                    <div class="sector-info">
-                                        <div class="sector-dot" :style="{ background: sector.color }"></div>
-                                        <span class="sector-name">{{ sector.name }}</span>
+                            <div class="flex flex-col gap-4">
+                                <div v-for="sector in sectorDistribution" :key="sector.name"
+                                    class="flex justify-between items-center">
+                                    <div class="flex items-center gap-2">
+                                        <div class="w-2.5 h-2.5 rounded-full" :style="{ background: sector.color }">
+                                        </div>
+                                        <span class="text-talos-cream text-sm">{{ sector.name }}</span>
                                     </div>
-                                    <div class="sector-value-wrapper">
-                                        <span class="sector-value">{{ sector.percentage }}%</span>
-                                        <span class="sector-count">({{ sector.count }})</span>
+                                    <div class="flex items-center gap-1.5">
+                                        <span class="text-talos-gold font-semibold text-sm">{{ sector.percentage
+                                        }}%</span>
+                                        <span class="text-[rgb(255_252_239/0.55)] text-xs">({{ sector.count }})</span>
                                     </div>
                                 </div>
                             </div>
@@ -94,17 +116,20 @@
 
             <v-row class="mt-8">
                 <v-col cols="12">
-                    <h2 class="section-title">Ações Rápidas</h2>
+                    <h2 class="text-talos-gold text-2xl max-sm:text-xl font-semibold">Ações Rápidas</h2>
                 </v-col>
 
                 <v-col cols="12" md="4" v-for="action in quickActions" :key="action.title">
-                    <v-card class="action-card glow-card" @click="router.push(action.route)">
-                        <div class="action-icon" :style="{ background: action.bgColor }">
+                    <v-card
+                        class="talos-glow-card !p-8 max-[1000px]:mb-4 !bg-black/25 backdrop-blur-[10px] border border-[rgb(185_157_117/0.12)] !rounded-3xl cursor-pointer transition-all duration-300 text-center hover:-translate-y-[5px] hover:border-[rgb(185_157_117/0.35)]"
+                        @click="router.push(action.route)">
+                        <div class="w-[70px] h-[70px] rounded-[20px] flex items-center justify-center mx-auto mb-5"
+                            :style="{ background: action.bgColor }">
                             <v-icon size="32" :color="action.iconColor">{{ action.icon }}</v-icon>
                         </div>
-                        <h3 class="action-title">{{ action.title }}</h3>
-                        <p class="action-description">{{ action.description }}</p>
-                        <v-btn variant="text" :color="action.iconColor" class="action-link">
+                        <h3 class="text-talos-cream text-xl font-semibold mb-2">{{ action.title }}</h3>
+                        <p class="text-[rgb(255_252_239/0.55)] text-sm mb-4">{{ action.description }}</p>
+                        <v-btn variant="text" :color="action.iconColor" class="normal-case font-medium">
                             Acessar
                             <v-icon end size="16">mdi-arrow-right</v-icon>
                         </v-btn>
@@ -114,8 +139,8 @@
 
             <v-row class="mt-8">
                 <v-col cols="12">
-                    <div class="section-header">
-                        <h2 class="section-title">Últimos Portfólios</h2>
+                    <div class="flex justify-between items-center mb-5">
+                        <h2 class="text-talos-gold text-2xl max-sm:text-xl font-semibold">Últimos Portfólios</h2>
                         <v-btn variant="text" color="#B99D75" @click="router.push('/PortfolioList')">
                             Ver todos
                             <v-icon end size="16">mdi-arrow-right</v-icon>
@@ -124,9 +149,12 @@
                 </v-col>
 
                 <v-col cols="12" md="4" v-for="portfolio in recentPortfolios" :key="portfolio.id">
-                    <v-card class="portfolio-card glow-card" @click="openPortfolio(portfolio.id)">
-                        <div class="portfolio-header">
-                            <div class="portfolio-icon">
+                    <v-card
+                        class="talos-glow-card !p-6 max-sm:mb-4 !bg-black/25 backdrop-blur-[10px] border border-[rgb(185_157_117/0.12)] !rounded-3xl cursor-pointer transition-all duration-300 hover:-translate-y-1 hover:border-[rgb(185_157_117/0.35)]"
+                        @click="openPortfolio(portfolio.id)">
+                        <div class="flex justify-between items-center mb-4">
+                            <div
+                                class="w-12 h-12 bg-[rgb(185_157_117/0.12)] rounded-[14px] flex items-center justify-center">
                                 <v-icon color="#B99D75">mdi-briefcase-variant</v-icon>
                             </div>
                             <v-menu location="bottom end">
@@ -135,7 +163,7 @@
                                         <v-icon>mdi-dots-vertical</v-icon>
                                     </v-btn>
                                 </template>
-                                <v-list class="action-menu">
+                                <v-list class="talos-action-menu">
                                     <v-list-item @click.stop="openPortfolio(portfolio.id)">
                                         <template #prepend>
                                             <v-icon size="18">mdi-eye</v-icon>
@@ -152,30 +180,32 @@
                             </v-menu>
                         </div>
 
-                        <h3 class="portfolio-name">{{ portfolio.name }}</h3>
-                        <p class="portfolio-date">
+                        <h3 class="text-talos-cream text-lg font-semibold mb-1.5">{{ portfolio.name }}</h3>
+                        <p class="text-[rgb(255_252_239/0.55)] text-xs mb-4 flex items-center">
                             <v-icon size="12" color="rgba(255,252,239,0.5)" class="mr-1">mdi-calendar</v-icon>
                             Criado em {{ formatDate(portfolio.createdAt) }}
                         </p>
 
-                        <div class="portfolio-metrics">
-                            <div class="portfolio-metric">
-                                <span class="metric-label">Retorno</span>
-                                <span class="metric-value-small"
-                                    :class="portfolio.totalReturn >= 0 ? 'positive' : 'negative'">
+                        <div class="flex gap-6 mb-4">
+                            <div class="flex flex-col">
+                                <span
+                                    class="text-[rgb(255_252_239/0.55)] text-[11px] uppercase tracking-wide">Retorno</span>
+                                <span class="text-lg font-semibold"
+                                    :class="portfolio.totalReturn >= 0 ? '!text-[#22c55e]' : '!text-[#ef4444]'">
                                     {{ portfolio.totalReturn?.toFixed(2) }}%
                                 </span>
                             </div>
-                            <div class="portfolio-metric">
-                                <span class="metric-label">Risco</span>
-                                <span class="metric-value-small orange">
+                            <div class="flex flex-col">
+                                <span
+                                    class="text-[rgb(255_252_239/0.55)] text-[11px] uppercase tracking-wide">Risco</span>
+                                <span class="text-lg font-semibold !text-[#f59e0b]">
                                     {{ portfolio.totalRisk?.toFixed(2) }}%
                                 </span>
                             </div>
                         </div>
 
-                        <div class="portfolio-footer">
-                            <span class="asset-count">
+                        <div class="flex justify-between items-center pt-3 border-t border-[rgb(185_157_117/0.12)]">
+                            <span class="text-[rgb(255_252_239/0.55)] text-xs flex items-center">
                                 <v-icon size="12" color="rgba(255,252,239,0.5)" class="mr-1">mdi-puzzle</v-icon>
                                 {{ portfolio.portfolioStocks?.length || 0 }} ativos
                             </span>
@@ -187,10 +217,12 @@
                 </v-col>
 
                 <v-col cols="12" md="4" v-if="!recentPortfolios.length">
-                    <v-card class="empty-card glow-card" @click="router.push('/RunModel')">
+                    <v-card
+                        class="talos-glow-card !p-10 !bg-black/25 backdrop-blur-[10px] !border-2 !border-dashed !border-[rgb(185_157_117/0.25)] !rounded-3xl text-center cursor-pointer transition-all duration-300 min-h-[300px] flex flex-col items-center justify-center gap-3 hover:!border-[rgb(185_157_117/0.45)] hover:!bg-[rgb(28_45_65/0.9)]"
+                        @click="router.push('/RunModel')">
                         <v-icon size="48" color="rgba(255,252,239,0.5)">mdi-briefcase-plus</v-icon>
-                        <h3>Criar Primeiro Portfólio</h3>
-                        <p>Comece a otimizar seus investimentos agora</p>
+                        <h3 class="text-talos-cream text-xl">Criar Primeiro Portfólio</h3>
+                        <p class="text-[rgb(255_252_239/0.55)]">Comece a otimizar seus investimentos agora</p>
                         <v-btn color="#B99D75" variant="tonal" class="mt-2">
                             Criar Portfólio
                         </v-btn>
@@ -274,7 +306,7 @@ const metrics = computed(() => [
         icon: 'mdi-trending-up',
         bgColor: 'rgba(34, 197, 94, 0.1)',
         iconColor: '#22c55e',
-        valueClass: 'positive'
+        valueClass: '!text-[#22c55e]'
     },
     {
         title: 'Risco Médio',
@@ -283,7 +315,7 @@ const metrics = computed(() => [
         icon: 'mdi-chart-line',
         bgColor: 'rgba(245, 158, 11, 0.1)',
         iconColor: '#f59e0b',
-        valueClass: 'orange'
+        valueClass: '!text-[#f59e0b]'
     },
     {
         title: 'Total de Ativos',
@@ -356,536 +388,3 @@ function formatDate(date: string) {
     })
 }
 </script>
-
-<style scoped>
-.dashboard-bg {
-    min-height: 100vh;
-    background: radial-gradient(circle at top, #1C2D41 0%, #0f1a24 100%);
-    position: relative;
-    overflow: hidden;
-}
-
-.dashboard-bg::before {
-    content: '';
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background-image: radial-gradient(rgba(185, 157, 117, 0.04) 1px, transparent 1px);
-    background-size: 50px 50px;
-    pointer-events: none;
-}
-
-.dashboard {
-    padding: 40px 20px;
-    position: relative;
-    z-index: 1;
-    max-width: 100%;
-    overflow-x: hidden;
-    box-sizing: border-box;
-}
-
-.glass-panel {
-    background: rgba(28, 45, 65, 0.85) !important;
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border: 1px solid rgba(185, 157, 117, 0.2);
-    border-radius: 24px !important;
-    padding: 24px 32px;
-}
-
-.header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 24px;
-}
-
-.welcome-badge {
-    display: inline-flex;
-    align-items: center;
-    background: rgba(185, 157, 117, 0.12);
-    padding: 4px 12px;
-    border-radius: 20px;
-    margin-bottom: 12px;
-    color: #B99D75;
-    font-size: 13px;
-}
-
-.title {
-    font-size: 38px;
-    font-weight: 800;
-    margin-bottom: 8px;
-}
-
-.bem-vindo-text {
-    color: #fffcef;
-}
-
-.subtitle {
-    color: rgba(255, 252, 239, 0.65);
-    font-size: 16px;
-}
-
-.create-btn {
-    background: #b99d75;
-    color: #1c2d41 !important;
-    font-weight: 600;
-    text-transform: none;
-    border-radius: 40px !important;
-    padding: 12px 24px !important;
-    transition: all 0.3s ease;
-}
-
-.create-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 10px 30px rgba(185, 157, 117, 0.3);
-}
-
-.metrics-row {
-    margin-left: 0 !important;
-    margin-right: 0 !important;
-}
-
-.metric-col {
-    display: flex;
-}
-
-.metric-card {
-    flex: 1;
-    width: 100%;
-    min-height: 140px;
-    padding: 24px !important;
-    background: rgba(0, 0, 0, 0.25) !important;
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(185, 157, 117, 0.12);
-    border-radius: 20px !important;
-    display: flex;
-    align-items: flex-start;
-    gap: 14px;
-    transition: all 0.3s ease;
-    cursor: pointer;
-    overflow: visible;
-}
-
-.metric-card.glow-card {
-    overflow: visible;
-}
-
-.glow-card {
-    position: relative;
-    overflow: hidden;
-}
-
-.glow-card::before {
-    content: '';
-    position: absolute;
-    top: -2px;
-    left: -2px;
-    right: -2px;
-    bottom: -2px;
-    background: linear-gradient(45deg, #b99d75, #9b835f, #b99d75);
-    border-radius: 22px;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    z-index: -1;
-}
-
-.glow-card:hover::before {
-    opacity: 0.15;
-}
-
-.metric-card:hover {
-    transform: translateY(-4px);
-    border-color: rgba(185, 157, 117, 0.35);
-}
-
-.metric-icon {
-    width: 52px;
-    height: 52px;
-    min-width: 52px;
-    min-height: 52px;
-    flex-shrink: 0;
-    border-radius: 14px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.metric-content {
-    flex: 1;
-    min-width: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-}
-
-.metric-title {
-    display: block;
-    color: rgba(255, 252, 239, 0.55);
-    font-size: 11px;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.04em;
-    line-height: 1.3;
-    white-space: normal;
-    overflow-wrap: break-word;
-    word-break: break-word;
-}
-
-.metric-value-wrapper {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    margin: 4px 0;
-    min-height: 36px;
-}
-
-.metric-value {
-    font-size: 28px;
-    font-weight: 700;
-    color: #fffcef;
-}
-
-.metric-subtitle {
-    color: rgba(255, 252, 239, 0.55);
-    font-size: 11px;
-}
-
-.trend-chip {
-    background: rgba(34, 197, 94, 0.1) !important;
-    color: #22c55e !important;
-}
-
-.positive {
-    color: #22c55e !important;
-}
-
-.orange {
-    color: #f59e0b !important;
-}
-
-.chart-card {
-    background: rgba(0, 0, 0, 0.25) !important;
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(185, 157, 117, 0.12);
-    border-radius: 24px !important;
-    height: 100%;
-}
-
-.card-title {
-    color: #b99d75;
-    font-size: 18px;
-    font-weight: 600;
-}
-
-.chart-card :deep(.v-card-subtitle),
-.sector-card :deep(.v-card-subtitle),
-.chart-card :deep(.v-card-item__subtitle),
-.sector-card :deep(.v-card-item__subtitle) {
-    color: rgba(255, 252, 239, 0.6) !important;
-    opacity: 1 !important;
-}
-
-.chart-placeholder {
-    background: rgba(0, 0, 0, 0.2);
-    border-radius: 16px;
-    padding: 60px;
-    text-align: center;
-}
-
-.placeholder-content p {
-    color: rgba(255, 252, 239, 0.55);
-    margin-top: 12px;
-}
-
-.sector-card {
-    background: rgba(0, 0, 0, 0.25) !important;
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(185, 157, 117, 0.12);
-    border-radius: 24px !important;
-    height: 100%;
-}
-
-.sector-list {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-}
-
-.sector-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.sector-info {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
-.sector-dot {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-}
-
-.sector-name {
-    color: #fffcef;
-    font-size: 14px;
-}
-
-.sector-value-wrapper {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-}
-
-.sector-value {
-    color: #b99d75;
-    font-weight: 600;
-    font-size: 14px;
-}
-
-.sector-count {
-    color: rgba(255, 252, 239, 0.55);
-    font-size: 12px;
-}
-
-.action-card {
-    padding: 32px !important;
-    background: rgba(0, 0, 0, 0.25) !important;
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(185, 157, 117, 0.12);
-    border-radius: 24px !important;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    text-align: center;
-}
-
-.action-card:hover {
-    transform: translateY(-5px);
-    border-color: rgba(185, 157, 117, 0.35);
-}
-
-.action-icon {
-    width: 70px;
-    height: 70px;
-    border-radius: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto 20px;
-}
-
-.action-title {
-    color: #fffcef;
-    font-size: 20px;
-    font-weight: 600;
-    margin-bottom: 8px;
-}
-
-.action-description {
-    color: rgba(255, 252, 239, 0.55);
-    font-size: 14px;
-    margin-bottom: 16px;
-}
-
-.action-link {
-    text-transform: none;
-    font-weight: 500;
-}
-
-.section-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
-}
-
-.section-title {
-    color: #b99d75;
-    font-size: 24px;
-    font-weight: 600;
-}
-
-.portfolio-card {
-    padding: 24px !important;
-    background: rgba(0, 0, 0, 0.25) !important;
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(185, 157, 117, 0.12);
-    border-radius: 24px !important;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.portfolio-card:hover {
-    transform: translateY(-4px);
-    border-color: rgba(185, 157, 117, 0.35);
-}
-
-.portfolio-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 16px;
-}
-
-.portfolio-icon {
-    width: 48px;
-    height: 48px;
-    background: rgba(185, 157, 117, 0.12);
-    border-radius: 14px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.portfolio-name {
-    color: #fffcef;
-    font-size: 18px;
-    font-weight: 600;
-    margin-bottom: 6px;
-}
-
-.portfolio-date {
-    color: rgba(255, 252, 239, 0.55);
-    font-size: 12px;
-    margin-bottom: 16px;
-    display: flex;
-    align-items: center;
-}
-
-.portfolio-metrics {
-    display: flex;
-    gap: 24px;
-    margin-bottom: 16px;
-}
-
-.portfolio-metric {
-    display: flex;
-    flex-direction: column;
-}
-
-.metric-label {
-    color: rgba(255, 252, 239, 0.55);
-    font-size: 11px;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-}
-
-.metric-value-small {
-    font-size: 18px;
-    font-weight: 600;
-}
-
-.portfolio-footer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding-top: 12px;
-    border-top: 1px solid rgba(185, 157, 117, 0.12);
-}
-
-.asset-count {
-    color: rgba(255, 252, 239, 0.55);
-    font-size: 12px;
-    display: flex;
-    align-items: center;
-}
-
-.empty-card {
-    padding: 40px !important;
-    background: rgba(0, 0, 0, 0.25) !important;
-    backdrop-filter: blur(10px);
-    border: 2px dashed rgba(185, 157, 117, 0.25);
-    border-radius: 24px !important;
-    text-align: center;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    min-height: 300px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 12px;
-}
-
-.empty-card:hover {
-    border-color: rgba(185, 157, 117, 0.45);
-    background: rgba(28, 45, 65, 0.9) !important;
-}
-
-.empty-card h3 {
-    color: #fffcef;
-    font-size: 20px;
-}
-
-.empty-card p {
-    color: rgba(255, 252, 239, 0.55);
-}
-
-.action-menu {
-    background: #1c2d41 !important;
-    border: 1px solid rgba(185, 157, 117, 0.2);
-}
-
-.action-menu :deep(.v-list-item) {
-    color: #fffcef;
-}
-
-.action-menu :deep(.v-list-item:hover) {
-    background: rgba(185, 157, 117, 0.12) !important;
-}
-
-@media (max-width: 1000px) {
-    .header {
-        flex-direction: column;
-        gap: 20px;
-        text-align: center;
-        padding: 20px;
-    }
-
-    .title {
-        font-size: 32px;
-    }
-
-    .create-btn {
-        width: 100%;
-    }
-
-    .metric-card {
-        margin-bottom: 12px;
-    }
-
-    .chart-placeholder {
-        padding: 30px;
-    }
-
-    .action-card {
-        margin-bottom: 16px;
-    }
-}
-
-@media (max-width: 600px) {
-    .dashboard {
-        padding: 20px 10px;
-    }
-
-    .title {
-        font-size: 28px;
-    }
-
-    .metric-value {
-        font-size: 24px;
-    }
-
-    .section-title {
-        font-size: 20px;
-    }
-
-    .portfolio-card {
-        margin-bottom: 16px;
-    }
-}
-</style>
