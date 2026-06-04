@@ -1,0 +1,424 @@
+@layer theme, base, components, utilities;
+
+@import 'tailwindcss/theme.css' layer(theme);
+@import 'tailwindcss/utilities.css' layer(utilities);
+
+@theme {
+  --color-talos-bg: #1c2d41;
+  --color-talos-bg-deep: #0f1a24;
+  --color-talos-bg-soft: #14222f;
+  --color-talos-gold: #b99d75;
+  --color-talos-cream: #fffcef;
+  --color-talos-blue-glow: #4f8cff;
+
+  --shadow-talos-gold: 0 0 0 1px rgb(185 157 117 / 0.25), 0 0 45px rgb(185 157 117 / 0.35);
+  --shadow-talos-blue: 0 0 0 1px rgb(79 140 255 / 0.25), 0 0 45px rgb(79 140 255 / 0.35);
+}
+
+@layer components {
+  .talos-auth-shell {
+    @apply flex min-h-screen w-screen items-center justify-center;
+    background: radial-gradient(circle at top, var(--color-talos-bg) 0%, var(--color-talos-bg-deep) 100%);
+  }
+
+  .talos-auth-card {
+    @apply rounded-[18px] border border-white/20 bg-white/6 backdrop-blur-[14px] transition-[transform,box-shadow] duration-250 ease-in-out;
+  }
+
+  .talos-auth-card:hover {
+    @apply scale-[1.025];
+    box-shadow: var(--shadow-talos-gold);
+  }
+
+  .talos-auth-card--register:hover {
+    box-shadow: var(--shadow-talos-blue);
+  }
+
+  .talos-glow-text {
+    text-shadow: 0 0 22px rgb(185 157 117 / 0.7);
+  }
+
+  .talos-link {
+    @apply ml-1.5 text-talos-gold no-underline hover:underline;
+  }
+
+  .talos-page-gradient {
+    background: radial-gradient(circle at top, var(--color-talos-bg) 0%, var(--color-talos-bg-deep) 100%);
+  }
+
+  .talos-v-fields .v-field {
+    background-color: rgb(255 255 255 / 0.03) !important;
+  }
+
+  .talos-v-fields input {
+    background-color: transparent !important;
+    color: var(--color-talos-cream) !important;
+  }
+
+  .talos-v-fields .v-field__prepend-inner,
+  .talos-v-fields .v-field__append-inner {
+    background-color: transparent !important;
+  }
+
+  .talos-v-fields input:-webkit-autofill,
+  .talos-v-fields input:-webkit-autofill:hover,
+  .talos-v-fields input:-webkit-autofill:focus,
+  .talos-v-fields input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 30px rgb(28 45 65 / 0.95) inset !important;
+    -webkit-text-fill-color: var(--color-talos-cream) !important;
+    caret-color: var(--color-talos-cream) !important;
+    background-color: transparent !important;
+  }
+
+  .talos-v-fields .v-field.v-field--focused {
+    background-color: rgb(255 255 255 / 0.05) !important;
+  }
+
+  .talos-v-fields .v-field:hover {
+    background-color: rgb(255 255 255 / 0.06) !important;
+  }
+
+  .talos-v-search .v-field {
+    background: rgb(0 0 0 / 0.25) !important;
+    border-radius: 50px !important;
+  }
+
+  .talos-v-search .v-field__outline {
+    color: var(--color-talos-gold);
+    --v-field-border-opacity: 0.2;
+  }
+
+  .talos-v-search .v-field--focused .v-field__outline {
+    --v-field-border-opacity: 0.5;
+  }
+
+  .talos-v-search label {
+    color: rgb(255 252 239 / 0.5) !important;
+  }
+
+  .talos-v-search input {
+    color: var(--color-talos-cream) !important;
+  }
+
+  .talos-v-search input::placeholder {
+    color: rgb(255 252 239 / 0.3);
+  }
+
+  .talos-v-search .v-icon {
+    color: var(--color-talos-gold) !important;
+  }
+
+  .talos-dark-input {
+    --v-theme-on-surface-variant: white;
+    color: white !important;
+  }
+
+  .talos-v-symbol-input .v-field {
+    background: rgb(0 0 0 / 0.3) !important;
+    border-radius: 16px !important;
+  }
+
+  .talos-v-symbol-input .v-field__outline {
+    --v-field-border-opacity: 0.2;
+    color: var(--color-talos-gold);
+  }
+
+  .talos-v-symbol-input .v-field--focused .v-field__outline {
+    --v-field-border-opacity: 0.5;
+  }
+
+  .talos-v-symbol-input label {
+    color: rgb(255 252 239 / 0.6) !important;
+  }
+
+  .talos-v-symbol-input input {
+    color: var(--color-talos-cream) !important;
+    font-weight: 500;
+  }
+
+  .talos-v-custom-input .v-field {
+    background: rgb(0 0 0 / 0.2) !important;
+    border-radius: 14px !important;
+  }
+
+  .talos-v-custom-input .v-field__outline {
+    color: var(--color-talos-gold);
+    --v-field-border-opacity: 0.3;
+  }
+
+  .talos-v-custom-input .v-field--focused .v-field__outline {
+    --v-field-border-opacity: 0.6;
+  }
+
+  .talos-v-custom-input label {
+    color: rgb(255 252 239 / 0.6) !important;
+  }
+
+  .talos-v-custom-input input {
+    color: var(--color-talos-cream) !important;
+  }
+
+  .talos-v-readonly-input .v-field {
+    background: rgb(0 0 0 / 0.15) !important;
+  }
+
+  .talos-v-readonly-input input {
+    color: rgb(255 252 239 / 0.5) !important;
+  }
+
+  .talos-allocation-table {
+    background: transparent !important;
+  }
+
+  .talos-allocation-table thead th {
+    background: rgb(185 157 117 / 0.08) !important;
+    color: var(--color-talos-gold) !important;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    border-bottom: 1px solid rgb(185 157 117 / 0.15) !important;
+  }
+
+  .talos-allocation-table tbody td {
+    color: rgb(255 252 239 / 0.85) !important;
+    border-bottom: 1px solid rgb(185 157 117 / 0.08) !important;
+  }
+
+  .talos-allocation-table tbody tr:hover td {
+    background: rgb(185 157 117 / 0.06) !important;
+  }
+
+  .talos-allocation-table tbody tr:last-child td {
+    border-bottom: none !important;
+  }
+
+  .talos-stocks-table {
+    background: transparent !important;
+    color: var(--color-talos-cream);
+  }
+
+  .talos-stocks-table .v-table__wrapper {
+    background: transparent !important;
+  }
+
+  .talos-stocks-table th {
+    color: var(--color-talos-gold) !important;
+    background: rgb(185 157 117 / 0.06) !important;
+    font-size: 12px !important;
+    font-weight: 600 !important;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-bottom: 1px solid rgb(185 157 117 / 0.12) !important;
+    padding: 16px !important;
+  }
+
+  .talos-stocks-table td {
+    color: rgb(255 252 239 / 0.9) !important;
+    border-bottom: 1px solid rgb(185 157 117 / 0.08) !important;
+    padding: 16px !important;
+  }
+
+  .talos-stocks-table tbody tr:hover td {
+    background: rgb(185 157 117 / 0.06) !important;
+  }
+
+  .talos-action-menu {
+    background: var(--color-talos-bg) !important;
+    border: 1px solid rgb(185 157 117 / 0.2);
+  }
+
+  .talos-action-menu .v-list-item {
+    color: var(--color-talos-cream);
+  }
+
+  .talos-action-menu .v-list-item:hover {
+    background: rgb(185 157 117 / 0.1) !important;
+  }
+
+  .talos-delete-dialog {
+    background: var(--color-talos-bg) !important;
+    border: 1px solid rgb(185 157 117 / 0.2);
+  }
+
+  .talos-delete-dialog .v-card-title {
+    color: var(--color-talos-cream);
+  }
+
+  .talos-delete-dialog .v-card-text {
+    color: rgb(255 252 239 / 0.6);
+  }
+
+  .talos-sidebar {
+    background: var(--color-talos-bg) !important;
+    border-right: 1px solid rgb(185 157 117 / 0.15) !important;
+  }
+
+  .talos-sidebar .v-navigation-drawer--rail {
+    overflow-x: visible !important;
+  }
+
+  .talos-sidebar .v-navigation-drawer--rail .logo-rail {
+    justify-content: center;
+    padding: 24px 0;
+  }
+
+  .talos-sidebar .v-navigation-drawer--rail .profile-rail {
+    justify-content: center !important;
+    padding: 12px 0 !important;
+    margin: 8px 0 !important;
+    width: 100% !important;
+  }
+
+  .talos-sidebar .v-navigation-drawer--rail .avatar {
+    margin: 0 !important;
+  }
+
+  .talos-sidebar .v-navigation-drawer--rail .profile-rail .v-list-item__append {
+    display: none !important;
+  }
+
+  .talos-sidebar .v-navigation-drawer--rail .nav-item {
+    justify-content: center;
+    padding: 12px 0 !important;
+  }
+
+  .talos-sidebar .v-navigation-drawer--rail .nav-item .v-list-item__prepend {
+    margin-right: 0 !important;
+  }
+
+  .talos-sidebar .v-navigation-drawer--rail .toggle-rail {
+    padding: 16px 0 20px;
+    justify-content: center;
+  }
+
+  .talos-sidebar .nav-item .v-list-item__prepend {
+    margin-right: 16px;
+  }
+
+  .talos-sidebar .nav-item.v-list-item--active {
+    background: rgb(185 157 117 / 0.15) !important;
+  }
+
+  .talos-sidebar .nav-item.v-list-item--active .nav-icon {
+    color: var(--color-talos-gold) !important;
+  }
+
+  .talos-sidebar .nav-item.v-list-item--active .nav-title {
+    color: var(--color-talos-cream) !important;
+    font-weight: 600;
+  }
+
+  .talos-sidebar .menu-item .v-list-item__prepend {
+    margin-right: 12px;
+  }
+
+  .talos-glow-card {
+    @apply relative overflow-hidden;
+  }
+
+  .talos-glow-card::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    background: linear-gradient(45deg, #b99d75, #9b835f, #b99d75);
+    border-radius: 22px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: -1;
+  }
+
+  .talos-glow-card:hover::before {
+    opacity: 0.15;
+  }
+
+  .talos-chart-card .v-card-subtitle,
+  .talos-sector-card .v-card-subtitle,
+  .talos-chart-card .v-card-item__subtitle,
+  .talos-sector-card .v-card-item__subtitle {
+    color: rgb(255 252 239 / 0.6) !important;
+    opacity: 1 !important;
+  }
+
+  .talos-stocks-card .v-card-title {
+    color: var(--color-talos-gold);
+    font-weight: 600;
+    padding: 20px 24px;
+  }
+
+  .talos-selected-badge .v-chip {
+    background: rgb(185 157 117 / 0.1) !important;
+    color: var(--color-talos-cream) !important;
+  }
+
+  .talos-add-symbol-bg {
+    @apply relative min-h-screen overflow-hidden;
+    background: radial-gradient(circle at top, var(--color-talos-bg) 0%, var(--color-talos-bg-deep) 100%);
+  }
+
+  .talos-add-symbol-bg::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(rgb(185 157 117 / 0.04) 1px, transparent 1px);
+    background-size: 50px 50px;
+    pointer-events: none;
+  }
+
+  .talos-symbol-card {
+    animation: talos-slide-up 0.5s ease;
+  }
+
+  @keyframes talos-slide-up {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .talos-card-top-bar {
+    @apply absolute top-0 inset-x-0 h-2 opacity-50;
+    background: linear-gradient(90deg, transparent, #b99d75, transparent);
+  }
+
+  .talos-card-top-glow {
+    @apply absolute -top-5 left-1/2 -translate-x-1/2 w-[200px] h-[60px] blur-[20px];
+    background: radial-gradient(circle, rgb(185 157 117 / 0.2) 0%, transparent 70%);
+  }
+
+  .talos-submit-btn {
+    @apply relative overflow-hidden;
+  }
+
+  .talos-submit-btn::before {
+    content: '';
+    position: absolute;
+    inset-block: 0;
+    left: -100%;
+    width: 100%;
+    background: linear-gradient(90deg, transparent, rgb(255 255 255 / 0.2), transparent);
+    transition: left 0.5s ease;
+  }
+
+  .talos-submit-btn:hover::before {
+    left: 100%;
+  }
+
+  .talos-dashboard-bg::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(rgb(185 157 117 / 0.04) 1px, transparent 1px);
+    background-size: 50px 50px;
+    pointer-events: none;
+  }
+
+  .talos-home-container * {
+    background-color: transparent;
+  }
+}
