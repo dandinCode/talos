@@ -1,76 +1,75 @@
 <template>
-    <div class="home-container">
-        <section class="hero-section">
-            <v-container fluid class="hero-content">
+    <div class="talos-home-container bg-talos-bg min-h-screen">
+        <section class="min-h-[85vh] flex items-center justify-center relative bg-[radial-gradient(circle_at_70%_30%,rgb(185_157_117/0.1)_0%,transparent_70%),linear-gradient(135deg,#1C2D41_0%,#14222f_100%)]">
+            <v-container fluid class="!py-10 !px-5">
                 <v-row class="fill-height align-center justify-center text-center">
                     <v-col cols="12" md="10" lg="8">
-                        <div class="logo-wrapper">
-                            <img src="@/assets/talos_logo.png" alt="Talos" class="hero-logo" />
-                            <h1 class="hero-title">
-                                <span class="title-accent">Talos</span>
+                        <div class="flex items-center justify-center !gap-4 !mb-6">
+                            <img src="@/assets/talos_logo.png" alt="Talos" class="w-[70px] h-[70px] max-sm:w-[50px] max-sm:h-[50px] drop-shadow-[0_0_20px_rgb(185_157_117/0.3)]" />
+                            <h1 class="!text-[72px] max-md:!text-5xl max-sm:!text-4xl font-extrabold tracking-tight !m-0">
+                                <span class="text-talos-gold">Talos</span>
                             </h1>
                         </div>
-                        <p class="hero-slogan">Transforme dados em dividendos.</p>
-                        <p class="hero-description">
+                        <p class="!text-[22px] max-md:!text-lg max-sm:!text-base font-medium italic text-talos-gold tracking-wide mx-auto !my-2 max-sm:!mb-4">Transforme dados em dividendos.</p>
+                        <p class="!text-lg max-md:!text-base leading-relaxed text-[rgb(255_252_239/0.85)] max-w-[800px] mx-auto !mb-8">
                             Uma plataforma inteligente para criação e otimização de carteiras de investimento em ações
                             baseada em dados históricos, diversificação setorial e modelos matemáticos
                             de otimização.
                         </p>
-                        <div class="hero-buttons">
-                            <v-btn size="x-large" class="btn-primary" to="/dashboard">
+                        <div class="flex !gap-5 justify-center flex-wrap max-sm:flex-col max-sm:items-center">
+                            <v-btn size="x-large" class="!bg-talos-gold !text-talos-bg !font-semibold normal-case !px-8 !py-3 !rounded-[48px] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_10px_30px_rgb(185_157_117/0.3)] max-sm:w-full max-sm:max-w-[280px]" to="/dashboard">
                                 <v-icon start>mdi-chart-line</v-icon>
                                 Começar Agora
                             </v-btn>
-                            
                         </div>
                     </v-col>
                 </v-row>
             </v-container>
         </section>
 
-        <section class="section about-section">
+        <section class="!py-20 max-sm:!py-12 bg-talos-bg">
             <v-container>
-                <v-row>
-                    <v-col cols="12" md="6">
-                        <div class="section-header-left">
-                            <span class="section-badge">Sobre o Talos</span>
-                            <h2 class="section-title">O que é este projeto?</h2>
+                <v-row class="!-mx-2">
+                    <v-col cols="12" md="6" class="!px-2 !pb-4 md:!pb-0">
+                        <div class="!mb-6">
+                            <span class="inline-block text-xs font-semibold uppercase tracking-widest text-talos-gold !mb-3">Sobre o Talos</span>
+                            <h2 class="!text-4xl max-md:!text-[28px] max-sm:!text-2xl font-bold text-talos-cream !m-0 !mb-2">O que é este projeto?</h2>
                         </div>
-                        <div class="about-text">
-                            <p>
+                        <div>
+                            <p class="text-[rgb(255_252_239/0.85)] leading-relaxed !text-base">
                                 Este sistema foi criado para auxiliar investidores na tomada de decisão
                                 ao montar carteiras de investimento em ações. A proposta é simples:
                                 permitir que o usuário selecione qualquer conjunto de ações e, a partir
                                 disso, gerar uma carteira otimizada de acordo com critérios de risco,
                                 retorno e diversificação.
                             </p>
-                            <p class="mt-4">
+                            <p class="!mt-4 text-[rgb(255_252_239/0.85)] leading-relaxed !text-base">
                                 Internamente, a plataforma utiliza uma API própria de otimização
-                                (<strong>Portfolio Optimized API</strong>) que aplica técnicas de
-                                <strong>programação linear</strong> para encontrar a melhor distribuição
+                                (<strong class="text-talos-gold">Portfolio Optimized API</strong>) que aplica técnicas de
+                                <strong class="text-talos-gold">programação linear</strong> para encontrar a melhor distribuição
                                 possível de capital entre os ativos selecionados.
                             </p>
                         </div>
                     </v-col>
-                    <v-col cols="12" md="6">
-                        <div class="info-card">
-                            <div class="info-card-header">
+                    <v-col cols="12" md="6" class="!px-2 !pb-4 md:!pb-0">
+                        <div class="bg-[rgb(255_252_239/0.03)] border border-[rgb(185_157_117/0.2)] rounded-3xl !p-8">
+                            <div class="flex items-center !gap-3 !mb-4">
                                 <v-icon size="28" color="#B99D75">mdi-database</v-icon>
-                                <h3>Fontes de Dados</h3>
+                                <h3 class="!text-xl font-semibold text-talos-cream !m-0">Fontes de Dados</h3>
                             </div>
-                            <p>
+                            <p class="text-[rgb(255_252_239/0.7)] leading-relaxed !m-0">
                                 Os dados históricos de preços e retornos são obtidos automaticamente
                                 através do Yahoo Finance, permitindo análises baseadas em informações
                                 reais de mercado.
                             </p>
-                            <div class="info-card-header mt-6">
+                            <div class="flex items-center !gap-3 !mb-4 !mt-6">
                                 <v-icon size="28" color="#B99D75">mdi-calendar-range</v-icon>
-                                <h3>Período de Análise</h3>
+                                <h3 class="!text-xl font-semibold text-talos-cream !m-0">Período de Análise</h3>
                             </div>
-                            <p>
+                            <p class="text-[rgb(255_252_239/0.7)] leading-relaxed !m-0">
                                 O usuário pode definir o período histórico a ser analisado. Caso nenhuma
                                 data seja informada, o sistema utiliza automaticamente os últimos
-                                <strong>12 meses</strong> como base.
+                                <strong class="text-talos-gold">12 meses</strong> como base.
                             </p>
                         </div>
                     </v-col>
@@ -78,61 +77,62 @@
             </v-container>
         </section>
 
-        <section class="section how-section">
+        <section class="!py-20 max-sm:!py-12 bg-talos-bg-soft">
             <v-container>
-                <div class="section-header-center">
-                    <span class="section-badge gold">Processo</span>
-                    <h2 class="section-title">Como funciona?</h2>
-                    <p class="section-subtitle">Três passos para uma carteira otimizada</p>
+                <div class="text-center !mb-12">
+                    <span class="inline-block text-xs font-semibold uppercase tracking-widest text-talos-gold !mb-3">Processo</span>
+                    <h2 class="!text-4xl max-md:!text-[28px] max-sm:!text-2xl font-bold text-talos-cream !m-0 !mb-2">Como funciona?</h2>
+                    <p class="!text-lg text-[rgb(255_252_239/0.7)] max-w-[600px] mx-auto">Três passos para uma carteira otimizada</p>
                 </div>
-                <v-row>
-                    <v-col cols="12" md="4" v-for="(step, index) in steps" :key="index">
-                        <div class="step-card">
-                            <div class="step-number">{{ index + 1 }}</div>
-                            <h3 class="step-title">{{ step.title }}</h3>
-                            <p class="step-description">{{ step.description }}</p>
+                <v-row class="!-mx-2">
+                    <v-col cols="12" md="4" v-for="(step, index) in steps" :key="index" class="!px-2 !pb-4 md:!pb-0">
+                        <div class="bg-[rgb(255_252_239/0.03)] border border-[rgb(185_157_117/0.2)] rounded-3xl !p-8 max-sm:!p-6 text-center transition-all duration-300 h-full hover:-translate-y-2 hover:border-talos-gold hover:shadow-[0_20px_40px_rgb(0_0_0/0.3)]">
+                            <div class="w-12 h-12 bg-gradient-to-br from-talos-gold to-[#9b835f] rounded-full flex items-center justify-center !text-xl font-bold text-talos-bg mx-auto !mb-6">
+                                {{ index + 1 }}
+                            </div>
+                            <h3 class="!text-xl font-semibold text-talos-cream !mb-3">{{ step.title }}</h3>
+                            <p class="text-[rgb(255_252_239/0.7)] leading-relaxed !text-sm">{{ step.description }}</p>
                         </div>
                     </v-col>
                 </v-row>
             </v-container>
         </section>
 
-        <section class="section problems-section">
+        <section class="!py-20 max-sm:!py-12 bg-talos-bg">
             <v-container>
-                <div class="section-header-center">
-                    <span class="section-badge">Desafios Superados</span>
-                    <h2 class="section-title">Quais problemas o Talos resolve?</h2>
-                    <p class="section-subtitle">
+                <div class="text-center !mb-12">
+                    <span class="inline-block text-xs font-semibold uppercase tracking-widest text-talos-gold !mb-3">Desafios Superados</span>
+                    <h2 class="!text-4xl max-md:!text-[28px] max-sm:!text-2xl font-bold text-talos-cream !m-0 !mb-2">Quais problemas o Talos resolve?</h2>
+                    <p class="!text-lg text-[rgb(255_252_239/0.7)] max-w-[600px] mx-auto">
                         Investir sem estratégia pode custar caro. O Talos resolve os principais desafios de quem quer
-                        montar uma
-                        carteira inteligente.
+                        montar uma carteira inteligente.
                     </p>
                 </div>
-                <div class="problems-grid">
-                    <div v-for="problem in problems" :key="problem.title" class="problem-card">
-                        <div class="problem-icon">
+                <div class="grid grid-cols-[repeat(auto-fit,minmax(280px,1fr))] !gap-6 !mt-8 max-sm:grid-cols-1">
+                    <div v-for="problem in problems" :key="problem.title" class="bg-[rgb(255_252_239/0.03)] border border-[rgb(185_157_117/0.2)] rounded-[20px] !p-7 text-center transition-all duration-300 hover:border-talos-gold hover:-translate-y-1">
+                        <div class="!mb-5">
                             <v-icon size="32" color="#B99D75">{{ problem.icon }}</v-icon>
                         </div>
-                        <h3>{{ problem.title }}</h3>
-                        <p>{{ problem.description }}</p>
+                        <h3 class="!text-lg font-semibold text-talos-cream !mb-3">{{ problem.title }}</h3>
+                        <p class="text-[rgb(255_252_239/0.7)] !text-sm leading-relaxed">{{ problem.description }}</p>
                     </div>
                 </div>
             </v-container>
         </section>
 
-        <section class="section disclaimer-section">
+        <section class="!py-20 max-sm:!py-12 bg-talos-bg-soft">
             <v-container>
-                <div class="disclaimer-card">
-                    <div class="disclaimer-header">
+                <div class="bg-[rgb(185_157_117/0.05)] border border-[rgb(185_157_117/0.2)] rounded-[32px] !p-12 max-md:!px-6 max-md:!py-8">
+                    <div class="flex items-center justify-center !gap-3 !mb-8 flex-wrap">
                         <v-icon size="32" color="#B99D75">mdi-shield-alert</v-icon>
-                        <h2 class="section-title">O que este projeto NÃO é</h2>
+                        <h2 class="!text-4xl max-md:!text-[28px] max-sm:!text-2xl font-bold text-talos-cream !m-0">O que este projeto NÃO é</h2>
                     </div>
-                    <div class="disclaimer-list">
-                        <div v-for="item in disclaimer" :key="item.title" class="disclaimer-item">
-                            <v-icon size="20" color="#B99D75" class="disclaimer-icon">mdi-close-circle</v-icon>
+                    <div class="flex flex-col !gap-6">
+                        <div v-for="item in disclaimer" :key="item.title" class="flex !gap-4 items-start">
+                            <v-icon size="20" color="#B99D75" class="shrink-0 !mt-0.5">mdi-close-circle</v-icon>
                             <div>
-                                <h4>{{ item.title }}</h4>
-                                <p>{{ item.description }}</p>
+                                <h4 class="!text-base font-semibold text-talos-cream !mb-1">{{ item.title }}</h4>
+                                <p class="text-[rgb(255_252_239/0.6)] !text-sm !m-0">{{ item.description }}</p>
                             </div>
                         </div>
                     </div>
@@ -140,43 +140,40 @@
             </v-container>
         </section>
 
-        <section class="section myth-section">
+        <section class="!py-20 max-sm:!py-12 bg-talos-bg">
             <v-container>
-                <div class="myth-content">
-                    <div class="myth-text">
-                        <span class="section-badge gold">Inspiração</span>
-                        <h2 class="section-title">Por que Talos?</h2>
-                        <p>
-                            O nome <strong>Talos</strong> vem da mitologia grega. Talos era um gigante de bronze criado
-                            para
-                            proteger a ilha de Creta, circulando constantemente suas fronteiras para impedir invasões.
+                <div class="flex items-center !gap-[60px] max-w-[1000px] mx-auto max-md:flex-col max-md:text-center max-md:!gap-8">
+                    <div class="flex-1">
+                        <span class="inline-block text-xs font-semibold uppercase tracking-widest text-talos-gold !mb-3">Inspiração</span>
+                        <h2 class="!text-4xl max-md:!text-[28px] max-sm:!text-2xl font-bold text-talos-cream !m-0 !mb-2">Por que Talos?</h2>
+                        <p class="text-[rgb(255_252_239/0.85)] leading-relaxed !mb-5">
+                            O nome <strong class="text-talos-gold">Talos</strong> vem da mitologia grega. Talos era um gigante de bronze criado
+                            para proteger a ilha de Creta, circulando constantemente suas fronteiras para impedir invasões.
                         </p>
-                        <p>
+                        <p class="text-[rgb(255_252_239/0.85)] leading-relaxed !mb-5">
                             Assim como o guardião mitológico, o Talos foi criado para proteger e fortalecer seus
-                            investimentos,
-                            ajudando você a tomar decisões mais seguras, equilibradas e inteligentes.
+                            investimentos, ajudando você a tomar decisões mais seguras, equilibradas e inteligentes.
                         </p>
-                        <p class="myth-quote">
+                        <p class="italic border-l-[3px] border-talos-gold !pl-5 !mt-6 max-md:text-left">
                             Com análise de risco, retorno e diversificação, o Talos atua como um sistema de defesa
-                            estratégico
-                            para sua carteira.
+                            estratégico para sua carteira.
                         </p>
                     </div>
-                    <div class="myth-icon">
+                    <div class="shrink-0 w-[120px] h-[120px] bg-[rgb(185_157_117/0.1)] rounded-full flex items-center justify-center">
                         <v-icon size="80" color="#B99D75">mdi-shield-crown</v-icon>
                     </div>
                 </div>
             </v-container>
         </section>
 
-        <section class="section future-section">
+        <section class="!py-20 max-sm:!py-12 bg-talos-bg-soft">
             <v-container>
-                <div class="future-card">
-                    <div class="future-header">
+                <div class="text-center max-w-[800px] mx-auto bg-[rgb(185_157_117/0.03)] border border-[rgb(185_157_117/0.2)] rounded-[32px] !p-12 max-md:!px-6 max-md:!py-8">
+                    <div class="flex items-center justify-center !gap-3 !mb-6 flex-wrap">
                         <v-icon size="40" color="#B99D75">mdi-compass</v-icon>
-                        <h2 class="section-title">Visão de Futuro</h2>
+                        <h2 class="!text-4xl max-md:!text-[28px] max-sm:!text-2xl font-bold text-talos-cream !m-0">Visão de Futuro</h2>
                     </div>
-                    <p class="future-description">
+                    <p class="!text-lg leading-relaxed text-[rgb(255_252_239/0.85)]">
                         O projeto está em constante evolução. Entre as ideias futuras estão a inclusão
                         de indicadores fundamentalistas, perfis de investimento pré-configurados e a
                         possibilidade de o usuário escolher quais critérios deseja considerar no
@@ -186,24 +183,24 @@
             </v-container>
         </section>
 
-        <footer class="footer-section">
+        <footer class="bg-talos-bg-deep border-t border-[rgb(185_157_117/0.1)] !pt-12 !pb-6">
             <v-container>
-                <div class="footer-content">
-                    <div class="footer-logo">
-                        <img src="@/assets/talos_logo.png" alt="Talos" class="footer-logo-img" />
-                        <span>Talos</span>
+                <div class="text-center">
+                    <div class="flex items-center justify-center !gap-3 !mb-6">
+                        <img src="@/assets/talos_logo.png" alt="Talos" class="w-8 h-8" />
+                        <span class="!text-xl font-semibold text-talos-cream">Talos</span>
                     </div>
-                    <div class="footer-text">
-                        <p>
+                    <div>
+                        <p class="text-[rgb(255_252_239/0.6)] !text-sm !mb-3">
                             Baseado em pesquisa acadêmica sobre otimização de carteiras utilizando
                             programação linear.
                         </p>
-                        <a href="https://repositorio.ufc.br/handle/riufc/82322" target="_blank" class="tcc-link">
+                        <a href="https://repositorio.ufc.br/handle/riufc/82322" target="_blank" class="text-talos-gold no-underline !text-sm transition-colors duration-300 hover:text-[#e6d5b8] hover:underline">
                             📄 Leia o TCC completo
                         </a>
                     </div>
-                    <div class="footer-copyright">
-                        <p>&copy; {{ new Date().getFullYear() }} Talos. Todos os direitos reservados.</p>
+                    <div class="!mt-8 !pt-6 border-t border-[rgb(185_157_117/0.1)]">
+                        <p class="text-[rgb(255_252_239/0.4)] !text-xs !m-0">&copy; {{ new Date().getFullYear() }} Talos. Todos os direitos reservados.</p>
                     </div>
                 </div>
             </v-container>
@@ -265,547 +262,3 @@ const disclaimer = [
     }
 ]
 </script>
-
-<style scoped>
-.home-container {
-    background-color: #1C2D41;
-    min-height: 100vh;
-}
-
-.home-container * {
-    background-color: transparent;
-}
-
-.hero-section {
-    min-height: 85vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    background: radial-gradient(circle at 70% 30%, rgba(185, 157, 117, 0.1) 0%, transparent 70%),
-        linear-gradient(135deg, #1C2D41 0%, #14222f 100%);
-}
-
-.hero-content {
-    padding: 40px 20px;
-}
-
-.logo-wrapper {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 16px;
-    margin-bottom: 24px;
-}
-
-.hero-logo {
-    width: 70px;
-    height: 70px;
-    filter: drop-shadow(0 0 20px rgba(185, 157, 117, 0.3));
-}
-
-.hero-title {
-    font-size: 72px;
-    font-weight: 800;
-    letter-spacing: -0.02em;
-    margin: 0;
-}
-
-.title-accent {
-    color: #b99d75;
-}
-
-.hero-slogan {
-    font-size: 22px;
-    font-weight: 500;
-    font-style: italic;
-    color: #b99d75;
-    letter-spacing: 0.02em;
-    margin: 8px auto 20px;
-}
-
-.hero-description {
-    font-size: 18px;
-    line-height: 1.6;
-    color: rgba(255, 252, 239, 0.85);
-    max-width: 800px;
-    margin: 0 auto 32px;
-}
-
-.hero-buttons {
-    display: flex;
-    gap: 20px;
-    justify-content: center;
-    flex-wrap: wrap;
-}
-
-.btn-primary {
-    background:  #B99D75 !important;
-    color: #1C2D41 !important;
-    font-weight: 600;
-    text-transform: none;
-    padding: 12px 32px !important;
-    border-radius: 48px !important;
-    transition: all 0.3s ease;
-}
-
-.btn-primary:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 10px 30px rgba(185, 157, 117, 0.3);
-}
-
-.btn-outline {
-    border: 2px solid #B99D75 !important;
-    color: #FFFCEF !important;
-    text-transform: none;
-    padding: 12px 32px !important;
-    border-radius: 48px !important;
-    transition: all 0.3s ease;
-    background: transparent !important;
-}
-
-.btn-outline:hover {
-    background: rgba(185, 157, 117, 0.1) !important;
-    transform: translateY(-2px);
-}
-
-.section {
-    padding: 80px 0;
-    background-color: #1C2D41;
-}
-
-.section-badge {
-    display: inline-block;
-    font-size: 12px;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    color: #B99D75;
-    margin-bottom: 12px;
-}
-
-.section-badge.gold {
-    color: #B99D75;
-}
-
-.section-header-left {
-    margin-bottom: 24px;
-}
-
-.section-header-center {
-    text-align: center;
-    margin-bottom: 48px;
-}
-
-.section-title {
-    font-size: 36px;
-    font-weight: 700;
-    color: #FFFCEF;
-    margin: 0 0 8px 0;
-}
-
-.section-subtitle {
-    font-size: 18px;
-    color: rgba(255, 252, 239, 0.7);
-    max-width: 600px;
-    margin: 0 auto;
-}
-
-.about-section {
-    background-color: #1C2D41;
-}
-
-.about-text p {
-    color: rgba(255, 252, 239, 0.85);
-    line-height: 1.7;
-    font-size: 16px;
-}
-
-.about-text strong {
-    color: #B99D75;
-}
-
-.info-card {
-    background: rgba(255, 252, 239, 0.03);
-    border: 1px solid rgba(185, 157, 117, 0.2);
-    border-radius: 24px;
-    padding: 32px;
-}
-
-.info-card-header {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 16px;
-}
-
-.info-card-header h3 {
-    font-size: 20px;
-    font-weight: 600;
-    color: #FFFCEF;
-    margin: 0;
-}
-
-.info-card p {
-    color: rgba(255, 252, 239, 0.7);
-    line-height: 1.6;
-    margin: 0;
-}
-
-.how-section {
-    background-color: #14222f;
-}
-
-.step-card {
-    background: rgba(255, 252, 239, 0.03);
-    border: 1px solid rgba(185, 157, 117, 0.2);
-    border-radius: 24px;
-    padding: 32px;
-    text-align: center;
-    transition: all 0.3s ease;
-    height: 100%;
-}
-
-.step-card:hover {
-    transform: translateY(-8px);
-    border-color: #B99D75;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-}
-
-.step-number {
-    width: 48px;
-    height: 48px;
-    background: linear-gradient(135deg, #B99D75 0%, #9b835f 100%);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 20px;
-    font-weight: 700;
-    color: #1C2D41;
-    margin: 0 auto 24px;
-}
-
-.step-title {
-    font-size: 20px;
-    font-weight: 600;
-    color: #FFFCEF;
-    margin-bottom: 12px;
-}
-
-.step-description {
-    color: rgba(255, 252, 239, 0.7);
-    line-height: 1.6;
-    font-size: 14px;
-}
-
-.problems-section {
-    background-color: #1C2D41;
-}
-
-.problems-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 24px;
-    margin-top: 32px;
-}
-
-.problem-card {
-    background: rgba(255, 252, 239, 0.03);
-    border: 1px solid rgba(185, 157, 117, 0.2);
-    border-radius: 20px;
-    padding: 28px;
-    text-align: center;
-    transition: all 0.3s ease;
-}
-
-.problem-card:hover {
-    border-color: #B99D75;
-    transform: translateY(-4px);
-}
-
-.problem-icon {
-    margin-bottom: 20px;
-}
-
-.problem-card h3 {
-    font-size: 18px;
-    font-weight: 600;
-    color: #FFFCEF;
-    margin-bottom: 12px;
-}
-
-.problem-card p {
-    color: rgba(255, 252, 239, 0.7);
-    font-size: 14px;
-    line-height: 1.6;
-}
-
-.disclaimer-section {
-    background-color: #14222f;
-}
-
-.disclaimer-card {
-    background: rgba(185, 157, 117, 0.05);
-    border: 1px solid rgba(185, 157, 117, 0.2);
-    border-radius: 32px;
-    padding: 48px;
-}
-
-.disclaimer-header {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 12px;
-    margin-bottom: 32px;
-    flex-wrap: wrap;
-}
-
-.disclaimer-header .section-title {
-    margin-bottom: 0;
-}
-
-.disclaimer-list {
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
-}
-
-.disclaimer-item {
-    display: flex;
-    gap: 16px;
-    align-items: flex-start;
-}
-
-.disclaimer-icon {
-    flex-shrink: 0;
-    margin-top: 2px;
-}
-
-.disclaimer-item h4 {
-    font-size: 16px;
-    font-weight: 600;
-    color: #FFFCEF;
-    margin-bottom: 4px;
-}
-
-.disclaimer-item p {
-    color: rgba(255, 252, 239, 0.6);
-    font-size: 14px;
-    margin: 0;
-}
-
-.myth-section {
-    background-color: #1C2D41;
-}
-
-.myth-content {
-    display: flex;
-    align-items: center;
-    gap: 60px;
-    max-width: 1000px;
-    margin: 0 auto;
-}
-
-.myth-text {
-    flex: 1;
-}
-
-.myth-text p {
-    color: rgba(255, 252, 239, 0.85);
-    line-height: 1.7;
-    margin-bottom: 20px;
-}
-
-.myth-text strong {
-    color: #B99D75;
-}
-
-.myth-quote {
-    font-style: italic;
-    border-left: 3px solid #B99D75;
-    padding-left: 20px;
-    margin-top: 24px;
-}
-
-.myth-icon {
-    flex-shrink: 0;
-    width: 120px;
-    height: 120px;
-    background: rgba(185, 157, 117, 0.1);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.future-section {
-    background-color: #14222f;
-}
-
-.future-card {
-    text-align: center;
-    max-width: 800px;
-    margin: 0 auto;
-    background: rgba(185, 157, 117, 0.03);
-    border: 1px solid rgba(185, 157, 117, 0.2);
-    border-radius: 32px;
-    padding: 48px;
-}
-
-.future-header {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 12px;
-    margin-bottom: 24px;
-    flex-wrap: wrap;
-}
-
-.future-header .section-title {
-    margin-bottom: 0;
-}
-
-.future-description {
-    font-size: 18px;
-    line-height: 1.7;
-    color: rgba(255, 252, 239, 0.85);
-}
-
-.footer-section {
-    background-color: #0f1a24;
-    border-top: 1px solid rgba(185, 157, 117, 0.1);
-    padding: 48px 0 24px;
-}
-
-.footer-content {
-    text-align: center;
-}
-
-.footer-logo {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 12px;
-    margin-bottom: 24px;
-}
-
-.footer-logo-img {
-    width: 32px;
-    height: 32px;
-}
-
-.footer-logo span {
-    font-size: 20px;
-    font-weight: 600;
-    color: #FFFCEF;
-}
-
-.footer-text p {
-    color: rgba(255, 252, 239, 0.6);
-    font-size: 14px;
-    margin-bottom: 12px;
-}
-
-.tcc-link {
-    color: #B99D75;
-    text-decoration: none;
-    font-size: 14px;
-    transition: color 0.3s ease;
-}
-
-.tcc-link:hover {
-    color: #e6d5b8;
-    text-decoration: underline;
-}
-
-.footer-copyright {
-    margin-top: 32px;
-    padding-top: 24px;
-    border-top: 1px solid rgba(185, 157, 117, 0.1);
-}
-
-.footer-copyright p {
-    color: rgba(255, 252, 239, 0.4);
-    font-size: 12px;
-    margin: 0;
-}
-
-@media (max-width: 960px) {
-    .hero-title {
-        font-size: 48px;
-    }
-
-    .hero-slogan {
-        font-size: 18px;
-    }
-
-    .hero-description {
-        font-size: 16px;
-    }
-
-    .section-title {
-        font-size: 28px;
-    }
-
-    .myth-content {
-        flex-direction: column;
-        text-align: center;
-        gap: 32px;
-    }
-
-    .myth-quote {
-        text-align: left;
-    }
-
-    .disclaimer-card {
-        padding: 32px 24px;
-    }
-
-    .future-card {
-        padding: 32px 24px;
-    }
-}
-
-@media (max-width: 600px) {
-    .hero-title {
-        font-size: 36px;
-    }
-
-    .hero-slogan {
-        font-size: 16px;
-        margin-bottom: 16px;
-    }
-
-    .hero-logo {
-        width: 50px;
-        height: 50px;
-    }
-
-    .section {
-        padding: 48px 0;
-    }
-
-    .section-title {
-        font-size: 24px;
-    }
-
-    .hero-buttons {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .hero-buttons .v-btn {
-        width: 100%;
-        max-width: 280px;
-    }
-
-    .step-card {
-        padding: 24px;
-    }
-
-    .problems-grid {
-        grid-template-columns: 1fr;
-    }
-}
-</style>
