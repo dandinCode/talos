@@ -104,7 +104,7 @@
                                     </div>
                                     <div class="flex items-center gap-1.5">
                                         <span class="text-talos-gold font-semibold text-sm">{{ sector.percentage
-                                        }}%</span>
+                                            }}%</span>
                                         <span class="text-[rgb(255_252_239/0.55)] text-xs">({{ sector.count }})</span>
                                     </div>
                                 </div>
