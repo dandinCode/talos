@@ -154,7 +154,7 @@
                             Assim como o guardião mitológico, o Talos foi criado para proteger e fortalecer seus
                             investimentos, ajudando você a tomar decisões mais seguras, equilibradas e inteligentes.
                         </p>
-                        <p class="italic border-l-[3px] border-talos-gold !pl-5 !mt-6 max-md:text-left">
+                        <p class="text-white italic border-l-[3px] border-talos-gold !pl-5 !mt-6 max-md:text-left">
                             Com análise de risco, retorno e diversificação, o Talos atua como um sistema de defesa
                             estratégico para sua carteira.
                         </p>
