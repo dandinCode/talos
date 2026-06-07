@@ -11,7 +11,7 @@
                             </h1>
                         </div>
                         <p class="!text-[22px] max-md:!text-lg max-sm:!text-base font-medium italic text-talos-gold tracking-wide mx-auto !my-2 max-sm:!mb-4">Transforme dados em dividendos.</p>
-                        <p class="!text-lg max-md:!text-base leading-relaxed text-[rgb(255_252_239/0.85)] max-w-[800px] mx-auto !mb-8">
+                        <p class="!text-lg max-md:!text-base leading-relaxed text-white max-w-[800px] mx-auto !mb-8">
                             Uma plataforma inteligente para criação e otimização de carteiras de investimento em ações
                             baseada em dados históricos, diversificação setorial e modelos matemáticos
                             de otimização.
@@ -36,14 +36,14 @@
                             <h2 class="!text-4xl max-md:!text-[28px] max-sm:!text-2xl font-bold text-talos-cream !m-0 !mb-2">O que é este projeto?</h2>
                         </div>
                         <div>
-                            <p class="text-[rgb(255_252_239/0.85)] leading-relaxed !text-base">
+                            <p class="text-white leading-relaxed !text-base">
                                 Este sistema foi criado para auxiliar investidores na tomada de decisão
                                 ao montar carteiras de investimento em ações. A proposta é simples:
                                 permitir que o usuário selecione qualquer conjunto de ações e, a partir
                                 disso, gerar uma carteira otimizada de acordo com critérios de risco,
                                 retorno e diversificação.
                             </p>
-                            <p class="!mt-4 text-[rgb(255_252_239/0.85)] leading-relaxed !text-base">
+                            <p class="!mt-4 text-white leading-relaxed !text-base">
                                 Internamente, a plataforma utiliza uma API própria de otimização
                                 (<strong class="text-talos-gold">Portfolio Optimized API</strong>) que aplica técnicas de
                                 <strong class="text-talos-gold">programação linear</strong> para encontrar a melhor distribuição
@@ -146,11 +146,11 @@
                     <div class="flex-1">
                         <span class="inline-block text-xs font-semibold uppercase tracking-widest text-talos-gold !mb-3">Inspiração</span>
                         <h2 class="!text-4xl max-md:!text-[28px] max-sm:!text-2xl font-bold text-talos-cream !m-0 !mb-2">Por que Talos?</h2>
-                        <p class="text-[rgb(255_252_239/0.85)] leading-relaxed !mb-5">
+                        <p class="text-white leading-relaxed !mb-5">
                             O nome <strong class="text-talos-gold">Talos</strong> vem da mitologia grega. Talos era um gigante de bronze criado
                             para proteger a ilha de Creta, circulando constantemente suas fronteiras para impedir invasões.
                         </p>
-                        <p class="text-[rgb(255_252_239/0.85)] leading-relaxed !mb-5">
+                        <p class="text-white leading-relaxed !mb-5">
                             Assim como o guardião mitológico, o Talos foi criado para proteger e fortalecer seus
                             investimentos, ajudando você a tomar decisões mais seguras, equilibradas e inteligentes.
                         </p>
@@ -173,7 +173,7 @@
                         <v-icon size="40" color="#B99D75">mdi-compass</v-icon>
                         <h2 class="!text-4xl max-md:!text-[28px] max-sm:!text-2xl font-bold text-talos-cream !m-0">Visão de Futuro</h2>
                     </div>
-                    <p class="!text-lg leading-relaxed text-[rgb(255_252_239/0.85)]">
+                    <p class="!text-lg leading-relaxed text-white">
                         O projeto está em constante evolução. Entre as ideias futuras estão a inclusão
                         de indicadores fundamentalistas, perfis de investimento pré-configurados e a
                         possibilidade de o usuário escolher quais critérios deseja considerar no
