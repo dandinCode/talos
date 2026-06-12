@@ -1,3 +1,128 @@
+<template>
+  <div class="min-h-screen talos-page-gradient !py-10 !px-5 max-sm:!py-5 max-sm:!px-4">
+    <v-container class="!max-w-[520px] mx-auto">
+      <div class="!mb-4">
+        <v-btn
+          variant="text"
+          class="!text-talos-cream normal-case tracking-normal !rounded-[40px] !bg-[rgb(185_157_117/0.1)] hover:!bg-[rgb(185_157_117/0.2)] hover:!text-talos-gold"
+          @click="goBack"
+        >
+          <v-icon start size="18">mdi-arrow-left</v-icon>
+          Voltar
+        </v-btn>
+      </div>
+      <v-card class="!bg-[rgb(28_45_65/0.85)] backdrop-blur-[10px] !border !border-[rgb(185_157_117/0.2)] !rounded-[28px] overflow-hidden shadow-[0_20px_40px_rgb(0_0_0/0.35)]">
+        <div class="text-center !pt-8 !px-8 !pb-5 max-sm:!pt-6 max-sm:!px-5 max-sm:!pb-4 bg-gradient-to-br from-[rgb(185_157_117/0.08)] to-[rgb(185_157_117/0.02)]">
+          <div class="w-14 h-14 bg-gradient-to-br from-[rgb(185_157_117/0.15)] to-[rgb(185_157_117/0.05)] rounded-[18px] flex items-center justify-center mx-auto !mb-4 border border-[rgb(185_157_117/0.3)]">
+            <v-icon size="28" color="#B99D75">mdi-account-circle</v-icon>
+          </div>
+          <h2 class="!text-[28px] max-sm:!text-2xl font-bold !m-0 !mb-2 bg-gradient-to-br from-talos-cream via-talos-gold to-[#8B7355] bg-clip-text text-transparent">Meu Perfil</h2>
+          <p class="text-[rgb(255_252_239/0.6)] !text-sm !m-0">Gerencie suas informações pessoais</p>
+        </div>
+
+        <v-divider class="!bg-[rgb(185_157_117/0.15)] !mx-6" />
+
+        <v-card-text class="!p-8 max-sm:!p-6">
+          <div class="relative flex justify-center !mb-8">
+            <v-avatar size="100" class="!bg-gradient-to-br !from-talos-gold !via-[#9b835f] !to-[#7a6349] shadow-[0_8px_20px_rgb(185_157_117/0.3)]">
+              <span class="text-h5 font-weight-bold text-talos-bg">
+                {{ initials }}
+              </span>
+            </v-avatar>
+            <div class="absolute bottom-0 right-[38%] max-sm:right-[34%] bg-[#22c55e] rounded-full w-7 h-7 flex items-center justify-center border-[3px] border-talos-bg-deep">
+              <v-icon size="16" color="#1C2D41">mdi-check</v-icon>
+            </div>
+          </div>
+
+          <div class="flex flex-col !gap-6">
+            <div class="flex flex-col !gap-2">
+              <label class="text-talos-cream !text-sm font-medium flex items-center">
+                <v-icon size="16" color="#B99D75" class="!mr-1">mdi-account-outline</v-icon>
+                Nome completo
+              </label>
+              <v-text-field
+                v-model="name"
+                placeholder="Seu nome completo"
+                variant="outlined"
+                class="talos-v-custom-input"
+                bg-color="rgba(0,0,0,0.2)"
+                :loading="loading"
+              >
+                <template #append-inner>
+                  <v-icon v-if="name" size="18" color="#22c55e" class="opacity-70">mdi-check-circle</v-icon>
+                </template>
+              </v-text-field>
+              <p class="text-[rgb(255_252_239/0.4)] !text-[11px] !mt-1 !mb-0">Seu nome será usado para identificação na plataforma</p>
+            </div>
+
+            <div class="flex flex-col !gap-2">
+              <label class="text-talos-cream !text-sm font-medium flex items-center">
+                <v-icon size="16" color="#B99D75" class="!mr-1">mdi-email-outline</v-icon>
+                Email
+              </label>
+              <v-text-field
+                :model-value="email"
+                variant="outlined"
+                readonly
+                disabled
+                class="talos-v-custom-input talos-v-readonly-input"
+                bg-color="rgba(0,0,0,0.15)"
+              >
+                <template #append-inner>
+                  <v-chip size="x-small" color="#B99D75" variant="tonal" class="!bg-[rgb(185_157_117/0.15)] !text-talos-gold !text-[10px]">
+                    não editável
+                  </v-chip>
+                </template>
+              </v-text-field>
+              <p class="text-[rgb(255_252_239/0.4)] !text-[11px] !mt-1 !mb-0">
+                O email não pode ser alterado. Entre em contato com o suporte para mais informações.
+              </p>
+            </div>
+          </div>
+
+          <div class="bg-black/25 border border-[rgb(185_157_117/0.15)] rounded-2xl !p-4 max-sm:!p-3 !mt-6 flex flex-col !gap-3">
+            <div class="flex items-center !gap-3 text-[rgb(255_252_239/0.6)] !text-[13px]">
+              <v-icon size="18" color="#B99D75">mdi-shield-check</v-icon>
+              <span>Dados protegidos com criptografia</span>
+            </div>
+            <div class="flex items-center !gap-3 text-[rgb(255_252_239/0.6)] !text-[13px]">
+              <v-icon size="18" color="#B99D75">mdi-clock-outline</v-icon>
+              <span>Membro desde: {{ memberSince }}</span>
+            </div>
+          </div>
+        </v-card-text>
+
+        <v-divider class="!bg-[rgb(185_157_117/0.15)] !mx-6" />
+
+        <v-card-actions class="!px-8 !pb-8 !pt-6 max-sm:!px-6 max-sm:!pt-5 max-sm:!pb-6 max-sm:flex-col !gap-4">
+          <v-btn
+            class="flex-1 !bg-transparent !border !border-[rgb(185_157_117/0.3)] !text-talos-cream normal-case !rounded-[40px] !px-6 !py-2 hover:!bg-[rgb(185_157_117/0.1)] hover:!border-talos-gold"
+            variant="outlined"
+            @click="goBack"
+          >
+            Cancelar
+          </v-btn>
+          <v-btn
+            class="flex-1 !bg-gradient-to-br !from-talos-gold !to-[#9b835f] !text-talos-bg !font-semibold normal-case !rounded-[40px] !px-6 !py-2 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_8px_20px_rgb(185_157_117/0.3)] disabled:opacity-50 disabled:transform-none"
+            :loading="loading"
+            @click="handleSave"
+          >
+            <v-icon start size="18">mdi-content-save</v-icon>
+            Salvar alterações
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+
+      <div class="text-center !mt-6 !p-4">
+        <p class="text-[rgb(255_252_239/0.4)] !text-xs !m-0 flex items-center justify-center !gap-1.5">
+          <v-icon size="14" color="#B99D75">mdi-lock-outline</v-icon>
+          Suas informações estão seguras e são utilizadas apenas para personalização da sua experiência.
+        </p>
+      </div>
+    </v-container>
+  </div>
+</template>
+
 <script setup lang="ts">
 import { computed, ref, watch } from 'vue'
 import { useRouter } from 'vue-router'
@@ -51,7 +176,7 @@ async function handleSave() {
       name: name.value
     })
     notify.success('Perfil atualizado com sucesso')
-    await  userStore.loadUser()
+    await userStore.loadUser()
   } catch (e: any) {
     notify.error(
       e?.response?.data?.message || 'Erro ao atualizar perfil'
@@ -65,385 +190,3 @@ function goBack() {
   router.back()
 }
 </script>
-
-<template>
-  <div class="profile-bg">
-    <v-container class="profile-container">
-      <div class="back-button">
-        <v-btn variant="text" class="back-btn" @click="goBack">
-          <v-icon start size="18">mdi-arrow-left</v-icon>
-          Voltar
-        </v-btn>
-      </div>
-      <v-card class="profile-card">
-        <div class="card-header">
-          <div class="header-icon">
-            <v-icon size="28" color="#B99D75">mdi-account-circle</v-icon>
-          </div>
-          <h2 class="card-title">Meu Perfil</h2>
-          <p class="card-subtitle">Gerencie suas informações pessoais</p>
-        </div>
-
-        <v-divider class="divider" />
-
-        <v-card-text class="card-content">
-          <div class="avatar-wrapper">
-            <v-avatar size="100" class="avatar">
-              <span class="avatar-text text-h5 font-weight-bold">
-                {{ initials }}
-              </span>
-            </v-avatar>
-            <div class="avatar-badge">
-              <v-icon size="16" color="#1C2D41">mdi-check</v-icon>
-            </div>
-          </div>
-          <div class="form-fields">
-            <div class="field-wrapper">
-              <label class="field-label">
-                <v-icon size="16" color="#B99D75" class="mr-1">mdi-account-outline</v-icon>
-                Nome completo
-              </label>
-              <v-text-field v-model="name" placeholder="Seu nome completo" variant="outlined" class="custom-input"
-                bg-color="rgba(0,0,0,0.2)" :loading="loading">
-                <template #append-inner>
-                  <v-icon v-if="name" size="18" color="#22c55e" class="valid-icon">mdi-check-circle</v-icon>
-                </template>
-              </v-text-field>
-              <p class="field-hint">Seu nome será usado para identificação na plataforma</p>
-            </div>
-            <div class="field-wrapper">
-              <label class="field-label">
-                <v-icon size="16" color="#B99D75" class="mr-1">mdi-email-outline</v-icon>
-                Email
-              </label>
-              <v-text-field :model-value="email" variant="outlined" readonly disabled class="custom-input readonly-field"
-                bg-color="rgba(0,0,0,0.15)">
-                <template #append-inner>
-                  <v-chip size="x-small" color="#B99D75" variant="tonal" class="readonly-chip">
-                    não editável
-                  </v-chip>
-                </template>
-              </v-text-field>
-              <p class="field-hint">O email não pode ser alterado. Entre em contato com o suporte para mais informações.
-              </p>
-            </div>
-          </div>
-          <div class="info-box">
-            <div class="info-item">
-              <v-icon size="18" color="#B99D75">mdi-shield-check</v-icon>
-              <span>Dados protegidos com criptografia</span>
-            </div>
-            <div class="info-item">
-              <v-icon size="18" color="#B99D75">mdi-clock-outline</v-icon>
-              <span>Membro desde: {{ memberSince }}</span>
-            </div>
-          </div>
-        </v-card-text>
-
-        <v-divider class="divider" />
-
-        <v-card-actions class="card-actions">
-          <v-btn class="cancel-btn" variant="outlined" @click="goBack">
-            Cancelar
-          </v-btn>
-          <v-btn class="save-btn" :loading="loading" @click="handleSave">
-            <v-icon start size="18">mdi-content-save</v-icon>
-            Salvar alterações
-          </v-btn>
-        </v-card-actions>
-      </v-card>
-      <div class="footer-note">
-        <p>
-          <v-icon size="14" color="#B99D75">mdi-lock-outline</v-icon>
-          Suas informações estão seguras e são utilizadas apenas para personalização da sua experiência.
-        </p>
-      </div>
-    </v-container>
-  </div>
-</template>
-
-<style scoped>
-.profile-bg {
-  min-height: 100vh;
-  background: radial-gradient(circle at top, #1C2D41 0%, #0f1a24 100%);
-  padding: 40px 20px;
-}
-
-.profile-container {
-  max-width: 520px;
-  margin: 0 auto;
-}
-
-.back-button {
-  margin-bottom: 16px;
-}
-
-.back-btn {
-  color: #FFFCEF !important;
-  text-transform: none;
-  letter-spacing: normal;
-  border-radius: 40px !important;
-  background: rgba(185, 157, 117, 0.1) !important;
-}
-
-.back-btn:hover {
-  background: rgba(185, 157, 117, 0.2) !important;
-  color: #B99D75 !important;
-}
-
-.profile-card {
-  background: rgba(28, 45, 65, 0.85) !important;
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(185, 157, 117, 0.2);
-  border-radius: 28px !important;
-  overflow: hidden;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
-}
-
-.card-header {
-  text-align: center;
-  padding: 32px 32px 20px;
-  background: linear-gradient(135deg, rgba(185, 157, 117, 0.08), rgba(185, 157, 117, 0.02));
-}
-
-.header-icon {
-  width: 56px;
-  height: 56px;
-  background: linear-gradient(135deg, rgba(185, 157, 117, 0.15), rgba(185, 157, 117, 0.05));
-  border-radius: 18px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0 auto 16px;
-  border: 1px solid rgba(185, 157, 117, 0.3);
-}
-
-.card-title {
-  font-size: 28px;
-  font-weight: 700;
-  background: linear-gradient(135deg, #FFFCEF 0%, #B99D75 70%, #8B7355 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  margin: 0 0 8px 0;
-}
-
-.card-subtitle {
-  color: rgba(255, 252, 239, 0.6);
-  font-size: 14px;
-  margin: 0;
-}
-
-.divider {
-  background: rgba(185, 157, 117, 0.15) !important;
-  margin: 0 24px;
-}
-
-.card-content {
-  padding: 32px !important;
-}
-
-.avatar-wrapper {
-  position: relative;
-  display: flex;
-  justify-content: center;
-  margin-bottom: 32px;
-}
-
-.avatar {
-  background: linear-gradient(135deg, #B99D75 0%, #9b835f 50%, #7a6349 100%) !important;
-  box-shadow: 0 8px 20px rgba(185, 157, 117, 0.3);
-}
-
-.avatar-text {
-  color: #1C2D41;
-  font-weight: 700;
-}
-
-.avatar-badge {
-  position: absolute;
-  bottom: 0;
-  right: 38%;
-  background: #22c55e;
-  border-radius: 50%;
-  width: 28px;
-  height: 28px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 3px solid #0f1a24;
-}
-
-.form-fields {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-}
-
-.field-wrapper {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.field-label {
-  color: #FFFCEF;
-  font-size: 14px;
-  font-weight: 500;
-  display: flex;
-  align-items: center;
-}
-
-.custom-input :deep(.v-field) {
-  background: rgba(0, 0, 0, 0.2) !important;
-  border-radius: 14px !important;
-}
-
-.custom-input :deep(.v-field__outline) {
-  color: #B99D75;
-  --v-field-border-opacity: 0.3;
-}
-
-.custom-input :deep(.v-field--focused .v-field__outline) {
-  --v-field-border-opacity: 0.6;
-}
-
-.custom-input :deep(label) {
-  color: rgba(255, 252, 239, 0.6) !important;
-}
-
-.custom-input :deep(input) {
-  color: #FFFCEF !important;
-}
-
-.readonly-field :deep(.v-field) {
-  background: rgba(0, 0, 0, 0.15) !important;
-}
-
-.readonly-field :deep(input) {
-  color: rgba(255, 252, 239, 0.5) !important;
-}
-
-.readonly-chip {
-  background: rgba(185, 157, 117, 0.15) !important;
-  color: #B99D75 !important;
-  font-size: 10px;
-}
-
-.valid-icon {
-  opacity: 0.7;
-}
-
-.field-hint {
-  color: rgba(255, 252, 239, 0.4);
-  font-size: 11px;
-  margin: 4px 0 0 0;
-}
-
-.info-box {
-  background: rgba(0, 0, 0, 0.25);
-  border: 1px solid rgba(185, 157, 117, 0.15);
-  border-radius: 16px;
-  padding: 16px;
-  margin-top: 24px;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.info-item {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  color: rgba(255, 252, 239, 0.6);
-  font-size: 13px;
-}
-
-.card-actions {
-  padding: 24px 32px 32px !important;
-  gap: 16px;
-}
-
-.cancel-btn {
-  background: transparent !important;
-  border: 1px solid rgba(185, 157, 117, 0.3) !important;
-  color: #FFFCEF !important;
-  text-transform: none;
-  border-radius: 40px !important;
-  padding: 8px 24px !important;
-  flex: 1;
-}
-
-.cancel-btn:hover {
-  background: rgba(185, 157, 117, 0.1) !important;
-  border-color: #B99D75 !important;
-}
-
-.save-btn {
-  background: linear-gradient(135deg, #B99D75 0%, #9b835f 100%) !important;
-  color: #1C2D41 !important;
-  font-weight: 600;
-  text-transform: none;
-  border-radius: 40px !important;
-  padding: 8px 24px !important;
-  flex: 1;
-  transition: all 0.3s ease;
-}
-
-.save-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(185, 157, 117, 0.3);
-}
-
-.save-btn:disabled {
-  opacity: 0.5;
-  transform: none;
-}
-
-.footer-note {
-  text-align: center;
-  margin-top: 24px;
-  padding: 16px;
-}
-
-.footer-note p {
-  color: rgba(255, 252, 239, 0.4);
-  font-size: 12px;
-  margin: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
-}
-
-@media (max-width: 600px) {
-  .profile-bg {
-    padding: 20px 16px;
-  }
-
-  .card-header {
-    padding: 24px 20px 16px;
-  }
-
-  .card-title {
-    font-size: 24px;
-  }
-
-  .card-content {
-    padding: 24px !important;
-  }
-
-  .card-actions {
-    flex-direction: column;
-    padding: 20px 24px 24px !important;
-  }
-
-  .avatar-badge {
-    right: 34%;
-  }
-
-  .info-box {
-    padding: 12px;
-  }
-}
-</style>
