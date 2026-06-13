@@ -107,7 +107,6 @@
             :loading="loading"
             @click="handleSave"
           >
-            <v-icon start size="18">mdi-content-save</v-icon>
             Salvar alterações
           </v-btn>
         </v-card-actions>
