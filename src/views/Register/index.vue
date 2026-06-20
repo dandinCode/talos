@@ -1,15 +1,21 @@
 <template>
-    <v-container fluid class="register-hero d-flex justify-center align-center">
-        <v-card class="register-card pa-8" width="460" elevation="0">
-            <div class="text-center mb-6">
-                <h1 class="text-h4 text-white glow mb-2">Criar Conta</h1>
-                <p class="text-grey-lighten-1">
-                    Junte-se ao <strong>Talos</strong> e construa carteiras de investimento
+    <div class="flex min-h-screen w-full items-center justify-center bg-[radial-gradient(circle_at_top,#1C2D41_0%,#0f1a24_100%)] px-5">
+        <v-card
+            color="transparent"
+            class="talos-v-fields !w-[460px] !max-w-full !rounded-[18px] !border !border-white/20 !bg-[rgb(255_255_255/0.06)] backdrop-blur-[14px] !shadow-none !overflow-visible transition-all duration-250 ease-in-out hover:scale-[1.025] hover:shadow-[0_0_0_1px_rgb(79_140_255/0.25),0_0_45px_rgb(79_140_255/0.35)] !p-8"
+            elevation="0"
+        >
+            <div class="text-center !mb-6">
+                <h1 class="!text-[2rem] !font-bold !text-white !m-0 !mb-2 [text-shadow:0_0_22px_rgb(185_157_117/0.7)]">
+                    Criar Conta
+                </h1>
+                <p class="!text-[rgb(255_252_239/0.7)] !text-base !m-0">
+                    Junte-se ao <strong class="!text-white">Talos</strong> e construa carteiras de investimento
                     com apoio quantitativo.
                 </p>
             </div>
 
-            <form class="register-form" novalidate @submit.prevent="handleRegister">
+            <form novalidate @submit.prevent="handleRegister">
                 <v-text-field
                     v-model="name"
                     name="name"
@@ -18,7 +24,7 @@
                     autocomplete="name"
                     variant="outlined"
                     prepend-inner-icon="mdi-account-outline"
-                    class="text-white mb-4"
+                    class="!mb-4"
                 />
 
                 <v-text-field
@@ -30,13 +36,13 @@
                     inputmode="email"
                     variant="outlined"
                     prepend-inner-icon="mdi-email-outline"
-                    class="text-white mb-4"
+                    class="!mb-4"
                 />
 
                 <PasswordField
                     v-model="password"
                     autocomplete="new-password"
-                    class="mb-6"
+                    class="!mb-6"
                 />
 
                 <v-btn
@@ -44,6 +50,7 @@
                     color="blue-accent-3"
                     size="large"
                     block
+                    class="!normal-case !tracking-normal"
                     :loading="loading"
                     :disabled="loading"
                 >
@@ -51,12 +58,14 @@
                 </v-btn>
             </form>
 
-            <div class="text-center mt-6">
-                <span class="text-grey-lighten-1">Já tem conta?</span>
-                <RouterLink to="/login" class="link">Entrar</RouterLink>
+            <div class="text-center !mt-6">
+                <span class="!text-[rgb(255_252_239/0.7)]">Já tem conta?</span>
+                <RouterLink to="/login" class="!ml-1.5 !text-talos-gold no-underline hover:underline">
+                    Entrar
+                </RouterLink>
             </div>
         </v-card>
-    </v-container>
+    </div>
 </template>
 
 <script setup lang="ts">
@@ -112,73 +121,3 @@ async function handleRegister() {
     }
 }
 </script>
-
-
-<style scoped>
-.register-hero {
-    width: 100vw;
-    min-height: 100vh;
-    background: radial-gradient(circle at top, #1C2D41 0%, #0f1a24 100%);
-}
-
-.register-card {
-    background: rgba(255, 255, 255, 0.06);
-    border: 1px solid rgba(255, 255, 255, 0.18);
-    backdrop-filter: blur(14px);
-    border-radius: 18px;
-    transition: transform 0.25s ease, box-shadow 0.25s ease;
-}
-
-.register-card:hover {
-    transform: scale(1.025);
-    box-shadow:
-        0 0 0 1px rgba(79, 140, 255, 0.25),
-        0 0 45px rgba(79, 140, 255, 0.35);
-}
-
-.glow {
-    text-shadow: 0 0 22px rgba(185, 157, 117, 0.7);
-}
-
-.link {
-    margin-left: 6px;
-    color: #B99D75;
-    text-decoration: none;
-}
-
-.link:hover {
-    text-decoration: underline;
-}
-
-.register-card :deep(.v-field) {
-    background-color: rgba(255, 255, 255, 0.03) !important;
-}
-
-.register-card :deep(input) {
-    background-color: transparent !important;
-    color: #FFFCEF !important;
-}
-
-.register-card :deep(.v-field__prepend-inner),
-.register-card :deep(.v-field__append-inner) {
-    background-color: transparent !important;
-}
-
-.register-card :deep(input:-webkit-autofill),
-.register-card :deep(input:-webkit-autofill:hover),
-.register-card :deep(input:-webkit-autofill:focus),
-.register-card :deep(input:-webkit-autofill:active) {
-    -webkit-box-shadow: 0 0 0 30px rgba(28, 45, 65, 0.95) inset !important;
-    -webkit-text-fill-color: #FFFCEF !important;
-    caret-color: #FFFCEF !important;
-    background-color: transparent !important;
-}
-
-.register-card :deep(.v-field.v-field--focused) {
-    background-color: rgba(255, 255, 255, 0.05) !important;
-}
-
-.register-card :deep(.v-field:hover) {
-    background-color: rgba(255, 255, 255, 0.06) !important;
-}
-</style>
