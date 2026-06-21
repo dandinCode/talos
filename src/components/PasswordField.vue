@@ -6,11 +6,10 @@
         :type="show ? 'text' : 'password'"
         :autocomplete="autocomplete"
         variant="outlined"
-        class="text-white password-field"
         :rules="rules"
     >
         <template #prepend-inner>
-            <v-icon color="white">mdi-lock-outline</v-icon>
+            <v-icon color="white" class="opacity-100">mdi-lock-outline</v-icon>
         </template>
 
         <template #append-inner>
@@ -23,7 +22,7 @@
                 aria-label="Mostrar ou ocultar senha"
                 @click.prevent="toggle"
             >
-                <v-icon color="white">{{ show ? 'mdi-eye-off' : 'mdi-eye' }}</v-icon>
+                <v-icon color="white" class="opacity-100">{{ show ? 'mdi-eye-off' : 'mdi-eye' }}</v-icon>
             </v-btn>
         </template>
     </v-text-field>
@@ -60,9 +59,3 @@ function toggle() {
     show.value = !show.value;
 }
 </script>
-
-<style scoped>
-.password-field .v-icon {
-    opacity: 1;
-}
-</style>
