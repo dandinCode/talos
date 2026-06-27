@@ -4,11 +4,11 @@
             v-if="isMobile"
             color="#1C2D41"
             elevation="0"
-            class="talos-mobile-bar"
+            class="!border-b !border-[rgb(185_157_117/0.15)]"
             density="comfortable"
         >
             <v-app-bar-nav-icon icon="mdi-menu" color="#B99D75" @click="openSidebar" />
-            <v-app-bar-title class="talos-mobile-title">Talos</v-app-bar-title>
+            <v-app-bar-title class="!text-talos-gold !font-bold !text-[1.1rem]">Talos</v-app-bar-title>
         </v-app-bar>
 
         <Sidebar ref="sidebarRef" />
@@ -33,15 +33,3 @@ function openSidebar() {
     sidebarRef.value?.openDrawer()
 }
 </script>
-
-<style scoped>
-.talos-mobile-bar {
-    border-bottom: 1px solid rgba(185, 157, 117, 0.15) !important;
-}
-
-.talos-mobile-title {
-    color: #b99d75 !important;
-    font-weight: 700;
-    font-size: 1.1rem;
-}
-</style>
