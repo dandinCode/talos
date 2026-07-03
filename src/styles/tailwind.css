@@ -22,7 +22,8 @@
   }
 
   .talos-auth-card {
-    @apply rounded-[18px] border border-white/20 bg-white/6 backdrop-blur-[14px] transition-[transform,box-shadow] duration-250 ease-in-out;
+    @apply rounded-[18px] border border-white/20 backdrop-blur-[14px] transition-[transform,box-shadow] duration-250 ease-in-out;
+    background: rgb(255 255 255 / 0.06) !important;
   }
 
   .talos-auth-card:hover {
@@ -46,8 +47,31 @@
     background: radial-gradient(circle at top, var(--color-talos-bg) 0%, var(--color-talos-bg-deep) 100%);
   }
 
+  .talos-v-fields.v-card {
+    background: rgb(255 255 255 / 0.06) !important;
+  }
+
+  .talos-v-fields .v-field__prepend-inner .v-icon,
+  .talos-v-fields .v-field__append-inner .v-icon {
+    color: var(--color-talos-cream) !important;
+    opacity: 1 !important;
+  }
+
   .talos-v-fields .v-field {
     background-color: rgb(255 255 255 / 0.03) !important;
+  }
+
+  .talos-v-fields .v-label {
+    color: rgb(255 252 239 / 0.6) !important;
+  }
+
+  .talos-v-fields .v-field__outline {
+    color: rgb(255 255 255 / 0.3);
+    --v-field-border-opacity: 0.3;
+  }
+
+  .talos-v-fields .v-field--focused .v-field__outline {
+    --v-field-border-opacity: 0.5;
   }
 
   .talos-v-fields input {
