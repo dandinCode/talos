@@ -34,7 +34,7 @@ async function handleConfirm() {
 
 <template>
     <v-dialog :model-value="modelValue" max-width="400" @update:modelValue="emit('update:modelValue', $event)">
-        <v-card class="delete-dialog">
+        <v-card class="talos-delete-dialog">
             <v-card-title class="text-h5">
                 Excluir Portfólio
             </v-card-title>

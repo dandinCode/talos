@@ -1,63 +1,100 @@
 <template>
     <div>
-        <div class="selector-header">
-            <div class="header-left"></div>
-            <div class="header-right">
-                <v-btn size="small" variant="text" class="action-chip" @click="selectAll"
-                    :disabled="stocks.filteredSymbols.length === 0">
+        <div class="flex justify-between items-center !pb-4 flex-wrap !gap-3 max-sm:flex-col max-sm:items-start">
+            <div></div>
+            <div class="flex gap-2 items-center flex-wrap max-sm:w-full max-sm:justify-start">
+                <v-btn
+                    size="small"
+                    variant="text"
+                    class="!text-[rgb(255_252_239/0.7)] !text-[13px] normal-case !rounded-[20px] !bg-[rgb(185_157_117/0.1)] !px-3 !py-1 !min-w-0 hover:!bg-[rgb(185_157_117/0.2)] hover:!text-talos-cream disabled:opacity-40 disabled:cursor-not-allowed"
+                    @click="selectAll"
+                    :disabled="stocks.filteredSymbols.length === 0"
+                >
                     <v-icon size="16">mdi-check-all</v-icon>
                     Selecionar todas
                 </v-btn>
 
-                <v-btn size="small" variant="text" class="action-chip" @click="analysis.clearSelection"
-                    :disabled="analysis.selectedSymbols.length === 0">
+                <v-btn
+                    size="small"
+                    variant="text"
+                    class="!text-[rgb(255_252_239/0.7)] !text-[13px] normal-case !rounded-[20px] !bg-[rgb(185_157_117/0.1)] !px-3 !py-1 !min-w-0 hover:!bg-[rgb(185_157_117/0.2)] hover:!text-talos-cream disabled:opacity-40 disabled:cursor-not-allowed"
+                    @click="analysis.clearSelection"
+                    :disabled="analysis.selectedSymbols.length === 0"
+                >
                     <v-icon size="16">mdi-close-circle</v-icon>
                     Limpar seleção
                 </v-btn>
 
-                <v-btn size="small" variant="text" class="filter-chip" @click="showFilters = !showFilters">
+                <v-btn
+                    size="small"
+                    variant="text"
+                    class="!text-[rgb(255_252_239/0.7)] !text-[13px] normal-case !rounded-[20px] !bg-[rgb(185_157_117/0.1)] !px-3 !py-1 !min-w-0 hover:!bg-[rgb(185_157_117/0.2)] hover:!text-talos-cream"
+                    @click="showFilters = !showFilters"
+                >
                     <v-icon size="16">mdi-filter</v-icon>
                     Setor
                     <v-icon size="14">{{ showFilters ? 'mdi-chevron-up' : 'mdi-chevron-down' }}</v-icon>
                 </v-btn>
 
-                <v-btn size="small" variant="text" class="filter-chip" @click="showStatusFilter = !showStatusFilter">
+                <v-btn
+                    size="small"
+                    variant="text"
+                    class="!text-[rgb(255_252_239/0.7)] !text-[13px] normal-case !rounded-[20px] !bg-[rgb(185_157_117/0.1)] !px-3 !py-1 !min-w-0 hover:!bg-[rgb(185_157_117/0.2)] hover:!text-talos-cream"
+                    @click="showStatusFilter = !showStatusFilter"
+                >
                     <v-icon size="16">mdi-filter</v-icon>
                     Status
                     <v-icon size="14">{{ showStatusFilter ? 'mdi-chevron-up' : 'mdi-chevron-down' }}</v-icon>
                 </v-btn>
 
-                <v-btn size="small" variant="text" class="action-chip" @click="hidden = !hidden">
+                <v-btn
+                    size="small"
+                    variant="text"
+                    class="!text-[rgb(255_252_239/0.7)] !text-[13px] normal-case !rounded-[20px] !bg-[rgb(185_157_117/0.1)] !px-3 !py-1 !min-w-0 hover:!bg-[rgb(185_157_117/0.2)] hover:!text-talos-cream"
+                    @click="hidden = !hidden"
+                >
                     <v-icon size="16">{{ hidden ? 'mdi-eye' : 'mdi-eye-off' }}</v-icon>
                     {{ hidden ? 'Mostrar ações' : 'Ocultar ações' }}
                 </v-btn>
             </div>
         </div>
 
-        <div v-if="showFilters" class="filters-panel">
-            <div class="filters-header">
+        <div v-if="showFilters" class="bg-black/30 rounded-2xl !p-4 !mb-5 border border-[rgb(185_157_117/0.1)]">
+            <div class="flex justify-between items-center !mb-3 text-[rgb(255_252_239/0.6)] text-xs">
                 <span>Filtrar por setor</span>
                 <v-btn size="x-small" variant="text" color="#B99D75" @click="clearSectorFilter">Limpar</v-btn>
             </div>
-            <div class="filters-list">
-                <v-chip v-for="sector in availableSectors" :key="sector" size="small" variant="tonal"
-                    :color="selectedSectors.includes(sector) ? '#B99D75' : 'grey'" class="filter-chip-item"
-                    @click="toggleSectorFilter(sector)">
+            <div class="flex flex-wrap !gap-2">
+                <v-chip
+                    v-for="sector in availableSectors"
+                    :key="sector"
+                    size="small"
+                    variant="tonal"
+                    :color="selectedSectors.includes(sector) ? '#B99D75' : 'grey'"
+                    class="cursor-pointer"
+                    @click="toggleSectorFilter(sector)"
+                >
                     {{ sector }}
                 </v-chip>
             </div>
         </div>
 
-        <div v-if="showStatusFilter" class="filters-panel">
-            <div class="filters-header">
+        <div v-if="showStatusFilter" class="bg-black/30 rounded-2xl !p-4 !mb-5 border border-[rgb(185_157_117/0.1)]">
+            <div class="flex justify-between items-center !mb-3 text-[rgb(255_252_239/0.6)] text-xs">
                 <span>Filtrar por status</span>
                 <v-btn size="x-small" variant="text" color="#B99D75" @click="clearStatusFilter">Limpar</v-btn>
             </div>
-            <div class="filters-list">
-                <v-chip v-for="status in ['validated', 'pending', 'invalid']" :key="status" size="small" variant="tonal"
+            <div class="flex flex-wrap !gap-2">
+                <v-chip
+                    v-for="status in ['validated', 'pending', 'invalid']"
+                    :key="status"
+                    size="small"
+                    variant="tonal"
                     :color="selectedStatuses.includes(status) ?
                         (status === 'validated' ? '#22c55e' : status === 'pending' ? '#f59e0b' : '#ef4444') : 'grey'"
-                    class="filter-chip-item" @click="toggleStatusFilter(status)">
+                    class="cursor-pointer"
+                    @click="toggleStatusFilter(status)"
+                >
                     {{ status }}
                 </v-chip>
             </div>
@@ -70,42 +107,51 @@
         </div>
 
         <template v-else>
-            <div class="stocks-grid">
-                <div v-for="stock in displayedStocks" :key="stock.id" class="stock-card"
-                    :class="{ 'stock-selected': analysis.selectedSymbols.includes(stock.symbol) }"
-                    @click="analysis.toggleSymbol(stock.symbol)">
-                    <div class="stock-info">
-                        <div class="stock-symbol">{{ stock.symbol }}</div>
-                        <div class="stock-company">{{ stock.company || '—' }}</div>
+            <div class="grid grid-cols-[repeat(auto-fit,minmax(280px,1fr))] !gap-3 !mt-4 max-sm:grid-cols-1">
+                <div
+                    v-for="stock in displayedStocks"
+                    :key="stock.id"
+                    class="bg-black/25 border !rounded-2xl !px-4 !py-5 !min-h-[96px] flex items-center justify-between !gap-4 cursor-pointer transition-all duration-200 hover:bg-[rgb(185_157_117/0.08)] hover:border-[rgb(185_157_117/0.3)] hover:-translate-y-0.5"
+                    :class="analysis.selectedSymbols.includes(stock.symbol)
+                        ? 'bg-[rgb(185_157_117/0.12)] !border-talos-gold'
+                        : 'border-[rgb(185_157_117/0.15)]'"
+                    @click="analysis.toggleSymbol(stock.symbol)"
+                >
+                    <div class="flex-1 min-w-0 !pr-2">
+                        <div class="font-bold text-talos-cream !text-base leading-tight">{{ stock.symbol }}</div>
+                        <div class="!text-[11px] text-[rgb(255_252_239/0.5)] !mt-0.5 leading-snug line-clamp-2">{{ stock.company || '—' }}</div>
                     </div>
-                    <div class="stock-meta">
-                        <v-chip size="x-small" :color="getSectorColor(stock.sector)" variant="tonal"
-                            class="sector-chip">
+                    <div class="flex flex-col items-end !gap-1.5 !mr-3 shrink-0">
+                        <v-chip
+                            size="x-small"
+                            :color="getSectorColor(stock.sector)"
+                            variant="tonal"
+                            class="!bg-[rgb(185_157_117/0.15)] !text-talos-gold !text-[10px] !h-auto !px-2 !py-0.5"
+                        >
                             {{ stock.sector || 'Setor não definido' }}
                         </v-chip>
-                        <v-chip size="x-small" :color="getStatusColor(stock.status)" variant="tonal"
-                            class="status-chip">
+                        <v-chip size="x-small" :color="getStatusColor(stock.status)" variant="tonal" class="!text-[10px] !h-auto !px-2 !py-0.5">
                             {{ stock.status }}
                         </v-chip>
                     </div>
-                    <div class="stock-check">
+                    <div class="shrink-0">
                         <v-icon
                             :color="analysis.selectedSymbols.includes(stock.symbol) ? '#B99D75' : 'rgba(255,252,239,0.2)'"
-                            size="20">
-                            {{ analysis.selectedSymbols.includes(stock.symbol) ? 'mdi-check-circle' :
-                                'mdi-circle-outline' }}
+                            size="22"
+                        >
+                            {{ analysis.selectedSymbols.includes(stock.symbol) ? 'mdi-check-circle' : 'mdi-circle-outline' }}
                         </v-icon>
                     </div>
                 </div>
 
-                <div v-if="filteredStocksByFilters.length === 0" class="empty-state">
+                <div v-if="filteredStocksByFilters.length === 0" class="text-center !py-12 text-[rgb(255_252_239/0.3)]">
                     <v-icon size="48" color="rgba(255,252,239,0.3)">mdi-database-search</v-icon>
                     <p>Nenhuma ação encontrada</p>
                 </div>
             </div>
 
-            <div v-if="showVerMais" class="show-more">
-                <v-btn variant="text" class="show-more-btn" @click="expandStocks">
+            <div v-if="showVerMais" class="flex justify-center !mt-5">
+                <v-btn variant="text" class="!text-talos-gold normal-case !font-semibold tracking-wide" @click="expandStocks">
                     Ver mais
                     <v-icon size="18" class="ml-1">mdi-chevron-down</v-icon>
                 </v-btn>
@@ -235,176 +281,3 @@ function getStatusColor(status: string): string {
     }
 }
 </script>
-
-<style scoped>
-.selector-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 0 16px 0;
-    flex-wrap: wrap;
-    gap: 12px;
-}
-
-.header-right {
-    display: flex;
-    gap: 8px;
-    align-items: center;
-    flex-wrap: wrap;
-}
-
-.filter-chip,
-.action-chip {
-    color: rgba(255, 252, 239, 0.7) !important;
-    font-size: 13px;
-    text-transform: none;
-    border-radius: 20px !important;
-    background: rgba(185, 157, 117, 0.1) !important;
-    padding: 4px 12px !important;
-    min-width: auto !important;
-}
-
-.filter-chip:hover,
-.action-chip:hover {
-    background: rgba(185, 157, 117, 0.2) !important;
-    color: #FFFCEF !important;
-}
-
-.filter-chip:disabled,
-.action-chip:disabled {
-    opacity: 0.4;
-    cursor: not-allowed;
-}
-
-.filters-panel {
-    background: rgba(0, 0, 0, 0.3);
-    border-radius: 16px;
-    padding: 16px;
-    margin-bottom: 20px;
-    border: 1px solid rgba(185, 157, 117, 0.1);
-}
-
-.filters-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 12px;
-    color: rgba(255, 252, 239, 0.6);
-    font-size: 12px;
-}
-
-.filters-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-}
-
-.filter-chip-item {
-    cursor: pointer;
-}
-
-.stocks-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 12px;
-    margin-top: 16px;
-}
-
-.stock-card {
-    background: rgba(0, 0, 0, 0.25);
-    border: 1px solid rgba(185, 157, 117, 0.15);
-    border-radius: 16px;
-    padding: 16px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    cursor: pointer;
-    transition: all 0.2s ease;
-}
-
-.stock-card:hover {
-    background: rgba(185, 157, 117, 0.08);
-    border-color: rgba(185, 157, 117, 0.3);
-    transform: translateY(-2px);
-}
-
-.stock-selected {
-    background: rgba(185, 157, 117, 0.12);
-    border-color: #B99D75;
-}
-
-.stock-info {
-    flex: 1;
-}
-
-.stock-symbol {
-    font-weight: 700;
-    color: #FFFCEF;
-    font-size: 16px;
-}
-
-.stock-company {
-    font-size: 11px;
-    color: rgba(255, 252, 239, 0.5);
-    margin-top: 2px;
-}
-
-.stock-meta {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    gap: 6px;
-    margin-right: 12px;
-}
-
-.sector-chip {
-    background: rgba(185, 157, 117, 0.15) !important;
-    color: #B99D75 !important;
-    font-size: 10px;
-}
-
-.status-chip {
-    font-size: 10px;
-}
-
-.stock-check {
-    flex-shrink: 0;
-}
-
-.empty-state {
-    text-align: center;
-    padding: 48px;
-    color: rgba(255, 252, 239, 0.3);
-}
-
-
-.show-more {
-    display: flex;
-    justify-content: center;
-    margin-top: 20px;
-}
-
-.show-more-btn {
-    color: #B99D75 !important;
-    text-transform: none;
-    font-weight: 600;
-    letter-spacing: 0.02em;
-}
-
-
-@media (max-width: 600px) {
-    .selector-header {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    .header-right {
-        width: 100%;
-        justify-content: flex-start;
-    }
-
-    .stocks-grid {
-        grid-template-columns: 1fr;
-    }
-}
-</style>
