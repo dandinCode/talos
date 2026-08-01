@@ -10,7 +10,12 @@
             </div>
             <div>
                 <h2 class="text-[1.35rem] font-bold m-0 mb-1 bg-talos-gold bg-clip-text text-transparent max-sm:text-[1.2rem]">Resultado da Otimização</h2>
-                <p class="text-[rgb(255_252_239/0.65)] text-sm m-0">Carteira sugerida com base no modelo de programação linear</p>
+                <p class="text-[rgb(255_252_239/0.65)] text-sm m-0">
+                    Carteira sugerida com base no modelo
+                    <v-chip size="x-small" variant="tonal" color="#B99D75" class="!ml-1">
+                        {{ modelLabel }}
+                    </v-chip>
+                </p>
             </div>
         </div>
 
@@ -126,6 +131,7 @@ const store = usePortfoliosStore();
 
 const props = defineProps<{
     optimization: {
+        model_id?: string;
         dividend_yield: number;
         portfolio_risk: number;
         acceptable_risk: number | null;
@@ -139,6 +145,12 @@ const props = defineProps<{
 }>();
 
 const openSaveModal = ref(false);
+
+const modelLabel = computed(() => {
+    const id = props.optimization?.model_id;
+    if (!id) return '1.0';
+    return id === 'custom' ? 'Personalizável' : `Modelo ${id}`;
+});
 
 const stockAllocation = computed(
     () => props.optimization?.stock_allocation ?? [],
