@@ -57,30 +57,38 @@
                 </v-alert>
 
                 <div class="!px-8 max-md:!px-4">
-                    <div class="grid grid-cols-2 !gap-6 items-stretch max-md:grid-cols-1 max-md:!gap-4">
-                        <div class="flex flex-col min-h-0">
-                            <div
-                                class="flex-1 flex flex-col min-h-[220px] bg-black/20 border border-[rgb(185_157_117/0.1)] rounded-[20px] !p-5">
-                                <div class="flex items-center !gap-2.5 !mb-4 shrink-0">
-                                    <v-icon color="#B99D75" size="20">mdi-calendar-range</v-icon>
-                                    <h3 class="text-talos-cream text-base max-sm:!text-sm font-semibold !m-0">Período de
-                                        Análise</h3>
-                                </div>
-                                <div class="flex-1 flex flex-col min-h-0">
-                                    <DateRangeSelector />
+                    <div class="grid grid-cols-1 !gap-4">
+                        <OptimizationModelSelector />
+                        <ConstraintSelector />
+
+                        <div
+                            class="grid !gap-6 items-stretch max-md:!gap-4"
+                            :class="showRiskInput ? 'grid-cols-2 max-md:grid-cols-1' : 'grid-cols-1'"
+                        >
+                            <div class="flex flex-col min-h-0">
+                                <div
+                                    class="flex-1 flex flex-col min-h-[220px] bg-black/20 border border-[rgb(185_157_117/0.1)] rounded-[20px] !p-5">
+                                    <div class="flex items-center !gap-2.5 !mb-4 shrink-0">
+                                        <v-icon color="#B99D75" size="20">mdi-calendar-range</v-icon>
+                                        <h3 class="text-talos-cream text-base max-sm:!text-sm font-semibold !m-0">Período de
+                                            Análise</h3>
+                                    </div>
+                                    <div class="flex-1 flex flex-col min-h-0">
+                                        <DateRangeSelector />
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="flex flex-col min-h-0">
-                            <div
-                                class="flex-1 flex flex-col min-h-[220px] bg-black/20 border border-[rgb(185_157_117/0.1)] rounded-[20px] !p-5">
-                                <div class="flex items-center !gap-2.5 !mb-4 shrink-0">
-                                    <v-icon color="#B99D75" size="20">mdi-chart-line</v-icon>
-                                    <h3 class="text-talos-cream text-base max-sm:!text-sm font-semibold !m-0">Nível de
-                                        Risco</h3>
-                                </div>
-                                <div>
-                                    <AcceptableRiskInput />
+                            <div v-if="showRiskInput" class="flex flex-col min-h-0">
+                                <div
+                                    class="flex-1 flex flex-col min-h-[220px] bg-black/20 border border-[rgb(185_157_117/0.1)] rounded-[20px] !p-5">
+                                    <div class="flex items-center !gap-2.5 !mb-4 shrink-0">
+                                        <v-icon color="#B99D75" size="20">mdi-chart-line</v-icon>
+                                        <h3 class="text-talos-cream text-base max-sm:!text-sm font-semibold !m-0">Nível de
+                                            Risco</h3>
+                                    </div>
+                                    <div>
+                                        <AcceptableRiskInput />
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -149,17 +157,24 @@
 import StockSelector from "@/components/StockSelector.vue";
 import DateRangeSelector from "@/components/DateRangeSelector.vue";
 import AcceptableRiskInput from "@/components/AcceptableRiskInput.vue";
+import OptimizationModelSelector from "@/components/OptimizationModelSelector.vue";
+import ConstraintSelector from "@/components/ConstraintSelector.vue";
 import { useAnalysisStore } from "@/stores/analysisStore";
 import { analyzeStocks } from "@/services/analisys";
 import ModelResult from "@/components/ModelResult.vue";
 import { notify } from "@/utils/toast";
-import { ref, nextTick } from 'vue';
+import { ref, nextTick, computed } from 'vue';
 
 const modelResult = ref<any | null>(null);
 const runError = ref<string | null>(null);
 const resultsRef = ref<HTMLElement | null>(null);
 const analysis = useAnalysisStore();
 const loading = ref(false)
+
+const showRiskInput = computed(() => {
+    if (analysis.modelId !== 'custom') return true;
+    return analysis.constraints.useRiskLimit;
+});
 
 async function runModel() {
     if (!analysis.selectedSymbols || analysis.selectedSymbols.length < 5) {
@@ -171,7 +186,12 @@ async function runModel() {
     runError.value = null;
 
     const payload: any = {
-        stocks: analysis.selectedSymbols
+        stocks: analysis.selectedSymbols,
+        modelId: analysis.modelId,
+    }
+
+    if (analysis.modelId === 'custom') {
+        payload.constraints = { ...analysis.constraints }
     }
 
     if (analysis.start && analysis.start.trim() !== '') {
@@ -182,7 +202,11 @@ async function runModel() {
         payload.end = analysis.end
     }
 
-    if (analysis.acceptableRisk !== null && analysis.acceptableRisk !== undefined) {
+    if (
+        analysis.acceptableRisk !== null &&
+        analysis.acceptableRisk !== undefined &&
+        showRiskInput.value
+    ) {
         payload.acceptableRisk = analysis.acceptableRisk
     }
 
