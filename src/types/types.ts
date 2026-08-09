@@ -14,11 +14,29 @@ export interface StockSymbol {
   company?: string
 }
 
+export interface ConstraintConfig {
+  useRiskLimit: boolean;
+  useSectorCap: boolean;
+  useFullAllocation: boolean;
+  requireMinSectors: boolean;
+}
+
+export interface OptimizationModel {
+  id: string;
+  name: string;
+  description: string;
+  version: string;
+  customizable: boolean;
+  defaultConstraints: ConstraintConfig;
+}
+
 export interface PortfolioAnalysis {
   stocks: string[]
-  start: string
-  end: string
+  start?: string
+  end?: string
   acceptableRisk?: number
+  modelId?: string
+  constraints?: ConstraintConfig
 }
 
 export interface AuthResponse {
