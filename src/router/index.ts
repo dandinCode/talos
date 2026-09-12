@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import AppLayout from '@/layouts/AppLayout.vue'
 import { checkAuth } from '@/services/user'
+import { useSystemStore } from '@/stores/systemStore'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -19,6 +20,12 @@ const router = createRouter({
       path: '/register',
       name: 'Register',
       component: () => import('../views/Register/index.vue'),
+    },
+    {
+      path: '/maintenance',
+      name: 'Maintenance',
+      component: () => import('../views/Maintenance/index.vue'),
+      meta: { publicDuringMaintenance: true },
     },
 
     {
@@ -62,6 +69,16 @@ const router = createRouter({
 })
 
 router.beforeEach(async (to, from, next) => {
+  const systemStore = useSystemStore()
+
+  if (systemStore.isUnderMaintenance && !to.meta.publicDuringMaintenance) {
+    return next({ name: 'Maintenance' })
+  }
+
+  if (to.name === 'Maintenance') {
+    return next()
+  }
+
   const isAuthenticated = await checkAuth()
 
   if (to.meta.requiresAuth && !isAuthenticated) {
